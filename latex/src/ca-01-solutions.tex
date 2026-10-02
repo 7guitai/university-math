@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2E7D5B}
+\setsheet{微分積分}{テイラー展開と線形近似　演習 1}{https://math.ochanote.com/calculus/taylor-linearization/}
+\begin{document}
+\makesheethead{解答}
+
+\problem
+\begin{ans}
+(1) $e^t = 1 + t + \frac{t^2}{2} + \frac{t^3}{6} + \cdots$ に $t = 2x$ を代入して
+\[ e^{2x} = 1 + 2x + 2x^2 + \frac{4}{3}x^3 + \cdots \]
+(2) $f = \log(1+x)$ とすると $f' = (1+x)^{-1},\ f'' = -(1+x)^{-2},\ f''' = 2(1+x)^{-3}$。$x=0$ で $0,\ 1,\ -1,\ 2$ なので
+\[ \log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots \]
+(3) 等比級数そのもので
+\[ \frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots \]
+\end{ans}
+\point{既知の展開に代入するのが最速。毎回微分しなくてよい。}
+
+\problem
+\begin{ans}
+$f'(x) = -\frac12(1+x)^{-3/2}$ より $f'(0) = -\frac12$。線形近似は
+\[ (1+x)^{-1/2} \approx 1 - \frac{x}{2} \]
+$x = 0.02$ を代入して $\dfrac{1}{\sqrt{1.02}} \approx 1 - 0.01 = 0.99$。
+（真の値は $0.99015\ldots$）
+\end{ans}
+\point{$(1+x)^a \approx 1 + ax$ は「$a$ 乗を $a$ 倍に変える」近似として覚えておくと便利。}
+
+\problem
+\begin{ans}
+(1) $\dfrac{dI}{dV} = \dfrac{I_S e^{V/V_T}}{V_T} = \dfrac{I_D}{V_T}$ より
+\[ r_d = \frac{V_T}{I_D} = \frac{26\ \mathrm{mV}}{2\ \mathrm{mA}} = 13\ \Omega \]
+(2) $\Delta I \approx \dfrac{\Delta V}{r_d} = \dfrac{1\ \mathrm{mV}}{13\ \Omega} \approx 0.077\ \mathrm{mA} = 77\ \mu\mathrm{A}$
+\end{ans}
+\point{電流を倍にすると小信号抵抗は半分になる。$r_d$ は素子の定数ではなく、動作点で決まる量。}
+
+\problem
+\begin{ans}
+(1) $1 - \cos x = \dfrac{x^2}{2} - \dfrac{x^4}{24} + \cdots$ なので
+\[ \frac{1-\cos x}{x^2} = \frac12 - \frac{x^2}{24} + \cdots \ \to\ \frac12 \]
+(2) $e^x - 1 - x = \dfrac{x^2}{2} + \dfrac{x^3}{6} + \cdots$ なので
+\[ \frac{e^x-1-x}{x^2} = \frac12 + \frac{x}{6} + \cdots \ \to\ \frac12 \]
+\end{ans}
+\point{分母の次数までの項を残せば、ロピタルの定理を何回も使わずに済む。}
+\end{document}

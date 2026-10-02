@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{固有値・固有ベクトル　演習 1}{https://math.ochanote.com/linear-algebra/eigenvalues/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+
+\problem[固有値の計算]
+次の行列の固有値と固有ベクトルを求めよ。
+\[ A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \]
+\workspace{50mm}
+
+\problem[対角化]
+$A = \begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$ について、$P^{-1}AP$ が対角行列になる正則行列 $P$ を1つ求め、$P^{-1}AP$ を計算せよ。
+\workspace{60mm}
+
+\problem[連立微分方程式と安定性]
+$\dot{\boldsymbol x} = A\boldsymbol x,\quad A = \begin{pmatrix} -1 & 2 \\ 2 & -1 \end{pmatrix},\quad \boldsymbol x(0) = \begin{pmatrix} 2 \\ 0 \end{pmatrix}$ について、
+\begin{enumerate}[label=(\arabic*)]
+\item 解 $\boldsymbol x(t)$ を求めよ。
+\item このシステムは安定か。理由とともに答えよ。
+\end{enumerate}
+\workspace{60mm}
+
+\problem[2階の微分方程式を行列で書く]
+$\ddot y + 3\dot y + 2y = 0$ について、$x_1 = y,\ x_2 = \dot y$ とおく。
+\begin{enumerate}[label=(\arabic*)]
+\item $\dot{\boldsymbol x} = A\boldsymbol x$ の形に書き、$A$ を求めよ。
+\item $A$ の特性方程式が、元の微分方程式の特性方程式 $\lambda^2 + 3\lambda + 2 = 0$ と一致することを示し、固有値を求めよ。
+\end{enumerate}
+\workspace{40mm}
+\end{document}

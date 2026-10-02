@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{7A4BA8}
+\setsheet{複素関数}{オイラーの公式とフェーザ　演習 1}{https://math.ochanote.com/complex/euler-phasor/}
+\begin{document}
+\makesheethead{解答}
+
+\problem
+\begin{ans}
+(1) $|1+j| = \sqrt2$、偏角 $\pi/4$ より $1+j = \sqrt2\, e^{j\pi/4}$
+
+(2) $|-\sqrt3+j| = 2$。$\cos\theta = -\frac{\sqrt3}{2},\ \sin\theta = \frac12$ より $\theta = \frac{5\pi}{6}$。よって $-\sqrt3+j = 2e^{j5\pi/6}$
+
+(3) $(1+j)^8 = (\sqrt2)^8 e^{j8\cdot\pi/4} = 16\,e^{j2\pi} = 16$
+\end{ans}
+\point{累乗は極形式にすると「大きさは累乗、角度は掛け算」になる。}
+
+\problem
+\begin{ans}
+(1) $e^{j\theta} = \cos\theta + j\sin\theta$、$e^{-j\theta} = \cos\theta - j\sin\theta$ を足すと $e^{j\theta}+e^{-j\theta} = 2\cos\theta$。
+
+(2)
+\[ \cos^2\theta = \frac{(e^{j\theta}+e^{-j\theta})^2}{4} = \frac{e^{2j\theta} + 2 + e^{-2j\theta}}{4} = \frac{2\cos2\theta + 2}{4} = \frac{1+\cos2\theta}{2} \]
+\end{ans}
+\point{三角関数の公式を忘れても、指数関数に直せば機械的に導ける。電力の計算で $\cos^2$ が出たときに使う。}
+
+\problem
+\begin{ans}
+$Z = R + \dfrac{1}{j\omega C} = 10 - 10j\ \Omega$、$\dot V = 20$ より
+\[ \dot I = \frac{20}{10-10j} = \frac{20(10+10j)}{200} = 1 + j = \sqrt2\, e^{j\pi/4} \]
+よって
+\[ i(t) = \sqrt2\cos\!\left(\omega t + \frac{\pi}{4}\right)\ \mathrm{A} \]
+\end{ans}
+\point{$1/(j\omega C) = -j/(\omega C)$。コンデンサを含む回路では電流が電圧より進む（ここでは $45^\circ$）。}
+
+\problem
+\begin{ans}
+(1)
+\[ Z = R + j\omega L + \frac{1}{j\omega C} = R + j\left(\omega L - \frac{1}{\omega C}\right) \]
+(2) 虚部が $0$ になる条件 $\omega L = \dfrac{1}{\omega C}$ より
+\[ \omega_0 = \frac{1}{\sqrt{LC}} = \frac{1}{\sqrt{10^{-2}\times10^{-6}}} = 10^4\ \mathrm{rad/s},\qquad f_0 = \frac{\omega_0}{2\pi} \approx 1.59\ \mathrm{kHz} \]
+\end{ans}
+\point{共振時はコイルとコンデンサのリアクタンスが打ち消し合い、$Z = R$ で電流が最大になる。$\omega$ と $f$ の取り違えに注意。}
+\end{document}

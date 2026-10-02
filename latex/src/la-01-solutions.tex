@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{固有値・固有ベクトル　演習 1}{https://math.ochanote.com/linear-algebra/eigenvalues/}
+\begin{document}
+\makesheethead{解答}
+
+\problem
+\begin{ans}
+特性方程式は
+\[ \det(A-\lambda I) = (2-\lambda)^2 - 1 = (\lambda-1)(\lambda-3) = 0 \]
+より $\lambda = 1,\ 3$。
+
+$\lambda=1$：$(A-I)\boldsymbol v = \boldsymbol 0$ は $v_1 + v_2 = 0$。固有ベクトルは $c\begin{pmatrix}1\\-1\end{pmatrix}$（$c\neq0$）。
+
+$\lambda=3$：$(A-3I)\boldsymbol v = \boldsymbol 0$ は $-v_1 + v_2 = 0$。固有ベクトルは $c\begin{pmatrix}1\\1\end{pmatrix}$（$c\neq0$）。
+\end{ans}
+\point{対称行列の固有ベクトルは互いに直交する。$(1,-1)\cdot(1,1)=0$ で確認できる。}
+
+\problem
+\begin{ans}
+\[ \det(A-\lambda I) = (4-\lambda)(1-\lambda) + 2 = \lambda^2 - 5\lambda + 6 = (\lambda-2)(\lambda-3) = 0 \]
+$\lambda=2$：$\begin{pmatrix}2&-2\\1&-1\end{pmatrix}\boldsymbol v=\boldsymbol 0$ より $\boldsymbol v_1 = \begin{pmatrix}1\\1\end{pmatrix}$。
+
+$\lambda=3$：$\begin{pmatrix}1&-2\\1&-2\end{pmatrix}\boldsymbol v=\boldsymbol 0$ より $\boldsymbol v_2 = \begin{pmatrix}2\\1\end{pmatrix}$。
+
+固有ベクトルを並べて
+\[ P = \begin{pmatrix}1&2\\1&1\end{pmatrix},\qquad P^{-1} = \begin{pmatrix}-1&2\\1&-1\end{pmatrix},\qquad P^{-1}AP = \begin{pmatrix}2&0\\0&3\end{pmatrix} \]
+\end{ans}
+\point{$P$ の列の順番と、対角に並ぶ固有値の順番は対応する。$P$ の選び方は一通りではない。}
+
+\problem
+\begin{ans}
+(1) $\det(A-\lambda I) = (\lambda+1)^2 - 4 = (\lambda-1)(\lambda+3)=0$ より $\lambda = 1,\ -3$。
+固有ベクトルは $\lambda=1$ で $(1,1)^{\mathsf T}$、$\lambda=-3$ で $(1,-1)^{\mathsf T}$。一般解は
+\[ \boldsymbol x(t) = c_1 e^{t}\begin{pmatrix}1\\1\end{pmatrix} + c_2 e^{-3t}\begin{pmatrix}1\\-1\end{pmatrix} \]
+初期条件から $c_1+c_2=2,\ c_1-c_2=0$ なので $c_1=c_2=1$。
+\[ x_1(t) = e^{t} + e^{-3t},\qquad x_2(t) = e^{t} - e^{-3t} \]
+
+(2) 安定ではない。固有値 $\lambda = 1$ が正なので、モード $(1,1)$ の成分が $e^{t}$ で増え続け、発散する。
+\end{ans}
+\point{安定性は初期値によらず固有値だけで決まる。初期値がたまたま $(1,-1)$ 方向だけなら減衰するが、少しでもずれれば発散する。}
+
+\problem
+\begin{ans}
+(1) $\dot x_1 = \dot y = x_2$、$\dot x_2 = \ddot y = -2y - 3\dot y = -2x_1 - 3x_2$ より
+\[ A = \begin{pmatrix} 0 & 1 \\ -2 & -3 \end{pmatrix} \]
+(2)
+\[ \det(A-\lambda I) = \det\begin{pmatrix}-\lambda & 1\\ -2 & -3-\lambda\end{pmatrix} = \lambda(\lambda+3) + 2 = \lambda^2 + 3\lambda + 2 \]
+で一致する。$(\lambda+1)(\lambda+2)=0$ より固有値は $\lambda = -1,\ -2$。
+\end{ans}
+\point{$n$ 階の線形微分方程式は、いつでも $n$ 次元の1階連立方程式に書き直せる。制御工学の状態方程式はこの形。}
+\end{document}
