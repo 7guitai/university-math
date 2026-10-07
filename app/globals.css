@@ -77,6 +77,8 @@ a { text-underline-offset: 0.2em; }
 .box-thm  { --box-c: var(--ink); border: 1px solid var(--ink); border-left-width: 4px; }
 .box-ex   { --box-c: var(--c-ca); }
 .box-note { --box-c: #8a6d1a; background: #fffbea; }
+.box-goal { --box-c: var(--c-la); background: #f4f7fc; }
+.box-caution { --box-c: #b0452f; background: #fff6f3; }
 
 details.answer { border: 1px dashed var(--rule); padding: 0.6em 1em; background: #fff; }
 details.answer summary { cursor: pointer; font-family: var(--font-ui); font-weight: 700; color: var(--c-ca); }

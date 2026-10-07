@@ -1,0 +1,285 @@
+---
+title: ベクトルと内積 — 力の合成から、向きの違いを測る計算へ
+description: ベクトルの成分、足し算、線形結合、長さ、内積を基礎から解説。力の合成と仕事を例に、計算結果が何を意味するかを図と途中式で確かめます。自作の演習問題・解答PDF付き。
+order: 10
+updated: "2026-10-06"
+pdf:
+  problems: /pdf/la-02-problems.pdf
+  solutions: /pdf/la-02-solutions.pdf
+  count: 4
+---
+
+物体に2つの力が加わるとき、大きさだけを足しても合力は求まりません。右向きの力と左向きの力では、打ち消し合うからです。**大きさと向きを一緒に扱う**のがベクトルです。
+
+線形代数では、力だけでなく、複数の測定値をまとめたものもベクトルとして扱います。まずは2次元の矢印から、成分の計算と図の意味をつなげましょう。
+
+<Box kind="goal">
+
+- ベクトルの足し算・定数倍・線形結合を計算できる
+- 長さと内積を求め、向きの関係を説明できる
+- 力の合成と仕事を、ベクトルの式で表せる
+
+前提は四則演算、平方根、三平方の定理です。角度の説明では三角比の $\cos$ を使います。微分・積分や行列の知識は必要ありません。このページでは実数の成分を持つベクトルを扱います。
+
+</Box>
+
+## 1. ベクトルを成分で表す
+
+平面の右向きを $x$ 軸、上向きを $y$ 軸に取ります。右へ3、上へ1進む矢印は
+
+$$
+\boldsymbol a = \begin{pmatrix}3\\1\end{pmatrix}
+$$
+
+と表します。上の3が $x$ 成分、下の1が $y$ 成分です。負の成分なら、それぞれ左向き・下向きを意味します。
+
+このページでは縦に並べた**列ベクトル**を使います。図の中では、場所を節約するため $(3,1)$ と書くこともあります。
+
+<Box kind="def" title="実数の成分を持つベクトル">
+
+$n$ 個の実数を順番に並べた
+
+$$
+\boldsymbol a = \begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
+$$
+
+を、$n$ 次元の実ベクトルと呼びます。$a_1,\ldots,a_n$ が成分です。すべての成分が0のベクトルを零ベクトル $\boldsymbol 0$ といいます。
+
+</Box>
+
+2次元・3次元では矢印として描けます。4次元以上でも、成分ごとに計算するルールは同じです。例えば4回の測定値を並べれば、4次元のベクトルになります。
+
+物理量を表すときは、成分が何を表し、どんな単位を持つかも決めておきます。
+
+## 2. 足し算・定数倍・線形結合
+
+同じ次元のベクトルは、対応する成分どうしを足します。
+
+$$
+\begin{pmatrix}a_1\\a_2\end{pmatrix}
++\begin{pmatrix}b_1\\b_2\end{pmatrix}
+=\begin{pmatrix}a_1+b_1\\a_2+b_2\end{pmatrix}
+$$
+
+$\boldsymbol a=(3,1)^{\mathsf T}$、$\boldsymbol b=(-1,2)^{\mathsf T}$ なら
+
+$$
+\boldsymbol a+\boldsymbol b
+=\begin{pmatrix}3-1\\1+2\end{pmatrix}
+=\begin{pmatrix}2\\3\end{pmatrix}
+$$
+
+です。図では、$\boldsymbol a$ の先端から $\boldsymbol b$ を描き、その最後の点へ原点から引いた矢印が和になります。同じベクトルを平行移動しても成分は変わりません。
+
+![ベクトルaは原点から点(3,1)へ、bはそこから点(2,3)へ進む。原点から点(2,3)への矢印がa+b。](/figures/linear-algebra/vector-addition.svg)
+
+図の青い矢印が $\boldsymbol a$、緑の矢印が $\boldsymbol b$、紫の矢印が合成した結果です。点線は、先に $\boldsymbol b$ を描いてから $\boldsymbol a$ をつないだ経路です。どちらの順でも同じ点 $(2,3)$ に着くので、$\boldsymbol a+\boldsymbol b=\boldsymbol b+\boldsymbol a$ が図からも分かります。
+
+定数 $c$ を掛けると、すべての成分が $c$ 倍になります。
+
+$$
+c\boldsymbol a=\begin{pmatrix}ca_1\\ca_2\end{pmatrix}
+$$
+
+$c$ が正なら同じ向き、負なら反対向きです。長さは $|c|$ 倍になり、$c=0$ なら零ベクトルになります。
+
+<Box kind="def" title="線形結合">
+
+ベクトルに定数を掛けて足した
+
+$$
+c_1\boldsymbol a+c_2\boldsymbol b
+$$
+
+のような式を**線形結合**と呼びます。線形代数の「線形」は、この操作が基本になることと結びついています。
+
+</Box>
+
+例えば、上の $\boldsymbol a,\boldsymbol b$ に対して
+
+$$
+2\boldsymbol a-\boldsymbol b
+=\begin{pmatrix}6\\2\end{pmatrix}
+-\begin{pmatrix}-1\\2\end{pmatrix}
+=\begin{pmatrix}7\\0\end{pmatrix}
+$$
+
+となります。2つのベクトルを組み合わせて、$y$ 成分を打ち消せました。
+
+## 3. ベクトルの長さを求める
+
+2次元の長さは、三平方の定理で求めます。
+
+<Box kind="def" title="長さ（ユークリッドノルム）">
+
+このページでは、ベクトルの長さを
+
+$$
+\|\boldsymbol a\|
+=\sqrt{a_1^2+\cdots+a_n^2}
+$$
+
+で定義します。これをユークリッドノルムと呼びます。長さが1のベクトルを単位ベクトルといいます。
+
+</Box>
+
+$\boldsymbol u=(3,4)^{\mathsf T}$ の長さは
+
+$$
+\|\boldsymbol u\|=\sqrt{3^2+4^2}=5
+$$
+
+です。零ベクトルでなければ、長さで割ることで向きを保った単位ベクトルを作れます。この操作を**正規化**といいます。
+
+$$
+\frac{\boldsymbol u}{\|\boldsymbol u\|}
+=\begin{pmatrix}3/5\\4/5\end{pmatrix},
+\qquad
+\sqrt{(3/5)^2+(4/5)^2}=1
+$$
+
+零ベクトルは長さが0なので、この割り算はできません。
+
+<Box kind="ex" title="2つの力の合成">
+
+力 $\boldsymbol F_1=(3,1)^{\mathsf T}\ \mathrm N$ と $\boldsymbol F_2=(-1,2)^{\mathsf T}\ \mathrm N$ が同じ物体に加わる。合力と、その大きさを求めよ。
+
+</Box>
+
+先ほどの足し算から、合力は $\boldsymbol F=(2,3)^{\mathsf T}\ \mathrm N$ です。その大きさは
+
+$$
+\|\boldsymbol F\|=\sqrt{2^2+3^2}
+=\sqrt{13}\ \mathrm N\approx3.61\ \mathrm N
+$$
+
+です。個々の大きさを足した $\sqrt{10}+\sqrt5\approx5.40$ とは異なります。**力は成分で足し、合力の大きさは最後に求める**のがポイントです。
+
+## 4. 内積で向きの関係を調べる
+
+ベクトルの和はベクトルでした。次に扱う内積の結果は、1つの実数です。
+
+<Box kind="def" title="実ベクトルの標準内積">
+
+同じ次元の実ベクトル $\boldsymbol a,\boldsymbol b$ に対して
+
+$$
+\boldsymbol a\cdot\boldsymbol b
+=a_1b_1+\cdots+a_nb_n
+$$
+
+を、このページで使う内積とします。対応する成分どうしを掛け、それらを足します。
+
+</Box>
+
+例えば $\boldsymbol u=(3,4)^{\mathsf T}$ と $\boldsymbol v=(4,-3)^{\mathsf T}$ の内積は
+
+$$
+\boldsymbol u\cdot\boldsymbol v
+=3\times4+4\times(-3)=0
+$$
+
+です。内積が0になるベクトルどうしを**直交する**といいます。どちらも零ベクトルでないとき、2次元・3次元では直角に交わることを意味します。零ベクトルはどのベクトルとも内積が0なので、この定義では「直交する」に含まれますが、向きを持たないため直角とはいえません。
+
+![原点から伸びるu=(3,4)とv=(4,-3)の矢印。2つの矢印の間に直角の印があり、内積は12-12=0。](/figures/linear-algebra/vector-orthogonality.svg)
+
+### 内積と角度の関係
+
+2つの非零ベクトルのなす角を $\theta$ とすると
+
+$$
+\boldsymbol a\cdot\boldsymbol b
+=\|\boldsymbol a\|\,\|\boldsymbol b\|\cos\theta
+$$
+
+が成り立ちます。2次元・3次元では、余弦定理を成分で書き直すと導けます。両辺を長さの積で割ると
+
+$$
+\cos\theta
+=\frac{\boldsymbol a\cdot\boldsymbol b}
+{\|\boldsymbol a\|\,\|\boldsymbol b\|}
+$$
+
+です。$\boldsymbol a=(1,0)^{\mathsf T}$ と $\boldsymbol b=(1,1)^{\mathsf T}$ なら、内積は1、長さは1と $\sqrt2$ なので、$\cos\theta=1/\sqrt2$、角度は $45^\circ$ と確かめられます。
+
+4次元以上では矢印を描けないので、逆にこの式で $\cos\theta$ を、つまり「なす角」を**定義**します。右辺の値は必ず $-1$ 以上 $1$ 以下になる（コーシー・シュワルツの不等式）ので、$0^\circ\le\theta\le180^\circ$ の角が1つに決まります。
+
+非零ベクトルでは、内積の符号からも角度の範囲が分かります。
+
+| 内積 | なす角 | 向きの関係 |
+| --- | --- | --- |
+| 正 | $0^\circ\le\theta<90^\circ$ | 鋭角側 |
+| 0 | $\theta=90^\circ$ | 直交 |
+| 負 | $90^\circ<\theta\le180^\circ$ | 鈍角側 |
+
+<Box kind="caution" title="内積が大きいだけでは、向きが近いとは限らない">
+
+内積には、向きだけでなく長さも影響します。向きを比べるなら、長さの積で割った $\cos\theta$ を使います。零ベクトルとは内積を計算できますが、なす角や正規化は定義できません。
+
+</Box>
+
+例えば同じ時刻に測った信号の標本列を $\boldsymbol x=(1,-1,1,-1)^{\mathsf T}$、$\boldsymbol y=(2,-2,2,-2)^{\mathsf T}$ とします。内積は $8$、長さは $2$ と $4$ なので
+
+$$
+\cos\theta=\frac{8}{2\times4}=1
+$$
+
+です。$\boldsymbol y=2\boldsymbol x$ なので振幅は2倍違いますが、標本列の向き（波形の形）は同じだと分かります。このように長さで割って向きだけを比べる値は、信号の類似度としても使われます。
+
+## 5. 工学の例：力がする仕事
+
+一定の力 $\boldsymbol F$ が加わる物体の変位を $\boldsymbol d$ とすると、その力がする仕事は
+
+$$
+W=\boldsymbol F\cdot\boldsymbol d
+$$
+
+です。変位は「終点の位置 − 始点の位置」を表すベクトルです。この式は力が一定の場合に使います。
+
+<Box kind="ex" title="進む方向の力だけが仕事に効く">
+
+$\boldsymbol F=(3,4)^{\mathsf T}\ \mathrm N$ の一定の力が加わった物体が、$\boldsymbol d=(2,0)^{\mathsf T}\ \mathrm m$ だけ変位した。この力がする仕事を求めよ。
+
+</Box>
+
+$$
+W=3\times2+4\times0=6\ \mathrm{N\,m}=6\ \mathrm J
+$$
+
+物体は $x$ 方向にしか変位していないので、$y$ 方向の4 Nはこの仕事に寄与しません。力の大きさ5 Nと変位の大きさ2 mをそのまま掛けた10 Jにはなりません。
+
+内積と角度の関係を使うと
+
+$$
+W=\|\boldsymbol F\|\,\|\boldsymbol d\|\cos\theta
+=\bigl(\|\boldsymbol F\|\cos\theta\bigr)\,\|\boldsymbol d\|
+$$
+
+とも書けます。$\|\boldsymbol F\|\cos\theta$ は**力のうち、進む方向の成分**です。上の例では $\cos\theta=6/(5\times2)=3/5$ なので、その成分は $5\times3/5=3\ \mathrm N$、仕事は $3\times2=6\ \mathrm J$ と一致します。力が変位と反対向きの成分を持つ（$\theta>90^\circ$）なら、仕事は負になります。
+
+## 6. 自分で確かめる
+
+$\boldsymbol p=(2,1)^{\mathsf T}$、$\boldsymbol q=(-1,2)^{\mathsf T}$ とします。
+
+1. $\boldsymbol p+\boldsymbol q$ と $2\boldsymbol p-\boldsymbol q$ を求めてください。
+2. $\boldsymbol p$ の長さと、それと同じ向きの単位ベクトルを求めてください。
+3. $\boldsymbol p\cdot\boldsymbol q$ を求め、なす角を説明してください。
+
+<Answer>
+
+1. 和は $(1,3)^{\mathsf T}$、$2\boldsymbol p-\boldsymbol q=(5,0)^{\mathsf T}$ です。
+2. 長さは $\sqrt5$、単位ベクトルは $(2/\sqrt5,1/\sqrt5)^{\mathsf T}$ です。成分の2乗の和が1になることを確かめられます。
+3. 内積は $2\times(-1)+1\times2=0$ です。両方が非零ベクトルなので、なす角は $90^\circ$ です。
+
+</Answer>
+
+## まとめ
+
+- 和と定数倍は、対応する成分ごとに計算する
+- 長さは成分の2乗の和の平方根で求める
+- 内積は1つの数になり、非零ベクトルの向きの関係を表す
+- 力の合成はベクトルの和、一定の力がする仕事は内積で表せる
+
+演習PDFでは、計算・意味の説明・零ベクトルへの注意・仕事の4つを練習します。
+
+次は、複数のベクトルをまとめて変換する「行列と線形変換」を扱う予定です。[線形代数の学習ページ](/linear-algebra/)から、学習順と読める記事を確認できます。

@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{ベクトルと内積　演習}{https://math.ochanote.com/linear-algebra/vectors/}
+\begin{document}
+\makesheethead{解答}
+
+\problem
+\begin{ans}
+(1) 対応する成分ごとに計算する。
+\[
+\boldsymbol a+\boldsymbol b=\begin{pmatrix}1+3\\2-1\end{pmatrix}=\begin{pmatrix}4\\1\end{pmatrix},\qquad
+2\boldsymbol a-\boldsymbol b=\begin{pmatrix}2-3\\4-(-1)\end{pmatrix}=\begin{pmatrix}-1\\5\end{pmatrix}
+\]
+(2) $\|\boldsymbol a\|=\sqrt{1^2+2^2}=\sqrt5$。求める単位ベクトルは
+\[
+\frac{\boldsymbol a}{\|\boldsymbol a\|}=\begin{pmatrix}1/\sqrt5\\2/\sqrt5\end{pmatrix}
+\]
+検算：成分の2乗の和は $1/5+4/5=1$ なので、長さは1になる。
+\end{ans}
+\point{引き算では負の成分の符号に注意する。正規化では全成分を同じ長さで割る。}
+
+\problem
+\begin{ans}
+(1) $\boldsymbol u\cdot\boldsymbol v=1\times2+1\times0=2$。
+$\|\boldsymbol u\|=\sqrt2$、$\|\boldsymbol v\|=2$ より
+\[
+\cos\theta=\frac{2}{\sqrt2\times2}=\frac1{\sqrt2}
+\]
+したがって、なす角は $45^\circ$。
+
+(2) $\boldsymbol u\cdot\boldsymbol w=1\times1+1\times(-1)=0$。
+両方が非零ベクトルなので、直角に交わる。
+検算：$\|\boldsymbol u\|=\|\boldsymbol w\|=\sqrt2$ より、$\cos\theta=0/2=0$ である。
+\end{ans}
+\point{内積には長さも影響する。角度を求めるときは、長さの積で割る。}
+
+\newpage
+\problem
+\begin{ans}
+(1) 正しい。零ベクトルの各成分は0なので
+\[ \boldsymbol a\cdot\boldsymbol 0=a_1\times0+\cdots+a_n\times0=0 \]
+(2) 誤り。$\|\boldsymbol 0\|=0$ なので、長さで割ることはできない。零ベクトルは正規化できない。
+
+(3) 誤り。例えば $\boldsymbol a=\boldsymbol 0$、$\boldsymbol b=(1,0)^{\mathsf T}$ でも内積は0だが、零ベクトルには向きがなく、なす角は定義できない。
+内積0を「直交」と呼ぶことはできるが、角度を $90^\circ$ と説明するには両方が非零であることが必要。
+\end{ans}
+\point{内積を計算できる条件と、角度や正規化を定義できる条件は異なる。}
+
+\problem
+\begin{ans}
+(1) 力が一定なので、仕事は内積で求められる。
+\[ W=\boldsymbol F\cdot\boldsymbol d=4\times2+(-3)\times1=5\ \mathrm J \]
+(2) $\|\boldsymbol F\|=5\ \mathrm N$、$\|\boldsymbol d\|=\sqrt5\ \mathrm m$ より
+\[ \|\boldsymbol F\|\,\|\boldsymbol d\|=5\sqrt5\ \mathrm{N\,m}\approx11.18\ \mathrm{N\,m} \]
+これは力と変位が同じ向きだった場合の値であり、実際の仕事ではない。
+力と変位は同じ向きではないので、仕事に効くのは力のうち変位の方向の成分 $\|\boldsymbol F\|\cos\theta$ だけである。
+\[ \cos\theta=\frac{W}{\|\boldsymbol F\|\,\|\boldsymbol d\|}=\frac{5}{5\sqrt5}=\frac1{\sqrt5},\qquad
+\|\boldsymbol F\|\cos\theta=\sqrt5\ \mathrm N \]
+検算：$\sqrt5\ \mathrm N\times\sqrt5\ \mathrm m=5\ \mathrm J$ となり、(1)と一致する。
+
+
+(3) $\boldsymbol F\cdot(-\boldsymbol d)=-(\boldsymbol F\cdot\boldsymbol d)=-5\ \mathrm J$。
+変位が逆になると、この力がする仕事の符号も逆になる。
+\end{ans}
+\point{仕事には、変位の方向の力の成分だけが効く。単位は $\mathrm{N\,m}=\mathrm J$。}
+\end{document}

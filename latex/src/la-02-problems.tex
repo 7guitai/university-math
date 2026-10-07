@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{ベクトルと内積　演習}{https://math.ochanote.com/linear-algebra/vectors/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+この演習では実ベクトルの標準内積とユークリッドノルムを使う。
+
+\problem[成分の計算と長さ]
+$\boldsymbol a=\begin{pmatrix}1\\2\end{pmatrix}$、$\boldsymbol b=\begin{pmatrix}3\\-1\end{pmatrix}$ とする。
+\begin{enumerate}[label=(\arabic*)]
+\item $\boldsymbol a+\boldsymbol b$ と $2\boldsymbol a-\boldsymbol b$ を求めよ。
+\item $\boldsymbol a$ の長さと、$\boldsymbol a$ と同じ向きの単位ベクトルを求めよ。
+\end{enumerate}
+\workspace{45mm}
+
+\problem[内積の意味]
+$\boldsymbol u=\begin{pmatrix}1\\1\end{pmatrix}$、$\boldsymbol v=\begin{pmatrix}2\\0\end{pmatrix}$、$\boldsymbol w=\begin{pmatrix}1\\-1\end{pmatrix}$ とする。
+\begin{enumerate}[label=(\arabic*)]
+\item $\boldsymbol u\cdot\boldsymbol v$ と、$\boldsymbol u$ と $\boldsymbol v$ のなす角を求めよ。
+\item $\boldsymbol u\cdot\boldsymbol w$ を求め、2つのベクトルの向きの関係を説明せよ。
+\end{enumerate}
+\workspace{45mm}
+
+\newpage
+\problem[零ベクトルへの注意]
+次の主張について、正しいかどうかを理由とともに答えよ。
+\begin{enumerate}[label=(\arabic*)]
+\item 任意の実ベクトル $\boldsymbol a$ について $\boldsymbol a\cdot\boldsymbol 0=0$ である。
+\item 零ベクトルを長さで割ると、単位ベクトルが得られる。
+\item $\boldsymbol a\cdot\boldsymbol b=0$ なら、どんな場合でも2つのベクトルのなす角は $90^\circ$ といえる。
+\end{enumerate}
+\workspace{50mm}
+
+\problem[一定の力がする仕事]
+物体に一定の力 $\boldsymbol F=\begin{pmatrix}4\\-3\end{pmatrix}\ \mathrm N$ が加わり、
+物体の変位が $\boldsymbol d=\begin{pmatrix}2\\1\end{pmatrix}\ \mathrm m$ であった。
+\begin{enumerate}[label=(\arabic*)]
+\item この力がする仕事 $W$ を求めよ。
+\item $\|\boldsymbol F\|\,\|\boldsymbol d\|$ を計算し、その値が仕事と異なる理由を説明せよ。
+\item 同じ力のもとで、変位が $-\boldsymbol d$ だった場合の仕事を求めよ。
+\end{enumerate}
+\workspace{65mm}
+\end{document}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" role="img" aria-labelledby="title desc">
+  <title id="title">内積が0の非零ベクトルは直交する</title>
+  <desc id="desc">u=(3,4)とv=(4,-3)は直角に交わる。内積は3×4+4×(-3)=0。</desc>
+  <defs>
+    <marker id="blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f5da8"/></marker>
+    <marker id="green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2e7d5b"/></marker>
+  </defs>
+  <rect width="640" height="380" rx="8" fill="#ffffff"/>
+  <path d="M140 200H490 M230 315V45" stroke="#d5dce6" stroke-width="1.5"/>
+  <path d="M230 200L320 80" stroke="#2f5da8" stroke-width="3.5" marker-end="url(#blue)"/>
+  <path d="M230 200L350 290" stroke="#2e7d5b" stroke-width="3.5" marker-end="url(#green)"/>
+  <path d="M240.8 185.6L255.2 196.4L244.4 210.8" fill="none" stroke="#1c2b44" stroke-width="2"/>
+  <g font-family="sans-serif" font-size="19" font-weight="bold">
+    <text x="331" y="75" fill="#2f5da8">u = (3, 4)</text>
+    <text x="358" y="299" fill="#2e7d5b">v = (4, −3)</text>
+  </g>
+  <g font-family="sans-serif" font-size="16" fill="#5a6478">
+    <text x="209" y="219">0</text><text x="498" y="205">x</text><text x="226" y="34">y</text>
+    <text x="282" y="189">90°</text>
+  </g>
+  <text x="320" y="352" text-anchor="middle" fill="#1c2b44" font-family="sans-serif" font-size="19">u · v = 3 × 4 + 4 × (−3) = 0</text>
+</svg>

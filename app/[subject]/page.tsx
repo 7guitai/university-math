@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getArticles } from "@/lib/content";
 import { SUBJECTS, SUBJECT_ORDER, type SubjectKey } from "@/lib/site";
 import { PdfLinks } from "@/components/PdfLinks";
+import { LinearAlgebraIntro } from "@/components/LinearAlgebraIntro";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -27,6 +28,8 @@ export default async function SubjectPage({ params }: P) {
     <div className="mx-auto max-w-3xl px-5 py-12">
       <h1 className="text-3xl font-bold" style={{ color: s.color }}>{s.name}</h1>
       <p className="mt-4 leading-relaxed text-[var(--sub)]">{s.lead}</p>
+      {subject === "linear-algebra" && <LinearAlgebraIntro />}
+      {subject === "linear-algebra" && <h2 className="mt-12 text-xl font-bold">解説と演習PDF</h2>}
       <ol className="mt-10 space-y-10">
         {list.map((a) => (
           <li key={a.slug} className="border-t border-[var(--rule)] pt-6">

@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 
-const LABEL = { def: "定義", thm: "定理", ex: "例題", note: "工学ではここに注意" } as const;
+const LABEL = {
+  def: "定義",
+  thm: "定理",
+  ex: "例題",
+  note: "工学ではここに注意",
+  goal: "このページの目標と前提",
+  caution: "注意",
+} as const;
 
 export function Box({ kind, title, children }: { kind: keyof typeof LABEL; title?: string; children: ReactNode }) {
   return (
