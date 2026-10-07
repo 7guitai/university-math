@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{連立方程式と掃き出し法　演習}{https://math.ochanote.com/linear-algebra/linear-systems/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[一意解]
+\begin{ans}
+行を交換して \[\left[\begin{array}{cc|c}1&-1&2\\2&1&7\end{array}\right]\to\left[\begin{array}{cc|c}1&-1&2\\0&3&3\end{array}\right].\] 第2行より $y=1$、第1行より $x=3$。$2\times3+1=7,\ 3-1=2$。
+\end{ans}
+\point{消去後の解を元の式に戻して検算する。}
+
+\problem[解の存在]
+\begin{ans}
+第2式から第1式の2倍を引くと $0=1$ となるので解なし。係数行列の階数は1、拡大行列の階数は2。右辺の列に新たなピボットができる。
+\end{ans}
+\point{式の本数だけで解の有無は決まらない。}
+\newpage
+
+\problem[自由変数]
+\begin{ans}
+第2式より $x=y$。$y=t$ と置けば $z=2-2t$。\[(x,y,z)^{\mathsf T}=(0,0,2)^{\mathsf T}+t(1,1,-2)^{\mathsf T},\quad t\in\mathbb R.\] ピボット数2、未知数3なので自由変数は1つ。代入すると $t+t+2-2t=2$。
+\end{ans}
+\point{自由変数の数は未知数の数から階数を引いた数。}
+
+\problem[節点電圧]
+\begin{ans}
+$V_1=2V_2$ より $3V_2=2$。$V_1=4/3\ \mathrm V,\ V_2=2/3\ \mathrm V$。検算：$(4/3+2/3)\ \mathrm A=2\ \mathrm A$ が接地へ流れる。
+\end{ans}
+\point{係数がコンダクタンスなら、係数と電圧の積は電流。}
+\end{document}

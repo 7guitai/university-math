@@ -1,0 +1,115 @@
+---
+title: 直交射影と正規直交化 — 成分を取り出し、残りを測る
+description: 直線・部分空間への直交射影と、グラム・シュミット法を解説。残差の直交性と最短距離の意味を、図と具体的な計算で確かめます。
+order: 120
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-12-problems.pdf
+  solutions: /pdf/la-12-solutions.pdf
+  count: 4
+---
+
+測定されたベクトルから、ある方向の成分だけを取り出したい。内積を使うと、その方向に最も近い点を求められます。この考え方が、信号の成分抽出と最小二乗法の土台です。
+
+<Box kind="goal">
+
+- 直線と部分空間への直交射影を計算する
+- 残差が直交することと最短距離の関係を理解する
+- グラム・シュミット法で正規直交基底を作る
+
+</Box>
+
+## 1. 直線への射影を導く
+
+非零ベクトル $\boldsymbol u$ が生成する直線上の点を $\boldsymbol p=\alpha\boldsymbol u$ とします。残差 $\boldsymbol r=\boldsymbol x-\boldsymbol p$ を $\boldsymbol u$ と直交させると
+
+$$
+\boldsymbol u^{\mathsf T}(\boldsymbol x-\alpha\boldsymbol u)=0
+$$
+
+なので $\alpha=(\boldsymbol u^{\mathsf T}\boldsymbol x)/(\boldsymbol u^{\mathsf T}\boldsymbol u)$。したがって
+
+<Box kind="def" title="直線への直交射影">
+
+$$
+\boldsymbol p=
+\frac{\boldsymbol u^{\mathsf T}\boldsymbol x}{\|\boldsymbol u\|^2}\boldsymbol u
+$$
+
+が直線への射影です。$\boldsymbol u$ が単位ベクトルなら分母は1になります。
+
+</Box>
+
+$\boldsymbol x=(3,1)^{\mathsf T}$、$\boldsymbol u=(1,1)^{\mathsf T}$ なら $\alpha=4/2=2$ で、$\boldsymbol p=(2,2)^{\mathsf T}$。残差は $(1,-1)^{\mathsf T}$ で、確かに内積が0です。
+
+![点x=(3,1)を直線y=xへ射影するとp=(2,2)。x-pは直線に垂直。](/figures/linear-algebra/projection.svg)
+
+## 2. なぜ最も近い点なのか
+
+直線上のほかの点を $\boldsymbol z$ とすると、$\boldsymbol p-\boldsymbol z$ は直線方向で残差と直交します。三平方の定理から
+
+$$
+\|\boldsymbol x-\boldsymbol z\|^2
+=\|\boldsymbol x-\boldsymbol p\|^2+\|\boldsymbol p-\boldsymbol z\|^2
+$$
+
+です。第2項は0以上なので、$\boldsymbol z=\boldsymbol p$ のとき距離が最小。射影は単に「垂線の足」であるだけでなく、最良の近似でもあります。
+
+## 3. グラム・シュミット法
+
+独立なベクトル $\boldsymbol a_1,\boldsymbol a_2$ から、正規直交基底を作ります。
+
+$$
+\boldsymbol q_1=\frac{\boldsymbol a_1}{\|\boldsymbol a_1\|},\quad
+\boldsymbol u_2=\boldsymbol a_2-(\boldsymbol q_1^{\mathsf T}\boldsymbol a_2)\boldsymbol q_1,\quad
+\boldsymbol q_2=\frac{\boldsymbol u_2}{\|\boldsymbol u_2\|}
+$$
+
+すでに作った方向の成分を引いてから、長さで割る手順です。3本目以降は、既存のすべての $\boldsymbol q_i$ への射影を引きます。
+
+例えば $\boldsymbol a_1=(1,1,0)^{\mathsf T}$、$\boldsymbol a_2=(1,0,1)^{\mathsf T}$ なら
+
+$$
+\boldsymbol q_1=\frac1{\sqrt2}(1,1,0)^{\mathsf T},\qquad
+\boldsymbol u_2=(1/2,-1/2,1)^{\mathsf T}
+$$
+
+で、$\|\boldsymbol u_2\|=\sqrt6/2$。したがって $\boldsymbol q_2=(1,-1,2)^{\mathsf T}/\sqrt6$ です。内積が0、長さが両方1であることを検算します。
+
+<Box kind="caution" title="残りが零になったとき">
+
+途中の $\boldsymbol u_i$ が零なら、そのベクトルは既存のベクトルの生成空間に入っています。零で割ることはできないので、重複するベクトルを除きます。数値計算では丸め誤差を考慮し、QR分解の安定な実装を使います。
+
+</Box>
+
+## 4. 部分空間への射影行列
+
+正規直交基底を列に並べた $Q$ に対して
+
+$$
+\boldsymbol p=QQ^{\mathsf T}\boldsymbol x,\qquad P=QQ^{\mathsf T}
+$$
+
+です。$Q^{\mathsf T}\boldsymbol x$ で各方向の成分を取り、$Q$ で戻します。$P$ は対称で、$P^2=P$。一度射影したものをもう一度射影しても変わりません。
+
+$Q$ が $n\times r$ の長方形なら $Q^{\mathsf T}Q=I_r$ ですが、一般に $QQ^{\mathsf T}=I_n$ ではありません。射影は空間に含まれない成分を捨てるからです。
+
+## 5. 工学の例：成分と残差を分ける
+
+基準信号を正規化した $\boldsymbol q$ に対して、測定信号の $\boldsymbol q$ 方向の係数は $\boldsymbol q^{\mathsf T}\boldsymbol x$ です。信号は「基準方向の成分＋直交する残り」に分かれます。ただし残差が直交することだけで、残差がすべてノイズだとはいえません。モデルに含めなかった有用な成分も残りえます。
+
+## 6. 自分で確かめる
+
+$\mathbb R^3$ の $xy$ 平面への射影行列と、$(2,3,4)^{\mathsf T}$ の射影・残差を求めてください。
+
+<Answer>
+
+$P=\operatorname{diag}(1,1,0)$。射影は $(2,3,0)^{\mathsf T}$、残差は $(0,0,4)^{\mathsf T}$。残差は平面上のすべてのベクトルと直交します。
+
+</Answer>
+
+## まとめ
+
+- 射影は、残差が対象空間と直交するように成分を取り出す操作
+- 直交性から最短距離の性質が導ける
+- 正規直交基底なら、射影は $QQ^{\mathsf T}\boldsymbol x$

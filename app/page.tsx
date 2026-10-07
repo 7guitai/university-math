@@ -11,7 +11,7 @@ const euler = katex.renderToString(String.raw`e^{j\omega t}=\cos\omega t+j\sin\o
 
 
 function PhasorFigure() {
-  // 角度 θ=50° の回転ベクトルと、その実部（cos 波）への射影
+  // 角度 θ=50° の回転ベクトルと、その虚部（sin 波）への射影
   const r = 70, cx = 90, cy = 110, th = (50 * Math.PI) / 180;
   const px = cx + r * Math.cos(th), py = cy - r * Math.sin(th);
   const wave = Array.from({ length: 121 }, (_, i) => {
@@ -82,7 +82,7 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-relaxed text-[var(--sub)]">{s.lead}</p>
               </div>
               <ul className="mt-6 space-y-8 sm:mt-0">
-                {list.map((a) => (
+                {list.slice(0, 3).map((a) => (
                   <li key={a.slug}>
                     <Link href={`/${a.subject}/${a.slug}/`} className="text-lg font-bold hover:underline">
                       {a.title}
@@ -95,6 +95,7 @@ export default function Home() {
                     )}
                   </li>
                 ))}
+                {list.length > 3 && <li><Link href={"/" + key + "/"} className="font-bold underline">全{list.length}記事と演習を見る →</Link></li>}
               </ul>
             </section>
           );

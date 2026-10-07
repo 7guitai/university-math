@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{逆行列と正則性　演習}{https://math.ochanote.com/linear-algebra/inverse-matrices/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[逆行列と復元]
+\begin{ans}
+$3\times1-1\times2=1$ より \[A^{-1}=\begin{pmatrix}1&-1\\-2&3\end{pmatrix},\qquad \boldsymbol x=\begin{pmatrix}7-5\\-14+15\end{pmatrix}=\begin{pmatrix}2\\1\end{pmatrix}.\] $A(2,1)^{\mathsf T}=(7,5)^{\mathsf T}$ で検算。
+\end{ans}
+\point{逆行列そのものも積がIになることで確かめる。}
+
+\problem[正則でない変換]
+\begin{ans}
+$\boldsymbol v=(-2,1)^{\mathsf T}$ は非零だが $B\boldsymbol v=(0,0)^{\mathsf T}$。もし逆行列があれば $\boldsymbol v=B^{-1}\boldsymbol0=\boldsymbol0$ となり矛盾する。
+\end{ans}
+\point{情報を失う方向があると逆変換は存在しない。}
+\newpage
+
+\problem[片側逆]
+\begin{ans}
+$LA=I_2$、$AL=\operatorname{diag}(1,1,0)$ で $I_3$ ではない。$L$ は左逆行列だが通常の逆行列ではない。第3成分を0にする変換が残る。
+\end{ans}
+\point{長方形行列では左右の積のサイズも異なる。}
+
+\problem[センサ校正]
+\begin{ans}
+$C^{-1}=C/2$ より $x_1=(6+2)/2=4,\ x_2=(6-2)/2=2$。検算：$4+2=6,\ 4-2=2$。
+\end{ans}
+\point{差の出力があるため2つの入力を分離できる。}
+\end{document}

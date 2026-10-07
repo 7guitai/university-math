@@ -79,3 +79,19 @@ PDFはGitHubに含め、Cloudflare側では生成しません。`node_modules/`�
 ## 著作権について
 
 問題は自作または改題のみ。教科書・過去問をそのまま載せない。
+
+## 線形代数の学習コース
+
+`/linear-algebra/` に全16章を学習順で掲載しています。各記事の前提・前後の章は `lib/linear-algebra.ts` と `components/LinearAlgebraNavigation.tsx` で管理します。新しい章を追加した場合は、本文・PDFだけでなく学習順も更新してください。
+
+例題・演習の検算は、開発環境に Python 3 と SymPy を用意して実行できます（サイトのビルド依存には含めません）。
+
+```bash
+python scripts/verify-linear-algebra.py
+npm run build
+npm run verify:site  # 出力されたページ・内部リンク・画像・PDFを確認
+```
+
+公開サイトの全記事・PDFのレビュー用リンクは [docs/linear-algebra-review.md](docs/linear-algebra-review.md) にまとめています。
+
+新しい8点の図は `scripts/generate-linear-algebra-figures.py` から再生成できます。開発時だけ NumPy・Matplotlib と日本語フォントが必要です。Linuxの既定は Noto Sans CJK、別の環境では `MATH_JAPANESE_FONT` にフォントファイルを指定してください。

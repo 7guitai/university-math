@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{対称行列と直交対角化　演習}{https://math.ochanote.com/linear-algebra/symmetric-matrices/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[直交対角化]
+\begin{ans}
+固有値6と2に対応する正規化ベクトルは $(1,1)^{\mathsf T}/\sqrt2$、$(1,-1)^{\mathsf T}/\sqrt2$。\[Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\quad D=\operatorname{diag}(6,2).\] $Q^{\mathsf T}Q=I,\ AQ=QD$。
+\end{ans}
+\point{固有ベクトルは長さ1へ正規化する。}
+
+\problem[重複固有値]
+\begin{ans}
+内積は1で直交しない。どちらも固有値1だが、定理は正規直交基底を選べることを述べる。例えば標準基底は直交するため矛盾しない。
+\end{ans}
+\point{異なる固有値の直交性と、同じ固有空間での基底選択を区別する。}
+\newpage
+
+\problem[長さの保存]
+\begin{ans}
+座標は $(\sqrt2,\sqrt2)^{\mathsf T}$。2乗の和は $2+2=4$ なので長さは2で、元の $(2,0)^{\mathsf T}$ の長さと同じ。
+\end{ans}
+\point{直交基底の座標では長さの計算も同じ形式になる。}
+
+\problem[剛性のモード]
+\begin{ans}
+$(1,1)^{\mathsf T}$ は固有値1、$(1,-1)^{\mathsf T}$ は固有値3。$\omega^2$ が固有値なので、角振動数は1と $\sqrt3$。逆方向の方が高い周波数となる。
+\end{ans}
+\point{剛性の固有値と周波数そのものを取り違えない。}
+\end{document}

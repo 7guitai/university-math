@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "pdf": "bash latex/build.sh",
-    "start": "npx serve out"
+    "start": "npx serve out",
+    "verify:site": "node scripts/verify-site.cjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

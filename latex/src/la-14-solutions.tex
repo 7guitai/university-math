@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{二次形式と正定値　演習}{https://math.ochanote.com/linear-algebra/quadratic-forms/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[展開と平方完成]
+\begin{ans}
+$q=3x^2+2xy+2y^2=3(x+y/3)^2+(5/3)y^2$。非零 $(x,y)$ では少なくとも一方の2乗が正なので正定値。左上3と行列式5が正であることでも確認できる。
+\end{ans}
+\point{交差項は対称行列の非対角成分の2倍。}
+
+\problem[主軸変換]
+\begin{ans}
+$z_1=(x+y)/\sqrt2,\ z_2=(x-y)/\sqrt2$ により $q=3z_1^2+z_2^2$。展開すると $2x^2+2xy+2y^2$ に戻る。
+\end{ans}
+\point{固有値が新しい座標の2乗の係数になる。}
+\newpage
+
+\problem[符号の分類]
+\begin{ans}
+前者は $x^2$ で半正定値だが $(0,1)$ で0なので正定値ではない。後者は $x^2-y^2$ で、$(1,0)$ と $(0,1)$ で符号が違い、不定値。
+\end{ans}
+\point{非零なのに値が0になる方向も調べる。}
+
+\problem[ばねのエネルギー]
+\begin{ans}
+$U=\frac12\times2\times(0.01)^2=0.0001\ \mathrm J$。$K$ の固有値は1,3でともに正なので、非零変位のエネルギーは正。単位は $\mathrm{m}\times\mathrm{N/m}\times\mathrm m=\mathrm J$。
+\end{ans}
+\point{エネルギーの式の1/2を忘れない。}
+\end{document}

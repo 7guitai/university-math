@@ -1,0 +1,25 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{線形システムとモード　演習}{https://math.ochanote.com/linear-algebra/dynamical-systems/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+
+\problem[対角系の時間応答]
+$\dot{\boldsymbol x}=\operatorname{diag}(-1,-2)\boldsymbol x$、初期値 $(2,1)^{\mathsf T}$ の解と安定性を求めよ。
+\workspace{38mm}
+
+\problem[対角化できない減衰系]
+$A=\begin{pmatrix}-1&1\\0&-1\end{pmatrix}$、初期値 $(0,1)^{\mathsf T}$ に対して、$(te^{-t},e^{-t})^{\mathsf T}$ が解であることを検算し、安定性を述べよ。
+\workspace{38mm}
+\newpage
+
+\problem[離散時間]
+$B=\operatorname{diag}(1/2,-1/2)$、$\boldsymbol x_{k+1}=B\boldsymbol x_k$、初期値 $(2,1)^{\mathsf T}$ の応答と安定性を求めよ。同じ行列の連続時間系と比較せよ。
+\workspace{38mm}
+
+\problem[結合振動]
+無次元系 $\ddot{\boldsymbol x}+\begin{pmatrix}2&-1\\-1&2\end{pmatrix}\boldsymbol x=\boldsymbol0$ で、初期変位 $(1,0)^{\mathsf T}$、初期速度零とする。モードと角振動数、変位の解を求めよ。
+\workspace{38mm}
+\end{document}

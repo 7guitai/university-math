@@ -85,3 +85,5 @@ details.answer summary { cursor: pointer; font-family: var(--font-ui); font-weig
 details.answer[open] summary { margin-bottom: 0.6em; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+.article img { display: block; max-width: 100%; height: auto; border: 1px solid var(--rule); background: white; }

@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{最小二乗法　演習}{https://math.ochanote.com/linear-algebra/least-squares/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[定数モデル]
+\begin{ans}
+正規方程式は $3c=1+2+6=9$ なので $c=3$。残差は $-2,-1,3$ で和は0、2乗和は $4+1+9=14$。
+\end{ans}
+\point{定数近似の解は算術平均。}
+
+\problem[直線近似]
+\begin{ans}
+$A^{\mathsf T}A=\begin{pmatrix}3&3\\3&5\end{pmatrix}$、$A^{\mathsf T}\boldsymbol b=(5,7)^{\mathsf T}$。差を取ると $2c_1=2$ なので $c_1=1,c_0=2/3$。残差は $(1/3,-2/3,1/3)^{\mathsf T}$、2乗和は $2/3$。和と $x$ で重みを付けた和はどちらも0。
+\end{ans}
+\point{結果は元の測定値との差で確かめる。}
+\newpage
+
+\problem[従属する列]
+\begin{ans}
+出力は $(s,s)^{\mathsf T}$、$s=c_1+c_2$。2乗和は $(1-s)^2+(3-s)^2=2(s-2)^2+2$。最適な出力は $(2,2)^{\mathsf T}$ だが、係数は $c_1+c_2=2$ のすべてで、無数にある。
+\end{ans}
+\point{射影された出力の一意性と係数の一意性を分ける。}
+
+\problem[QRによる解法]
+\begin{ans}
+$R=\operatorname{diag}(\sqrt2,1)$、$Q^{\mathsf T}\boldsymbol b=(2\sqrt2,2)^{\mathsf T}$ なので $\boldsymbol c=(2,2)^{\mathsf T}$。出力は $(2,2,2)^{\mathsf T}$、残差は $(-1,0,1)^{\mathsf T}$。$A^{\mathsf T}\boldsymbol r=\boldsymbol0$ で検算。
+\end{ans}
+\point{長方形QではQの転置でモデル方向の成分を取り出す。}
+\end{document}

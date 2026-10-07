@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{直交射影と正規直交化　演習}{https://math.ochanote.com/linear-algebra/orthogonal-projection/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[直線への射影]
+\begin{ans}
+係数は $(\boldsymbol u^{\mathsf T}\boldsymbol x)/\|\boldsymbol u\|^2=4/2=2$。射影は $(2,2)^{\mathsf T}$、残差は $(2,-2)^{\mathsf T}$。内積 $2-2=0$ で検算。
+\end{ans}
+\point{単位ベクトルでない場合は長さの2乗で割る。}
+
+\problem[正規直交化]
+\begin{ans}
+$\boldsymbol q_1=(1,0,1)^{\mathsf T}/\sqrt2$。第2の残りは $(-1/2,1,1/2)^{\mathsf T}$ なので、$\boldsymbol q_2=(-1,2,1)^{\mathsf T}/\sqrt6$。内積は $(-1+1)/\sqrt{12}=0$、長さの2乗は $(1+4+1)/6=1$。
+\end{ans}
+\point{射影を引いた後の長さで正規化する。}
+\newpage
+
+\problem[射影行列]
+\begin{ans}
+対角成分を2乗しても1,1,0なので $P^2=P$。射影は $(1,2,0)^{\mathsf T}$、残差は $(0,0,3)^{\mathsf T}$。残差は平面に直交する。
+\end{ans}
+\point{射影した点は対象空間にあり、再射影しても変わらない。}
+
+\problem[最短距離]
+\begin{ans}
+$\|\boldsymbol x-\boldsymbol z\|^2=(4-t)^2+t^2=2(t-2)^2+8$。最小は $t=2$ で8。射影 $(2,2)^{\mathsf T}$ への距離の2乗も $2^2+(-2)^2=8$。
+\end{ans}
+\point{最小距離とその2乗を取り違えない。}
+\end{document}

@@ -1,0 +1,92 @@
+---
+title: ベクトル空間と部分空間 — 作れるベクトルの範囲を知る
+description: 部分空間、生成、一次独立を具体例と反例で解説。原点を通る直線・平面、同次方程式の解集合を通して、線形結合で作れる範囲を理解します。
+order: 60
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-07-problems.pdf
+  solutions: /pdf/la-07-solutions.pdf
+  count: 4
+---
+
+2本の矢印を組み合わせれば、平面のどの点にも届くでしょうか。同じ向きの矢印2本では、1本の直線上にしか届きません。「どこまで作れるか」を扱う言葉が、生成と部分空間です。
+
+<Box kind="goal">
+
+- 部分空間の条件を、計算と反例で判定する
+- ベクトルの集合が生成する範囲を説明する
+- 一次独立と従属を区別する
+
+</Box>
+
+## 1. ベクトル空間と部分空間
+
+実ベクトル空間は、和と実数倍の操作が定義され、結合則・分配則、零ベクトルや逆元などの通常の計算規則を満たす集合です。成分ベクトルの $\mathbb R^n$ のほか、次数が2以下の多項式の集合も例になります。
+
+ここでは主に $\mathbb R^n$ の中の集合を考えます。
+
+<Box kind="def" title="部分空間の判定">
+
+$\mathbb R^n$ の部分集合 $W$ が部分空間であるためには、零ベクトルを含み、$W$ のベクトルの和が $W$ に入り、実数倍も $W$ に入ることが必要十分です。
+
+</Box>
+
+例えば $W=\{(x,y)^{\mathsf T}:y=2x\}$ は原点を通る直線です。$(s,2s)+(t,2t)=(s+t,2(s+t))$ もこの直線上にあり、定数倍も同様。零も含むので部分空間です。
+
+一方、$y=2x+1$ は零を含まず、部分空間ではありません。円 $x^2+y^2=1$ も、円周上の点を2倍すると一般には円周から外れます。
+
+## 2. 線形結合で生成する
+
+ベクトル $\boldsymbol u,\boldsymbol v$ のすべての線形結合
+
+$$
+W=\{s\boldsymbol u+t\boldsymbol v:s,t\in\mathbb R\}
+$$
+
+を、これらが生成する空間と呼び、$\operatorname{span}(\boldsymbol u,\boldsymbol v)$ と書きます。和や定数倍をしてもまた線形結合になるので、必ず部分空間です。
+
+$\boldsymbol u=(1,0,1)^{\mathsf T}$、$\boldsymbol v=(0,1,1)^{\mathsf T}$ なら、組合せは $(s,t,s+t)^{\mathsf T}$。生成するのは平面 $z=x+y$ です。例えば $(2,-1,1)^{\mathsf T}=2\boldsymbol u-\boldsymbol v$。しかし $(0,0,1)^{\mathsf T}$ は $z=x+y$ を満たさず、作れません。
+
+## 3. 一次独立と従属
+
+<Box kind="def" title="零を作る係数を調べる">
+
+$$
+c_1\boldsymbol v_1+\cdots+c_k\boldsymbol v_k=\boldsymbol0
+$$
+
+の解が $c_1=\cdots=c_k=0$ だけのとき、ベクトルの組は一次独立です。ほかにも解があると一次従属です。
+
+</Box>
+
+上の $\boldsymbol u,\boldsymbol v$ では、第1成分から $s=0$、第2成分から $t=0$。したがって独立です。$\boldsymbol w=(1,1,2)^{\mathsf T}$ を加えると、$\boldsymbol u+\boldsymbol v-\boldsymbol w=\boldsymbol0$ があり、3本の組は従属になります。$\boldsymbol w$ は既存の2本から作れるため、新しい方向を増やしません。
+
+「各ベクトルが非零」だけでは独立とはいえません。$(1,2)^{\mathsf T}$ と $(2,4)^{\mathsf T}$ は両方非零でも従属です。
+
+## 4. 工学の例：出力に含まれる制約
+
+装置の出力が $\boldsymbol y=s\boldsymbol u+t\boldsymbol v$ と書けるなら、出力はいつも $y_3=y_1+y_2$ を満たします。3成分を測定しても、自由に選べるのは2つだけです。この制約は、出力に到達できる範囲を知る手掛かりになります。
+
+同次方程式 $A\boldsymbol x=\boldsymbol0$ の解集合も部分空間です。$A(\boldsymbol x+\boldsymbol y)=A\boldsymbol x+A\boldsymbol y$、$A(c\boldsymbol x)=cA\boldsymbol x$ なので、和・実数倍で解のままだからです。
+
+<Box kind="caution" title="右辺が零でない方程式">
+
+$A\boldsymbol x=\boldsymbol b$ で $\boldsymbol b$ が非零なら、解が存在しても一般には部分空間ではありません。解集合は「特解＋同次方程式の解」という平行移動された形になります。
+
+</Box>
+
+## 5. 自分で確かめる
+
+$W=\{(x,y)^{\mathsf T}:x+y=0\}$ は部分空間ですか。$x+y=1$ の場合と比べてください。
+
+<Answer>
+
+前者は $t(1,-1)^{\mathsf T}$ と書け、和・実数倍に閉じています。後者は零を含まないため部分空間ではありません。原点を通るかどうかが、この例での重要な違いです。
+
+</Answer>
+
+## まとめ
+
+- 部分空間は零を含み、和と実数倍で外に出ない
+- 生成空間は、与えたベクトルのすべての線形結合
+- 独立性は、零を作る係数がすべて零かで判断する

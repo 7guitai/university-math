@@ -1,0 +1,116 @@
+---
+title: 行列と線形変換 — 複数の入力をまとめて変換する
+description: 行列のサイズ、行列とベクトルの積、行列積、転置を解説。回転とセンサの入出力を例に、積の順番が変換の順番を表すことを確かめます。
+order: 20
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-03-problems.pdf
+  solutions: /pdf/la-03-solutions.pdf
+  count: 4
+---
+
+2つのセンサの値から、和と差を同時に求めたい。こんな「複数の入力から複数の出力を作る」計算を、1つにまとめたものが行列です。[ベクトルと内積](/linear-algebra/vectors/)で扱った列ベクトルを入力に使います。
+
+<Box kind="goal">
+
+- 行列のサイズを読み、積を計算できる
+- 列が表す変換と、積の順番を説明できる
+- 回転やセンサの出力を行列で表せる
+
+</Box>
+
+## 1. 行と列、入力と出力
+
+<Box kind="def" title="行列とベクトルの積">
+
+$m$ 行 $n$ 列の行列 $A$ は、$n$ 成分の入力から $m$ 成分の出力を作ります。出力の第 $i$ 成分は、$A$ の第 $i$ 行と入力の内積です。
+
+$$
+A=\begin{pmatrix}2&1\\0&1\end{pmatrix},\quad
+\boldsymbol x=\begin{pmatrix}1\\2\end{pmatrix},
+\quad
+A\boldsymbol x=\begin{pmatrix}2\times1+1\times2\\0\times1+1\times2\end{pmatrix}
+=\begin{pmatrix}4\\2\end{pmatrix}
+$$
+
+</Box>
+
+行は横、列は縦です。$A$ の列を $\boldsymbol a_1,\boldsymbol a_2$ と書けば、$A\boldsymbol x=x_1\boldsymbol a_1+x_2\boldsymbol a_2$。行列の積は、**列ベクトルの線形結合**でもあります。
+
+標準の単位ベクトル $\boldsymbol e_1=(1,0)^{\mathsf T}$ を入れると第1列、$\boldsymbol e_2=(0,1)^{\mathsf T}$ を入れると第2列が出ます。列を見れば、座標軸がどこに移るかが分かります。
+
+## 2. 行列積は変換の合成
+
+先に $B$、後で $A$ を適用すると、出力は $A(B\boldsymbol x)=(AB)\boldsymbol x$。**右にある行列から先に作用**します。$A$ が $m\times n$、$B$ が $n\times p$ なら $AB$ は $m\times p$ です。
+
+$$
+(AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}
+$$
+
+これは「左の行と右の列を掛けて足す」ルールです。例えば
+
+$$
+B=\begin{pmatrix}1&0\\1&1\end{pmatrix},\qquad
+AB=\begin{pmatrix}3&1\\1&1\end{pmatrix},\quad
+BA=\begin{pmatrix}2&1\\2&2\end{pmatrix}
+$$
+
+で、$AB$ と $BA$ は異なります。入力 $(1,0)^{\mathsf T}$ の行き先も、それぞれ $(3,1)^{\mathsf T}$、$(2,2)^{\mathsf T}$ です。掛ける順番を変えると、別の変換になります。
+
+## 3. 単位行列と転置
+
+入力を変えない行列が単位行列 $I$ です。対角成分が1、ほかは0で、$I\boldsymbol x=\boldsymbol x$ となります。サイズが合えば $AI=A$、$IA=A$ です。
+
+行と列を入れ替える操作を転置と呼び、$A^{\mathsf T}$ と書きます。
+
+$$
+\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}^{\mathsf T}
+=\begin{pmatrix}1&4\\2&5\\3&6\end{pmatrix}
+$$
+
+実ベクトルの内積は $\boldsymbol a^{\mathsf T}\boldsymbol b$ とも書けます。転置では $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$ と**順番が逆**になります。
+
+## 4. 工学の例：回転と和・差の出力
+
+反時計回りに $90^\circ$ 回す行列は
+
+$$
+R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+$$
+
+です。$(2,1)^{\mathsf T}$ は $(-1,2)^{\mathsf T}$ に移ります。両方の長さが $\sqrt5$ で、回転が長さを保つことも確かめられます。
+
+![単位正方形と、反時計回りに90度回転した正方形。e1は上へ、e2は左へ移る。](/figures/linear-algebra/rotation.svg)
+
+一方、2つのセンサ入力を和と差に変えるなら
+
+$$
+\begin{pmatrix}y_1\\y_2\end{pmatrix}
+=\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\end{pmatrix}
+$$
+
+です。入力 $(3,1)^{\mathsf T}$ に対して出力は $(4,2)^{\mathsf T}$。行列の各行が、各出力の式そのものです。
+
+<Box kind="caution" title="サイズと単位を先に確認">
+
+足し算は同じサイズの行列どうし、積は内側のサイズが一致するときに計算できます。物理量を扱うときは、係数を掛けた後の単位が同じ出力の式で揃うことも確認してください。
+
+</Box>
+
+## 5. 自分で確かめる
+
+$R^2$ と $R^4$ を求め、変換の意味を説明してください。
+
+<Answer>
+
+$R^2=-I$ なので $180^\circ$ 回転し、$R^4=I$ なので1周して元に戻ります。例えば $(1,0)^{\mathsf T}$ の行き先を順に追うと、計算と図を照合できます。
+
+</Answer>
+
+## まとめ
+
+- 行列のサイズは「出力の成分数 × 入力の成分数」
+- 行列とベクトルの積は、列の線形結合でもある
+- $AB$ は先に $B$、後に $A$ を適用する変換
+- 入力を求め直す問題は、次の連立方程式につながる

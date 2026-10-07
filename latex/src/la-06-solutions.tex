@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{行列式　演習}{https://math.ochanote.com/linear-algebra/determinants/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[2×2の計算]
+\begin{ans}
+$\det A=3\times2-1\times2=4$。0ではないので正則。単位正方形の像の面積は4。
+\end{ans}
+\point{符号付きの値と面積の絶対値を区別する。}
+
+\problem[三角行列]
+\begin{ans}
+三角行列なので $\det T=2\times(-1)\times4=-8$。体積倍率は $|-8|=8$。符号は向きの反転を表す。
+\end{ans}
+\point{三角行列の非対角成分は行列式の積に入らない。}
+\newpage
+
+\problem[行操作]
+\begin{ans}
+交換で $-4$、第1行の3倍で $-12$。実際、行列は $\begin{pmatrix}6&6\\3&1\end{pmatrix}$ で、$6-18=-12$。
+\end{ans}
+\point{全行を3倍する場合とは倍率が異なる。}
+
+\problem[面積と形]
+\begin{ans}
+$\det D=1$ で面積を保つ。しかし $(1,0)^{\mathsf T}$ は $(2,0)^{\mathsf T}$ に移り、長さは1から2になる。長さを保つという主張は誤り。
+\end{ans}
+\point{1本の反例で、すべてのベクトルに対する主張を否定できる。}
+\end{document}

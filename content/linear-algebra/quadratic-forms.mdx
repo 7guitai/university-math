@@ -1,0 +1,116 @@
+---
+title: 二次形式と正定値 — エネルギーの形を固有値で読む
+description: 二次形式を対称行列で表し、直交対角化で符号と等高線を理解します。正定値・半正定値・不定値、ばねのエネルギー、最小化の条件を具体例で解説します。
+order: 140
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-14-problems.pdf
+  solutions: /pdf/la-14-solutions.pdf
+  count: 4
+---
+
+ばねのエネルギーや誤差の評価には、変位の2乗と成分どうしの積が現れます。これらを行列でまとめた式が二次形式です。固有値を使うと、どの方向に大きく増えるかまで分かります。
+
+<Box kind="goal">
+
+- 二次形式を対称行列で表す
+- 正定値・半正定値・不定値を区別する
+- エネルギーや最小化問題に使う
+
+</Box>
+
+## 1. 成分を展開する
+
+実対称行列 $A$ に対して $q(\boldsymbol x)=\boldsymbol x^{\mathsf T}A\boldsymbol x$ と書きます。
+
+$$
+A=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+\quad\Longrightarrow\quad
+q(x,y)=2x^2+2xy+2y^2
+$$
+
+非対角成分は左右から現れるため、$xy$ の係数は2倍です。逆に $ax^2+bxy+cy^2$ の対称行列は $\begin{pmatrix}a&b/2\\b/2&c\end{pmatrix}$ となります。
+
+行列が対称でなくても、二次形式は対称部分 $(A+A^{\mathsf T})/2$ に置き換えて同じ値になります。符号を固有値で判定するときは、この対称部分を使います。
+
+## 2. 正定値とは「すべての方向で正」
+
+<Box kind="def" title="二次形式の符号">
+
+- 非零 $\boldsymbol x$ のすべてで $q(\boldsymbol x)$ が正なら、正定値
+- すべての $\boldsymbol x$ で $q(\boldsymbol x)$ が0以上なら、半正定値
+- 正になる方向と負になる方向が両方あるなら、不定値
+
+負定値・半負定値は符号を逆にした定義です。零になる非零方向を持つ半正定値行列は、正定値ではありません。
+
+</Box>
+
+$\operatorname{diag}(1,0)$ は $q=x^2$ で半正定値ですが、$(0,1)^{\mathsf T}$ では0になるため正定値ではありません。$\operatorname{diag}(1,-1)$ は $q=x^2-y^2$ で、座標軸によって符号が逆なので不定値です。
+
+## 3. 固有値で判定する理由
+
+実対称行列を $A=QDQ^{\mathsf T}$ と直交対角化し、$\boldsymbol z=Q^{\mathsf T}\boldsymbol x$ とすると
+
+$$
+q(\boldsymbol x)=\boldsymbol z^{\mathsf T}D\boldsymbol z
+=\lambda_1z_1^2+\cdots+\lambda_nz_n^2
+$$
+
+です。$Q$ は正則なので、非零の $\boldsymbol x$ は非零の $\boldsymbol z$ に対応します。すべての固有値が正なら正定値、0以上なら半正定値、正負の固有値があれば不定値です。
+
+上の例では固有値は3と1で、
+
+$$
+z_1=\frac{x+y}{\sqrt2},\quad z_2=\frac{x-y}{\sqrt2},
+\qquad q=3z_1^2+z_2^2
+$$
+
+となります。等高線は、この新しい軸に沿った楕円です。$q=1$ の半軸は $1/\sqrt3$ と1になります。
+
+![二次形式q=2x²+2xy+2y²の等高線q=1。主軸はx=yとx=-y。](/figures/linear-algebra/quadratic-form.svg)
+
+2×2実対称行列では、左上の成分が正、行列式が正という2条件でも正定値を判定できます。平方完成すると、この条件と全方向での正値が結びつきます。
+
+## 4. 工学の例：ばねのエネルギー
+
+剛性行列を $K=k\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$、$k$ を正のばね定数とすると、変位 $\boldsymbol x$ に対するポテンシャルエネルギーは
+
+$$
+U=\frac12\boldsymbol x^{\mathsf T}K\boldsymbol x
+$$
+
+です。$K$ の固有値は $k$ と $3k$ で、どちらも正。変位が非零ならエネルギーも正です。係数の単位が N/m、変位が m なら、エネルギーの単位は N·m = J になります。
+
+## 5. 最小化にも使える
+
+正定値 $A$ に対して $f(\boldsymbol x)=\boldsymbol x^{\mathsf T}A\boldsymbol x-2\boldsymbol b^{\mathsf T}\boldsymbol x$ は、$\boldsymbol x_*=A^{-1}\boldsymbol b$ のまわりで
+
+$$
+f(\boldsymbol x)
+=(\boldsymbol x-\boldsymbol x_*)^{\mathsf T}A(\boldsymbol x-\boldsymbol x_*)
+-\boldsymbol b^{\mathsf T}A^{-1}\boldsymbol b
+$$
+
+と平方完成できます。第1項は非負なので、$\boldsymbol x_*$ が一意な最小点です。先ほどの $A$ と $\boldsymbol b=(1,0)^{\mathsf T}$ なら、$\boldsymbol x_*=(2/3,-1/3)^{\mathsf T}$、最小値は $-2/3$ です。
+
+<Box kind="caution" title="対角成分が正だけでは不十分">
+
+$\begin{pmatrix}1&2\\2&1\end{pmatrix}$ の対角成分は正ですが、$(1,-1)^{\mathsf T}$ を入れると値は $-2$。正定値ではありません。全方向の性質なので、固有値や正しい判定条件を使います。
+
+</Box>
+
+## 6. 自分で確かめる
+
+$q=x^2+3xy+y^2$ は正定値ですか。
+
+<Answer>
+
+$(1,0)$ では1、$(1,-1)$ では $-1$ なので不定値です。対称行列は $\begin{pmatrix}1&3/2\\3/2&1\end{pmatrix}$、固有値は $5/2$ と $-1/2$ で符号の違いを確認できます。
+
+</Answer>
+
+## まとめ
+
+- 交差項を対称行列に入れるときは係数を半分にする
+- 直交対角化で、二次形式は固有値を係数とする2乗の和になる
+- 正定値は全方向で正である条件で、エネルギーと最小化に結びつく

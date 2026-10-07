@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{特異値分解　演習}{https://math.ochanote.com/linear-algebra/singular-value-decomposition/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[長方形行列のSVD]
+\begin{ans}
+$U=I_2,\ V=I_3,\ \Sigma=A$。特異値は4,2で階数2。零空間は $(0,0,1)^{\mathsf T}$ が生成する1次元。$A^{\mathsf T}A=\operatorname{diag}(16,4,0)$ で検算。
+\end{ans}
+\point{長方形の対角行列には、対角の外に零の列もある。}
+
+\problem[低ランク近似]
+\begin{ans}
+大きい特異値3を残すと $D_1=\operatorname{diag}(3,0)$。差は $\operatorname{diag}(0,1)$ で、誤差は $\sqrt{0^2+1^2}=1$。
+\end{ans}
+\point{切り捨てた特異値の2乗和が誤差の2乗。}
+\newpage
+
+\problem[擬似逆と最小ノルム]
+\begin{ans}
+一般解は $(2,3,t)^{\mathsf T}$。長さの2乗は $13+t^2$ なので最小は $t=0$。$A^+=\begin{pmatrix}1/4&0\\0&1/2\\0&0\end{pmatrix}$ より、同じ $(2,3,0)^{\mathsf T}$ を得る。
+\end{ans}
+\point{失われた成分を0にすると、この例の最小ノルム解になる。}
+
+\problem[誤差増幅]
+\begin{ans}
+条件数は $1/0.001=1000$。$D^{-1}=\operatorname{diag}(1,1000)$ なので、復元誤差は $(0,2)^{\mathsf T}$。
+\end{ans}
+\point{正則でも、復元の誤差が小さいとは限らない。}
+\end{document}

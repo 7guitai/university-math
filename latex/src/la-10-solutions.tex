@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{対角化　演習}{https://math.ochanote.com/linear-algebra/diagonalization/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[対角化]
+\begin{ans}
+固有値は3と2。固有ベクトルはそれぞれ $(1,0)^{\mathsf T}$、$(-1,1)^{\mathsf T}$。\[P=\begin{pmatrix}1&-1\\0&1\end{pmatrix},\quad P^{-1}=\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad D=\operatorname{diag}(3,2).\] $AP=PD$ を掛け算で確認できる。
+\end{ans}
+\point{列の順番と対角成分の順番を揃える。}
+
+\problem[累乗]
+\begin{ans}
+$D^2=\operatorname{diag}(9,4)$ より \[A^2=PD^2P^{-1}=\begin{pmatrix}9&5\\0&4\end{pmatrix}.\] 直接の積では右上が $3\times1+1\times2=5$ となる。
+\end{ans}
+\point{対角成分の累乗だけを先に計算できる。}
+\newpage
+
+\problem[対角化できない例]
+\begin{ans}
+特性多項式は $(\lambda-2)^2$。$(J-2I)\boldsymbol v=\boldsymbol0$ から $v_2=0$ なので固有空間の次元は1。2本の独立な固有ベクトルが必要なのに1本分しかなく、対角化できない。
+\end{ans}
+\point{固有値の個数と固有ベクトルの独立な本数を区別する。}
+
+\problem[状態遷移]
+\begin{ans}
+$M(1,2)^{\mathsf T}=(1,2)^{\mathsf T}$、$M(1,-1)^{\mathsf T}=0.7(1,-1)^{\mathsf T}$。1回後は $(0.8,0.2)^{\mathsf T}$、総和は1。初期値は $\frac13(1,2)^{\mathsf T}+\frac23(1,-1)^{\mathsf T}$ に分解できる。
+\end{ans}
+\point{定常成分は固有値1、差の成分は0.7倍になる。}
+\end{document}

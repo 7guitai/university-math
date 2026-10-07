@@ -10,6 +10,8 @@ import { mdxComponents } from "@/components/Mdx";
 import { SubjectTag } from "@/components/SubjectTag";
 import { PdfLinks } from "@/components/PdfLinks";
 
+import { LinearAlgebraPrerequisites, LinearAlgebraNavigation } from "@/components/LinearAlgebraNavigation";
+
 export const dynamicParams = false;
 export function generateStaticParams() {
   return getArticles().map((a) => ({ subject: a.subject, slug: a.slug }));
@@ -43,6 +45,8 @@ export default async function ArticlePage({ params }: P) {
       <h1 className="mt-3 text-2xl font-bold leading-snug sm:text-3xl">{meta.title}</h1>
       <p className="mt-3 text-sm text-[var(--sub)]">更新日 {meta.updated}</p>
 
+      {subject === "linear-algebra" && <LinearAlgebraPrerequisites slug={slug} />}
+
       <div className="article mt-10">
         <MDXRemote
           source={content}
@@ -60,6 +64,7 @@ export default async function ArticlePage({ params }: P) {
           <div className="mt-5"><PdfLinks pdf={meta.pdf} /></div>
         </section>
       )}
+      {subject === "linear-algebra" && <LinearAlgebraNavigation slug={slug} />}
     </article>
   );
 }

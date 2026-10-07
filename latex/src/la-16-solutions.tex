@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{線形システムとモード　演習}{https://math.ochanote.com/linear-algebra/dynamical-systems/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[対角系の時間応答]
+\begin{ans}
+成分ごとに解き、$\boldsymbol x(t)=(2e^{-t},e^{-2t})^{\mathsf T}$。微分は $(-2e^{-t},-2e^{-2t})^{\mathsf T}$ で元の式に一致し、初期値も一致。固有値の実部は両方負なので漸近安定。
+\end{ans}
+\point{初期値の係数と指数の係数を区別する。}
+
+\problem[対角化できない減衰系]
+\begin{ans}
+微分は $((1-t)e^{-t},-e^{-t})^{\mathsf T}$。$A\boldsymbol x$ も同じ値で、$t=0$ では $(0,1)^{\mathsf T}$。$te^{-t}$ も0へ近づき、固有値は $-1$ のみなので漸近安定。
+\end{ans}
+\point{対角化できないことと、不安定であることは別。}
+\newpage
+
+\problem[離散時間]
+\begin{ans}
+$\boldsymbol x_k=(2(1/2)^k,(-1/2)^k)^{\mathsf T}$。絶対値は両固有値とも1未満なので離散時間では漸近安定。一方、連続時間では固有値 $1/2$ のモードが増大して不安定。
+\end{ans}
+\point{負号の交互変化も、絶対値が減れば収束する。}
+
+\problem[結合振動]
+\begin{ans}
+同方向の固有値1、逆方向の固有値3なので角振動数は1と $\sqrt3$。初期変位を各方向の1/2倍へ分けると \[x_1=\frac{\cos t+\cos(\sqrt3t)}2,\quad x_2=\frac{\cos t-\cos(\sqrt3t)}2.\] 初期変位と速度が一致し、各モードの2回微分で固有値の負号が出る。
+\end{ans}
+\point{固有値は角振動数の2乗であり、減衰項がなければ振幅は減らない。}
+\end{document}

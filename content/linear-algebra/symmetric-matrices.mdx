@@ -1,0 +1,109 @@
+---
+title: 対称行列と直交対角化 — 長さを保つ座標で分解する
+description: 実対称行列の固有値と直交性、正規直交基底、直交行列を解説。重複固有値への注意と、結合した剛性行列のモードを具体例で確かめます。
+order: 110
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-11-problems.pdf
+  solutions: /pdf/la-11-solutions.pdf
+  count: 4
+---
+
+一般の基底変換は、長さや角度の読み方も変えます。実対称行列では、互いに直交する単位固有ベクトルを基底にできるため、長さを保ったまま成分を分けられます。
+
+<Box kind="goal">
+
+- 直交行列と正規直交基底を説明する
+- 実対称行列を直交対角化する
+- 固有値が重複した場合の直交性を正確に扱う
+
+</Box>
+
+## 1. 直交行列
+
+列が互いに直交する単位ベクトルである正方行列 $Q$ は、$Q^{\mathsf T}Q=I$ を満たします。このような行列を直交行列と呼びます。
+
+$$
+Q^{-1}=Q^{\mathsf T},\quad
+\|Q\boldsymbol x\|^2
+=\boldsymbol x^{\mathsf T}Q^{\mathsf T}Q\boldsymbol x
+=\|\boldsymbol x\|^2
+$$
+
+なので長さを保ち、内積や角度も保ちます。回転だけでなく鏡映も直交行列です。行列式は1または $-1$ です。
+
+## 2. 実対称行列の特別な性質
+
+<Box kind="thm" title="実対称行列のスペクトル定理">
+
+$A^{\mathsf T}=A$ を満たす実対称行列は、実固有値と正規直交な固有ベクトルの基底を持ちます。その列を並べた直交行列 $Q$ により
+
+$$
+Q^{\mathsf T}AQ=D,\qquad A=QDQ^{\mathsf T}
+$$
+
+と対角化できます。
+
+</Box>
+
+異なる固有値に対応する固有ベクトルが直交する理由を確かめます。$A\boldsymbol u=\lambda\boldsymbol u$、$A\boldsymbol v=\mu\boldsymbol v$ なら、対称性から
+
+$$
+\lambda\boldsymbol u^{\mathsf T}\boldsymbol v
+=(A\boldsymbol u)^{\mathsf T}\boldsymbol v
+=\boldsymbol u^{\mathsf T}A\boldsymbol v
+=\mu\boldsymbol u^{\mathsf T}\boldsymbol v
+$$
+
+です。$\lambda$ と $\mu$ が異なるなら内積は0になります。
+
+<Box kind="caution" title="同じ固有値の場合">
+
+同じ固有値の固有ベクトルが、どの組でも直交するわけではありません。例えば $I$ の固有ベクトル $(1,0)^{\mathsf T}$ と $(1,1)^{\mathsf T}$ は直交しません。ただし、その固有空間の中で正規直交基底を選ぶことはできます。
+
+</Box>
+
+## 3. 直交対角化を計算する
+
+$$
+A=\begin{pmatrix}2&1\\1&2\end{pmatrix}
+$$
+
+の固有値3と1に対して、固有ベクトル $(1,1)^{\mathsf T}$ と $(1,-1)^{\mathsf T}$ を長さ $\sqrt2$ で割ります。
+
+$$
+Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},\quad
+D=\operatorname{diag}(3,1)
+$$
+
+となります。$Q^{\mathsf T}Q=I$ を確認し、さらに $AQ=QD$ を確かめれば対角化の検算になります。
+
+例えば $\boldsymbol x=(1,0)^{\mathsf T}$ は、正規直交基底では $(1/\sqrt2,1/\sqrt2)^{\mathsf T}$。成分の2乗の和は $1/2+1/2=1$ で、元の長さと一致します。
+
+## 4. 工学の例：結合したばねの剛性
+
+無次元化した剛性行列が
+
+$$
+K=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+$$
+
+なら、同方向 $(1,1)^{\mathsf T}$ の固有値は1、逆方向 $(1,-1)^{\mathsf T}$ は3です。後者は変位に対する復元力が強いモードです。
+
+等しい質量で質量行列を $I$ に正規化した振動系では、固有値は角振動数の2乗に対応します。この例の角振動数は1と $\sqrt3$。質量が異なる場合は、単に剛性行列だけを見るのではなく $K\boldsymbol v=\omega^2M\boldsymbol v$ を解きます。
+
+## 5. 自分で確かめる
+
+$\operatorname{diag}(2,2)$ の正規直交固有基底を1組挙げてください。
+
+<Answer>
+
+標準基底 $(1,0)^{\mathsf T},(0,1)^{\mathsf T}$ でよく、どちらの固有値も2です。任意の回転で得られた正規直交基底も使えます。「選べる」ことと「任意の固有ベクトルどうしが直交する」ことは違います。
+
+</Answer>
+
+## まとめ
+
+- 直交行列は内積・長さ・角度を保つ
+- 実対称行列には正規直交固有基底が存在する
+- 重複固有値の固有空間でも、直交する基底を選ぶ

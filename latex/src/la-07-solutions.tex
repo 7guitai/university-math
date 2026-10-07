@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{ベクトル空間と部分空間　演習}{https://math.ochanote.com/linear-algebra/vector-spaces/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[部分空間の判定]
+\begin{ans}
+$W_1=\{t(1,3):t\in\mathbb R\}$ は零を含み、和と実数倍で閉じているので部分空間。$W_2$ は $(0,0)$ を含まないため部分空間ではない。
+\end{ans}
+\point{含まれる点1つの検査だけでは、閉じていることの証明にならない。}
+
+\problem[生成の範囲]
+\begin{ans}
+前者は $2\boldsymbol u-\boldsymbol v$。後者について $s\boldsymbol u+t\boldsymbol v=(s,t,s+t)^{\mathsf T}$ の最初の2成分を0にすると $s=t=0$ なので第3成分も0となり、作れない。
+\end{ans}
+\point{成分ごとの方程式で生成に含まれるかを判定する。}
+\newpage
+
+\problem[独立性]
+\begin{ans}
+$2\boldsymbol a-\boldsymbol b=\boldsymbol0$ が非自明な関係なので従属。後者は $s(1,0)^{\mathsf T}+t(0,1)^{\mathsf T}=\boldsymbol0$ から $s=t=0$ のみなので独立。
+\end{ans}
+\point{非零ベクトルであることと、組が独立であることは別。}
+
+\problem[出力制約]
+\begin{ans}
+$y_1=s,\ y_2=t,\ y_3=s+t$ なので $y_3=y_1+y_2$。$(3,2,5)^{\mathsf T}$ は $s=3,t=2$ で到達可能。
+\end{ans}
+\point{成分の数と、独立に変えられる数を区別する。}
+\end{document}

@@ -28,9 +28,8 @@ export default async function SubjectPage({ params }: P) {
     <div className="mx-auto max-w-3xl px-5 py-12">
       <h1 className="text-3xl font-bold" style={{ color: s.color }}>{s.name}</h1>
       <p className="mt-4 leading-relaxed text-[var(--sub)]">{s.lead}</p>
-      {subject === "linear-algebra" && <LinearAlgebraIntro />}
-      {subject === "linear-algebra" && <h2 className="mt-12 text-xl font-bold">解説と演習PDF</h2>}
-      <ol className="mt-10 space-y-10">
+      {subject === "linear-algebra" && <LinearAlgebraIntro articles={list} />}
+      {subject !== "linear-algebra" && <ol className="mt-10 space-y-10">
         {list.map((a) => (
           <li key={a.slug} className="border-t border-[var(--rule)] pt-6">
             <Link href={`/${subject}/${a.slug}/`} className="text-xl font-bold hover:underline">{a.title}</Link>
@@ -38,7 +37,7 @@ export default async function SubjectPage({ params }: P) {
             {a.pdf && <div className="mt-4"><PdfLinks pdf={a.pdf} compact /></div>}
           </li>
         ))}
-      </ol>
+      </ol>}
     </div>
   );
 }

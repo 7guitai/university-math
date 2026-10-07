@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数}{基底と次元　演習}{https://math.ochanote.com/linear-algebra/basis-dimension/}
+\begin{document}
+\makesheethead{解答}
+
+\problem[基底座標]
+\begin{ans}
+$c_1+c_2=6,\ c_1-c_2=2$ より $(c_1,c_2)=(4,2)$。$4(1,1)^{\mathsf T}+2(1,-1)^{\mathsf T}=(6,2)^{\mathsf T}$ で検算。
+\end{ans}
+\point{座標は基底とセットで意味を持つ。}
+
+\problem[列空間と零空間]
+\begin{ans}
+第2列は第1列の2倍なので、列空間の基底は $(1,0,1)^{\mathsf T},(0,1,1)^{\mathsf T}$。零空間は $x_1+2x_2=0,x_3=0$ より基底 $(-2,1,0)^{\mathsf T}$。次元は2と1で、和は列数3。
+\end{ans}
+\point{元の列と、方程式の解ベクトルを区別する。}
+\newpage
+
+\problem[基底の判定]
+\begin{ans}
+任意の $(x,y,x+y)^{\mathsf T}$ は $x(1,0,1)^{\mathsf T}+y(0,1,1)^{\mathsf T}$ と書ける。零を作るには第1・第2成分から両係数が0である必要がある。生成かつ独立なので基底で、次元は2。
+\end{ans}
+\point{生成と独立の両方を証明する。}
+
+\problem[測定の自由度]
+\begin{ans}
+零空間の次元は $4-3=1$。非零の $\boldsymbol v\in\ker A$ に対して $A(\boldsymbol x+t\boldsymbol v)=A\boldsymbol x$ なので、出力からの一意な復元はできない。
+\end{ans}
+\point{右辺がどれでも、零空間の非零方向が入力の区別を失わせる。}
+\end{document}

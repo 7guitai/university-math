@@ -1,0 +1,110 @@
+---
+title: 最小二乗法 — ぴったり解けない方程式に最良の近似を求める
+description: 測定点への直線近似を例に、最小二乗、正規方程式、残差の直交性と解の一意性を解説。QR分解で解く方法と数値誤差への注意も扱います。
+order: 130
+updated: "2026-10-07"
+pdf:
+  problems: /pdf/la-13-problems.pdf
+  solutions: /pdf/la-13-solutions.pdf
+  count: 4
+---
+
+測定データには誤差があり、3点すべてを通る直線がないこともあります。連立方程式に厳密な解がなくても、ずれを最小にする解なら求められます。そのずれをどう測るかまで含めて決めるのが最小二乗法です。
+
+<Box kind="goal">
+
+- 残差の2乗和を最小にする問題を行列で表す
+- 正規方程式と残差の直交性を理解する
+- 解の一意性とQR分解による解法を説明する
+
+</Box>
+
+## 1. 何を最小にするのか
+
+$$
+A\boldsymbol c\approx\boldsymbol b,\qquad
+\boldsymbol r=\boldsymbol b-A\boldsymbol c
+$$
+
+と置き、$\|\boldsymbol r\|^2$ を最小にします。今回は各測定の重みを同じとした実数の最小二乗です。異なる誤差の大きさを扱う場合は、重み付きの問題を考えます。
+
+$A\boldsymbol c$ は列空間に含まれるので、**測定 $\boldsymbol b$ を列空間へ直交射影する**問題です。最適な残差は全列に直交します。
+
+## 2. 正規方程式を導く
+
+<Box kind="thm" title="残差の直交条件">
+
+最小二乗解は
+
+$$
+A^{\mathsf T}(\boldsymbol b-A\boldsymbol c)=\boldsymbol0,\qquad
+A^{\mathsf T}A\boldsymbol c=A^{\mathsf T}\boldsymbol b
+$$
+
+を満たします。これを正規方程式といいます。$A$ の列が一次独立なら $A^{\mathsf T}A$ は正則で、係数 $\boldsymbol c$ は一意です。
+
+</Box>
+
+独立なとき、非零 $\boldsymbol z$ に対して $\boldsymbol z^{\mathsf T}A^{\mathsf T}A\boldsymbol z=\|A\boldsymbol z\|^2$ が正になります。これが正則性の理由です。
+
+列が従属でも最も近い出力 $A\boldsymbol c$ は一意ですが、その出力を作る係数は複数になりえます。
+
+## 3. 例：3点への直線近似
+
+$x=0,1,2$ の測定値が $y=1,2,2$ だったとします。$y\approx c_0+c_1x$ なら
+
+$$
+A=\begin{pmatrix}1&0\\1&1\\1&2\end{pmatrix},\qquad
+\boldsymbol b=\begin{pmatrix}1\\2\\2\end{pmatrix}
+$$
+
+です。掛け算して
+
+$$
+A^{\mathsf T}A=\begin{pmatrix}3&3\\3&5\end{pmatrix},\qquad
+A^{\mathsf T}\boldsymbol b=\begin{pmatrix}5\\6\end{pmatrix}
+$$
+
+となります。$3c_0+3c_1=5,\ 3c_0+5c_1=6$ を引くと $2c_1=1$。したがって $c_1=1/2,\ c_0=7/6$ です。
+
+予測値は $(7/6,5/3,13/6)^{\mathsf T}$、残差は $(-1/6,1/3,-1/6)^{\mathsf T}$。残差の和も、$x$ を重みとした和も0で、$A^{\mathsf T}\boldsymbol r=\boldsymbol0$ と検算できます。2乗和は $1/6$ です。
+
+![測定点(0,1),(1,2),(2,2)と近似直線y=7/6+x/2。縦の線分が残差。](/figures/linear-algebra/least-squares.svg)
+
+## 4. QR分解で解く
+
+列が独立な $A$ を $A=QR$ と分解します。$Q$ の列は正規直交、$R$ は正則な上三角行列です。直交条件は
+
+$$
+R\boldsymbol c=Q^{\mathsf T}\boldsymbol b
+$$
+
+に帰着します。三角行列の方程式なので、下の行から順に戻して解けます。
+
+<Box kind="caution" title="理論の式と、数値計算の方法">
+
+正規方程式は意味を理解するのに役立ちますが、$A^{\mathsf T}A$ を作ると条件数が悪化することがあります。実用の計算ではQRやSVDによる最小二乗の実装を使い、逆行列を直接作ることは避けます。
+
+</Box>
+
+## 5. 工学の例：測定モデルを点検する
+
+時間を秒、電圧を V として同じ直線近似を行うなら、$c_0$ の単位は V、$c_1$ は V/s です。残差の2乗和の単位は $\mathrm V^2$。近似直線が得られても、測定の外側まで直線が正しいとは限りません。
+
+残差の直交性は「このモデルの中で最適」という条件であり、モデルの妥当性の保証ではありません。外れ値に大きく影響されることにも注意します。
+
+## 6. 自分で確かめる
+
+同じ値 $c$ だけで測定値1と3を近似するとき、2乗和を最小にする $c$ はいくつですか。
+
+<Answer>
+
+$(1-c)^2+(3-c)^2=2(c-2)^2+2$ なので $c=2$。定数モデルの最小二乗解は平均値になります。残差 $-1,1$ の和は0です。
+
+</Answer>
+
+## まとめ
+
+- 最小二乗は列空間への直交射影
+- 残差が全列に直交すると正規方程式が得られる
+- 列が独立なら係数も一意、従属なら係数は一意とは限らない
