@@ -2,7 +2,7 @@
 title: 逆行列と正則性 — 元に戻せる変換の条件
 description: 逆行列の定義、掃き出し法による計算、正則性と解の一意性を解説。センサ校正と長方形行列の片側逆を例に、逆変換の存在条件を確かめます。
 order: 40
-updated: "2026-10-07"
+updated: "2026-10-08"
 pdf:
   problems: /pdf/la-05-problems.pdf
   solutions: /pdf/la-05-solutions.pdf
@@ -106,11 +106,11 @@ $$
 
 ## 6. 自分で確かめる
 
-$D=\operatorname{diag}(2,3)$ の逆行列と、$D^{-1}(4,9)^{\mathsf T}$ を求めてください。
+$D=\operatorname{diag}(4,5)$ の逆行列と、$D^{-1}(12,10)^{\mathsf T}$ を求めてください。
 
 <Answer>
 
-$D^{-1}=\operatorname{diag}(1/2,1/3)$。復元した入力は $(2,3)^{\mathsf T}$ です。再び $D$ を掛けると $(4,9)^{\mathsf T}$ に戻ります。
+$D^{-1}=\operatorname{diag}(1/4,1/5)$。復元した入力は $(3,2)^{\mathsf T}$ です。再び $D$ を掛けると $(12,10)^{\mathsf T}$ に戻ります。
 
 </Answer>
 

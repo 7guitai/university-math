@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{ochamath}
 \subjectcolor{2F5DA8}
-\setsheet{線形代数}{対角化　演習}{https://math.ochanote.com/linear-algebra/diagonalization/}
+\setsheet{線形代数}{対角化　演習}{https://university-math-crj.pages.dev/linear-algebra/diagonalization/}
 \begin{document}
 \makesheethead{解答}
 
@@ -26,7 +26,8 @@ $D^2=\operatorname{diag}(9,4)$ より \[A^2=PD^2P^{-1}=\begin{pmatrix}9&5\\0&4\e
 
 \problem[状態遷移]
 \begin{ans}
-$M(1,2)^{\mathsf T}=(1,2)^{\mathsf T}$、$M(1,-1)^{\mathsf T}=0.7(1,-1)^{\mathsf T}$。1回後は $(0.8,0.2)^{\mathsf T}$、総和は1。初期値は $\frac13(1,2)^{\mathsf T}+\frac23(1,-1)^{\mathsf T}$ に分解できる。
+$M(2,3)^{\mathsf T}=(2,3)^{\mathsf T}$、$M(1,-1)^{\mathsf T}=0.5(1,-1)^{\mathsf T}$。固有値は1と0.5。初期値は $\frac15(2,3)^{\mathsf T}+\frac35(1,-1)^{\mathsf T}$ なので、1回後は $(0.7,0.3)^{\mathsf T}$、総和は1。定常分布は $(2/5,3/5)^{\mathsf T}$。
 \end{ans}
-\point{定常成分は固有値1、差の成分は0.7倍になる。}
+\point{定常成分は固有値1、差の成分は0.5倍になる。}
+
 \end{document}

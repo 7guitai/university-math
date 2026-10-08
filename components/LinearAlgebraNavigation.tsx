@@ -19,14 +19,17 @@ export function LinearAlgebraNavigation({ slug }: { slug: string }) {
   const index = lessons.findIndex((a) => a.slug === slug);
   if (index < 0) return null;
   const previous = lessons[index - 1], next = lessons[index + 1];
-  return <nav aria-label="章の移動" className="mt-10 grid gap-4 sm:grid-cols-2">
-    <Link href={previous ? "/linear-algebra/" + previous.slug + "/" : "/linear-algebra/"} className="border border-[var(--rule)] bg-white p-5 hover:border-[var(--c-la)]">
-      <span className="block text-xs text-[var(--sub)]">← {previous ? "前の章" : "学習順を見る"}</span>
-      <span className="mt-2 block font-bold">{previous?.title ?? "線形代数の全16章"}</span>
-    </Link>
-    <Link href={next ? "/linear-algebra/" + next.slug + "/" : "/linear-algebra/"} className="border border-[var(--rule)] bg-white p-5 hover:border-[var(--c-la)]">
-      <span className="block text-xs text-[var(--sub)]">{next ? "次の章" : "全章を振り返る"} →</span>
-      <span className="mt-2 block font-bold">{next?.title ?? "線形代数の全16章"}</span>
-    </Link>
-  </nav>;
+  return <>
+    <nav aria-label="章の移動" className="mt-10 grid gap-4 sm:grid-cols-2">
+      {previous && <Link rel="prev" href={"/linear-algebra/" + previous.slug + "/"} className="border border-[var(--rule)] bg-white p-5 hover:border-[var(--c-la)]">
+        <span className="block text-xs text-[var(--sub)]">← 前の章</span>
+        <span className="mt-2 block font-bold">{previous.title}</span>
+      </Link>}
+      {next && <Link rel="next" href={"/linear-algebra/" + next.slug + "/"} className={"border border-[var(--rule)] bg-white p-5 hover:border-[var(--c-la)]" + (!previous ? " sm:col-start-2" : "")}>
+        <span className="block text-xs text-[var(--sub)]">次の章 →</span>
+        <span className="mt-2 block font-bold">{next.title}</span>
+      </Link>}
+    </nav>
+    <Link href="/linear-algebra/" className="mt-4 inline-block text-sm font-bold text-[var(--c-la)] underline">全16章の学習順に戻る</Link>
+  </>;
 }

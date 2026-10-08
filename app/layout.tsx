@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: SITE.name, template: `%s | ${SITE.name}` },
   description: SITE.description,
-  openGraph: { siteName: SITE.name, locale: "ja_JP", type: "website" },
+  alternates: { canonical: SITE.url + "/" },
+  openGraph: { siteName: SITE.name, locale: "ja_JP", type: "website", url: SITE.url + "/" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

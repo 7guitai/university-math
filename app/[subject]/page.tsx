@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getArticles } from "@/lib/content";
-import { SUBJECTS, SUBJECT_ORDER, type SubjectKey } from "@/lib/site";
+import { SUBJECTS, SUBJECT_ORDER, SITE, type SubjectKey } from "@/lib/site";
 import { PdfLinks } from "@/components/PdfLinks";
 import { LinearAlgebraIntro } from "@/components/LinearAlgebraIntro";
 
@@ -16,7 +16,11 @@ type P = { params: Promise<{ subject: string }> };
 export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { subject } = await params;
   const s = SUBJECTS[subject as SubjectKey];
-  return { title: `${s.name}の解説と演習`, description: s.lead };
+  return {
+    title: `${s.name}の解説と演習`, description: s.lead,
+    alternates: { canonical: SITE.url + "/" + subject + "/" },
+    openGraph: { title: `${s.name}の解説と演習`, description: s.lead, siteName: SITE.name, locale: "ja_JP", type: "website", url: SITE.url + "/" + subject + "/" },
+  };
 }
 
 export default async function SubjectPage({ params }: P) {

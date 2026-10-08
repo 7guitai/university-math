@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
     title: meta.title,
     description: meta.description,
     alternates: { canonical: `${SITE.url}/${subject}/${slug}/` },
-    openGraph: { title: meta.title, description: meta.description, type: "article" },
+    openGraph: { title: meta.title, description: meta.description, siteName: SITE.name, locale: "ja_JP", type: "article", url: `${SITE.url}/${subject}/${slug}/` },
   };
 }
 

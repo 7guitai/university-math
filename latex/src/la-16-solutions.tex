@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{ochamath}
 \subjectcolor{2F5DA8}
-\setsheet{線形代数}{線形システムとモード　演習}{https://math.ochanote.com/linear-algebra/dynamical-systems/}
+\setsheet{線形代数}{線形システムとモード　演習}{https://university-math-crj.pages.dev/linear-algebra/dynamical-systems/}
 \begin{document}
 \makesheethead{解答}
 
@@ -13,7 +13,7 @@
 
 \problem[対角化できない減衰系]
 \begin{ans}
-微分は $((1-t)e^{-t},-e^{-t})^{\mathsf T}$。$A\boldsymbol x$ も同じ値で、$t=0$ では $(0,1)^{\mathsf T}$。$te^{-t}$ も0へ近づき、固有値は $-1$ のみなので漸近安定。
+微分は $((4-12t)e^{-2t},-4e^{-2t})^{\mathsf T}$。$A\boldsymbol x$ の第1成分も $[-2(1+6t)+6]e^{-2t}=(4-12t)e^{-2t}$ で、第2成分は $-4e^{-2t}$。$t=0$ では $(1,2)^{\mathsf T}$。両成分は0へ近づき、固有値は $-2$ のみなので漸近安定。
 \end{ans}
 \point{対角化できないことと、不安定であることは別。}
 \newpage

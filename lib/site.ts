@@ -1,6 +1,6 @@
 export const SITE = {
   name: "おちゃノート 工学数学",
-  url: "https://math.ochanote.com",
+  url: "https://university-math-crj.pages.dev",
   parent: "https://ochanote.com",
   description:
     "工学部で使う線形代数・微分積分・複素関数を、回路や信号の例で解説。演習問題と解答のPDFを無料で配布しています。",
@@ -15,7 +15,7 @@ export const SUBJECTS: Record<
   "linear-algebra": {
     name: "線形代数",
     short: "線形",
-    lead: "行列は連立方程式と多入力システムを一度に扱う道具。固有値は回路の時定数や振動のモードとして現れます。",
+    lead: "ベクトルと行列で、連立方程式や多入力のシステムをまとめて扱います。固有値からは、回路の時定数や振動のモードが読み取れます。",
     color: "var(--c-la)",
   },
   calculus: {

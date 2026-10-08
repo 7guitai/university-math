@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getArticles } from "@/lib/content";
-import { SUBJECTS } from "@/lib/site";
+import { SUBJECTS, SITE } from "@/lib/site";
 import { SubjectTag } from "@/components/SubjectTag";
 
 export const metadata: Metadata = {
   title: "演習PDF一覧",
+  alternates: { canonical: SITE.url + "/pdf/" },
+  openGraph: { title: "演習PDF一覧", description: "線形代数・微分積分・複素関数の演習問題と解答PDFの一覧。", siteName: SITE.name, locale: "ja_JP", type: "website", url: SITE.url + "/pdf/" },
   description: "線形代数・微分積分・複素関数の演習問題と解答PDFの一覧。",
 };
 

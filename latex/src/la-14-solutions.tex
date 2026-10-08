@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{ochamath}
 \subjectcolor{2F5DA8}
-\setsheet{線形代数}{二次形式と正定値　演習}{https://math.ochanote.com/linear-algebra/quadratic-forms/}
+\setsheet{線形代数}{二次形式と正定値　演習}{https://university-math-crj.pages.dev/linear-algebra/quadratic-forms/}
 \begin{document}
 \makesheethead{解答}
 
@@ -13,14 +13,14 @@ $q=3x^2+2xy+2y^2=3(x+y/3)^2+(5/3)y^2$。非零 $(x,y)$ では少なくとも一�
 
 \problem[主軸変換]
 \begin{ans}
-$z_1=(x+y)/\sqrt2,\ z_2=(x-y)/\sqrt2$ により $q=3z_1^2+z_2^2$。展開すると $2x^2+2xy+2y^2$ に戻る。
+固有値7と3に対して、固有ベクトルは $(1,1)^{\mathsf T}/\sqrt2$ と $(1,-1)^{\mathsf T}/\sqrt2$。$z_1=(x+y)/\sqrt2,\ z_2=(x-y)/\sqrt2$ により $q=7z_1^2+3z_2^2$。展開すると $5x^2+4xy+5y^2$ に戻る。
 \end{ans}
 \point{固有値が新しい座標の2乗の係数になる。}
 \newpage
 
 \problem[符号の分類]
 \begin{ans}
-前者は $x^2$ で半正定値だが $(0,1)$ で0なので正定値ではない。後者は $x^2-y^2$ で、$(1,0)$ と $(0,1)$ で符号が違い、不定値。
+前者は $4x^2$ で半正定値だが、非零ベクトル $(0,1)$ でも0なので正定値ではない。後者は $2x^2-3y^2$ で、$(1,0)$ では2、$(0,1)$ では $-3$ となり、不定値。
 \end{ans}
 \point{非零なのに値が0になる方向も調べる。}
 

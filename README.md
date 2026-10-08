@@ -1,4 +1,4 @@
-# math.ochanote.com — おちゃノート 工学数学
+# おちゃノート 工学数学
 
 工学部向けの線形代数・微分積分・複素関数の解説と、演習PDF（問題・解答）を配布する静的サイト。
 Next.js（静的エクスポート）+ MDX + KaTeX + Tailwind CSS v4、PDF は XeLaTeX で作成。
@@ -45,7 +45,9 @@ npm run pdf          # XeLaTeX が必要（TeX Live / MacTeX）
 
 **PDF は Git に含めてデプロイします**（Cloudflare Pages のビルド環境には TeX がないため）。
 
-## Cloudflare Pages にデプロイ（math.ochanote.com）
+## Cloudflare Pages にデプロイ
+
+現在の公開先は `https://university-math-crj.pages.dev` です。`lib/site.ts` の `SITE.url`、canonical・Open Graph・sitemap・robots、演習PDFの解説リンクをこのURLに揃えています。独自ドメインを接続してHTTPSでの表示を確認した後に、`SITE.url`、`latex/src/*.tex` の解説URL、`latex/common/ochamath.sty` のフッターURLを更新し、PDFとサイトを再生成してください。切替時には `scripts/verify-site.cjs` の期待URLも揃えてください。
 
 1. このフォルダを GitHub リポジトリに push
 2. Cloudflare ダッシュボード → Workers & Pages → 作成 → Pages → Git に接続
@@ -72,9 +74,9 @@ PDFはGitHubに含め、Cloudflare側では生成しません。`node_modules/`�
 
 ## 公開後にやること
 
-- Google Search Console に `https://math.ochanote.com` を URL プレフィックスで登録し、`/sitemap.xml` を送信
-- ochanote.com 本体のヘッダーやフッターから math.ochanote.com へリンク
-- 本体と同じ GA4 プロパティに、サブドメイン用のデータストリームを追加（任意）
+- Google Search Console に実際の公開URL `https://university-math-crj.pages.dev` を URL プレフィックスで登録し、`/sitemap.xml` を送信
+- ochanote.com 本体のヘッダーやフッターから、現在の公開URLへリンク
+- 独自ドメインの接続後、本体と同じ GA4 プロパティにサブドメイン用のデータストリームを追加（任意）
 
 ## 著作権について
 

@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{ochamath}
 \subjectcolor{2F5DA8}
-\setsheet{線形代数}{線形写像と基底変換　演習}{https://math.ochanote.com/linear-algebra/linear-maps/}
+\setsheet{線形代数}{線形写像と基底変換　演習}{https://university-math-crj.pages.dev/linear-algebra/linear-maps/}
 \begin{document}
 \makesheethead{解答}
 
@@ -20,7 +20,7 @@ $T$ は行列 $\begin{pmatrix}2&-1\\0&3\end{pmatrix}$ で表せるので線形�
 
 \problem[同じ基底での表現]
 \begin{ans}
-$P^{-1}=P/2$。列ごとに $A\boldsymbol p_1=3\boldsymbol p_1,\ A\boldsymbol p_2=\boldsymbol p_2$ より、$P^{-1}AP=\operatorname{diag}(3,1)$。積 $AP=P\operatorname{diag}(3,1)$ でも検算できる。
+$P^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}$。$A(1,0)^{\mathsf T}=2(1,0)^{\mathsf T}$、$A(1,1)^{\mathsf T}=5(1,1)^{\mathsf T}$ より、$P^{-1}AP=\operatorname{diag}(2,5)$。検算：$AP=\begin{pmatrix}2&5\\0&5\end{pmatrix}=P\operatorname{diag}(2,5)$。
 \end{ans}
 \point{表現行列の列は基底ベクトルの像を基底座標で表したもの。}
 
