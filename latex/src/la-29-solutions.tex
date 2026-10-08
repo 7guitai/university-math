@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{可制御性・可観測性　演習}{https://university-math-crj.pages.dev/linear-algebra/control-linear-algebra/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[可制御と可観測]
+$A=\begin{pmatrix}0&1\\-6&-5\end{pmatrix},B=(0,1)^{\mathsf T},C=(1,0)$ の階数条件と伝達関数を求めよ。
+\begin{ans}
+$\mathcal K=\begin{pmatrix}0&1\\1&-5\end{pmatrix}$ は行列式 $-1$。$\mathcal O=I$。どちらも階数2。$(sI-A)^{-1}B=(1,s)^{\mathsf T}/(s^2+5s+6)$ なので $G(s)=1/((s+2)(s+3))$。固有値 $-2,-3$ で内部も漸近安定。
+\end{ans}
+\point{時間を通じた観測は一瞬の出力の核と異なる。}
+\problem[文字入り入力]
+前問の $A$ で $B=(1,b)^{\mathsf T}$。可制御性を $b$ で分類せよ。
+\begin{ans}
+$AB=(b,-6-5b)$ なので $\det\mathcal K=-6-5b-b^2=-(b+2)(b+3)$。$b\ne-2,-3$ は可制御。例外では階数1で、$B$ が固有値 $-2$ または $-3$ の右固有ベクトルとなり、その1つの方向しか動かせない。
+\end{ans}
+\point{例外値で階数が0でなく1と確認する。}
+\newpage
+\problem[文字入り出力]
+同じ $A$ で $C=(1,c)$。可観測性を $c$ で分類せよ。
+\begin{ans}
+$CA=(-6c,1-5c)$。$\det\mathcal O=1-5c+6c^2=(1-2c)(1-3c)$。従って $c\ne1/2,1/3$ で可観測。$c=1/2$ では固有ベクトル $(1,-2)$、$c=1/3$ では $(1,-3)$ が $C$ の核に入り、対応するモードが見えない。
+\end{ans}
+\point{PBHの右固有ベクトルでも確認できる。}
+\problem[隠れた不安定性]
+$A=\operatorname{diag}(-2,1),B=(1,1)^{\mathsf T},C=(1,0)$ の内部安定性と伝達関数を比較せよ。
+\begin{ans}
+$\mathcal K=\begin{pmatrix}1&-2\\1&1\end{pmatrix}$ は階数2。$\mathcal O$ は階数1。$G(s)=1/(s+2)$ の極は安定だが、内部には $e^t$ のモードがあり不安定。出力に現れない第2状態の増大は伝達関数から分からない。
+\end{ans}
+\point{入出力の極だけで内部安定性を断定しない。}
+\newpage
+\problem[PBHの必要性]
+$w^*A=\lambda w^*,w^*B=0,w\ne0$ があると可制御でないことを証明せよ。
+\begin{ans}
+$w^*A^kB=\lambda^kw^*B=0$ が全ての $k$ で成立する。従って $w^*\mathcal K=0$ で非零の左零ベクトルが存在し、$\operatorname{rank}\mathcal K<n$。$w$ に沿う成分は入力で作れない。PBHの十分性には可到達空間の消去空間の不変性を使う。
+\end{ans}
+\point{左固有ベクトルを使う点に注意する。}
+\problem[基底変換]
+$x=Pz$ による状態変換で可制御・可観測の階数が保存されることを示せ。
+\begin{ans}
+$A\prime=P^{-1}AP,B\prime=P^{-1}B,C\prime=CP$。$(A\prime)^kB\prime=P^{-1}A^kB$ だから $\mathcal K\prime=P^{-1}\mathcal K$。同様に $C\prime(A\prime)^k=CA^kP$ だから $\mathcal O\prime=\mathcal OP$。正則な左右の変換は階数を保存する。
+\end{ans}
+\point{入力と出力も状態座標に合わせて変換する。}
+\end{document}

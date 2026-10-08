@@ -1,0 +1,96 @@
+---
+title: 一般化固有値問題 — 容量・質量を残したままモードを求める
+description: 正定値の重み付き内積、Hermite問題への変換、回路の減衰モードを求める
+order: 300
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-30-problems.pdf
+  solutions: /pdf/la-30-solutions.pdf
+  count: 6
+---
+
+$K v=\lambda Mv$のように、右辺にも行列がある問題です。容量や質量が異なるモデルで、勝手に$M=I$と置くと固有値も固有ベクトルも変わってしまいます。
+
+## 1. 行列束と正則性
+
+一般化固有値は$\det(K-\lambda M)=0$で求めます。$M$が正則なら$M^{-1}K v=\lambda v$へ変換できます。$M$が特異な場合、有限固有値だけでは記述できないことがあり、本章の正定値の議論は使えません。
+
+以下では$K=K^*$、$M=M^*\succ0$とします。容量・質量が正のモデルに対応する条件です。
+
+## 2. 正定値平方根でHermite問題にする
+
+スペクトル定理から$M=U\operatorname{diag}(\mu_i)U^*$、$\mu_i>0$。そこで$M^{1/2}=U\operatorname{diag}(\sqrt{\mu_i})U^*$を作れます。
+
+$$
+H=M^{-1/2}KM^{-1/2},\quad z=M^{1/2}v.
+$$
+
+すると$Hz=\lambda z$で$H$はHermite。全ての固有値は実数、正規直交固有基底$z_i$が得られ、元の$v_i=M^{-1/2}z_i$は
+
+$$
+v_i^*Mv_r=\delta_{ir},\qquad V^*MV=I,\qquad V^*KV=\Lambda.
+$$
+
+$M^{-1}K$は通常の内積ではHermiteでないことがありますが、$M$を重みにした内積では自己共役です。
+
+## 3. 重み付き直交性を直接証明する
+
+$Kv_i=\lambda_iMv_i,Kv_r=\lambda_rMv_r$から
+
+$$
+v_i^*Kv_r=\lambda_rv_i^*Mv_r=(Kv_i)^*v_r=\lambda_iv_i^*Mv_r.
+$$
+
+異なる固有値なら$v_i^*Mv_r=0$。ユークリッド内積で直交するとは限りません。
+
+## 4. 例：容量が違うRC系
+
+$$
+M\dot x+Kx=0,\quad M=\begin{pmatrix}4&0\\0&1\end{pmatrix},\quad K=\begin{pmatrix}8&-2\\-2&2\end{pmatrix}.
+$$
+
+$M^{-1/2}=\operatorname{diag}(1/2,1)$なので$H=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$。固有値は1,3、一般化固有ベクトルは
+
+$$
+v_1=\frac1{\sqrt8}(1,2)^{\mathsf T},\qquad v_3=\frac1{\sqrt8}(1,-2)^{\mathsf T}.
+$$
+
+$v_1^{\mathsf T}Mv_3=0$ですが$v_1^{\mathsf T}v_3=-3/8\ne0$。モードは重み付き直交です。
+
+初期値$x_0=(1,0)^{\mathsf T}$を$V$へ移す係数は$c=V^{\mathsf T}Mx_0$で、両方$\sqrt2$。よって
+
+$$
+x_1(t)=\frac{e^{-t}+e^{-3t}}2,\quad x_2(t)=e^{-t}-e^{-3t}.
+$$
+
+初期値と$M\dot x+Kx=0$への代入で確認します。容量やコンダクタンスに単位を付けたモデルなら、$\lambda$は減衰率です。
+
+![重みMが対角4、1の単位楕円上に、一般化固有ベクトルv1とv3を示す。通常の角度は直角ではない。](/figures/linear-algebra/weighted-modes.svg)
+
+図の楕円は重み付きノルムが1の点です。2本ともその上にあり、M内積では直交します。通常の図の角度だけで直交性を判定しないようにします。
+
+## 5. 振動問題との違い
+
+$M\ddot x+Kx=0$なら$Kv=\omega^2Mv$。同じ一般化固有値が角振動数の2乗です。$K\succ0$なら全て正で振動、$K\succeq0$なら零固有値の自由モードも含みます。RCの1階減衰系と、無減衰の2階振動系を区別します。
+
+## 6. 一般化Rayleigh商
+
+$$
+R_{K,M}(v)=\frac{v^*Kv}{v^*Mv}=\frac{z^*Hz}{z^*z}.
+$$
+
+最小値・最大値は一般化固有値の最小・最大です。$v^*Mv=1$というエネルギーや質量の制約の下で最大最小を求める問題にも使えます。$M\succ0$が分母の正と変数変換を保証します。
+
+## 7. Cholesky分解による別の変換
+
+$M=LL^*$で$L$が正則な下三角なら、$H=L^{-1}KL^{-*}$、$z=L^*v$でもHermite問題になります。$L^{-*}=(L^*)^{-1}$です。平方根を全て書き出さずに計算でき、数値実装で便利です。
+
+## 8. 自分で確かめる
+
+$K=\operatorname{diag}(6,8),M=\operatorname{diag}(2,4)$の一般化固有値と、$M$正規化した固有ベクトルを求めてください。
+
+<Answer>
+
+固有値は3,2。ベクトルは$(1/\sqrt2,0)$、$(0,1/2)$で、$v_i^{\mathsf T}Mv_r=\delta_{ir}$です。$K$単独の固有値6,8を使うと異なるモデルになります。
+
+</Answer>

@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{一般化固有値問題　演習}{https://university-math-crj.pages.dev/linear-algebra/generalized-eigenvalues/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[対角の一般化問題]
+$K=\operatorname{diag}(12,6),M=\operatorname{diag}(3,2)$。一般化固有値と $M$ 正規化基底を求めよ。
+\begin{ans}
+成分の比から固有値4,3。対応する基底は $(1/\sqrt3,0)$、$(0,1/\sqrt2)$。$Kv_i=\lambda_iMv_i$ と $v_i^{\mathsf T}Mv_r=\delta_{ir}$ を確認する。$K$ 単独の固有値12,6とは異なる。
+\end{ans}
+\point{右辺の重み行列を省略しない。}
+\problem[結合モード]
+$M=\operatorname{diag}(9,1),K=\begin{pmatrix}18&-3\\-3&2\end{pmatrix}$ の一般化固有値と重み付き正規直交基底を求めよ。
+\begin{ans}
+$M^{-1/2}=\operatorname{diag}(1/3,1)$ で $H=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}$。固有値1,3。$v_1=(1,3)/\sqrt{18},v_3=(1,-3)/\sqrt{18}$。各ノルムは $v_i^{\mathsf T}Mv_i=(9+9)/18=1$、交差は0。通常の内積では直交しない。
+\end{ans}
+\point{直交性の重みを必ず示す。}
+\newpage
+\problem[回路の時間応答]
+前問で $M\dot x+Kx=0,x(0)=(1,0)$ の応答を求めよ。
+\begin{ans}
+$c_i=v_i^{\mathsf T}Mx_0=9/\sqrt{18}=3/\sqrt2$。モード展開から $x_1=(e^{-t}+e^{-3t})/2,x_2=\frac32(e^{-t}-e^{-3t})$。初期値は $(1,0)$。第1式 $9\dot x_1+18x_1-3x_2=0$ と第2式 $\dot x_2-3x_1+2x_2=0$ を確認できる。
+\end{ans}
+\point{係数は通常の内積でなく $V^{\mathsf T}Mx_0$。}
+\problem[振動との違い]
+同じ $M,K$ の $M\ddot x+Kx=0$ で角振動数と $x(0)=(1,0),\dot x(0)=0$ の応答を求めよ。
+\begin{ans}
+固有値は角振動数の2乗なので $\omega_1=1,\omega_3=\sqrt3$。$x_1=(\cos t+\cos\sqrt3t)/2,x_2=\frac32(\cos t-\cos\sqrt3t)$。初期速度0、変位 $(1,0)$。各モードを2回微分すると $-\lambda_i$ が出て元の式に一致する。
+\end{ans}
+\point{1階系は減衰率、2階系は周波数の2乗。}
+\newpage
+\problem[一般化Rayleigh商]
+前問の $K,M$ について $x^{\mathsf T}Kx/(x^{\mathsf T}Mx)$ の上下限と等号条件を求めよ。
+\begin{ans}
+$z=M^{1/2}x$ で商は $z^{\mathsf T}Hz/\|z\|^2$。$H$ の固有値1,3の重み付き平均なので下限1、上限3。等号はそれぞれ $x$ が $(1,3)$、$(1,-3)$ の非零スカラー倍。分母は $M\succ0$ なので非零 $x$ で必ず正。
+\end{ans}
+\point{分母が正になる仮定が必要。}
+\problem[重み付き直交の証明]
+$K=K^*,M=M^*\succ0$ の一般化問題で異なる固有値のベクトルが $M$ 直交することを証明せよ。
+\begin{ans}
+Hermite問題への変換から固有値は実数。$v_i^*Kv_r=\lambda_rv_i^*Mv_r$、一方Hermite性で $(Kv_i)^*v_r=\lambda_iv_i^*Mv_r$。差を取ると $(\lambda_r-\lambda_i)v_i^*Mv_r=0$。異なる固有値なら内積0。
+\end{ans}
+\point{固有値が実数という条件も先に確かめる。}
+\end{document}

@@ -1,0 +1,133 @@
+---
+title: 行列式の計算法とブロック行列 — 余因子から回路の消去へ
+description: 余因子・随伴行列・クラメルの公式・Schur補行列を、成立条件と3次の計算で理解する
+order: 170
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-17-problems.pdf
+  solutions: /pdf/la-17-solutions.pdf
+  count: 6
+---
+
+行列式を正則性の判定に使うだけでなく、未知数の消去や逆行列の公式に使います。大きな行列は、構造を見てから計算する方が確実です。
+
+<Box kind="goal">
+
+- 行・列操作のどれが行列式を変えるか説明する
+- 余因子展開と随伴行列で、逆行列の条件を示す
+- ブロック消去でSchur補行列を導く
+
+</Box>
+
+## 1. 定義と行基本変形
+
+$n$ 次正方行列では
+
+$$
+\det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^n a_{i,\sigma(i)}
+$$
+
+です。各行から1要素ずつ、各列も1回ずつ選びます。この定義から行についての多重線形性、同じ行があると0、$\det I=1$ が得られます。
+
+- 2行を交換すると符号が反転する
+- 1行を$c$倍すると行列式も$c$倍する
+- ある行に別の行の$c$倍を加えても変わらない
+
+列にも同じ性質が成り立ちます。最後の操作では多重線形性により「元の行列式＋同じ行が2本ある行列式」となり、後者が0です。全行を$c$倍すれば$\det(cA)=c^n\det A$。$c\det A$ではありません。
+
+## 2. 例：3次を消去で求める
+
+$$
+A=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}
+$$
+
+第2行から第1行の1/2倍を引き、第3行から新しい第2行の2/3倍を引きます。
+
+$$
+A\longrightarrow\begin{pmatrix}2&1&0\\0&3/2&1\\0&1&2\end{pmatrix}
+\longrightarrow\begin{pmatrix}2&1&0\\0&3/2&1\\0&0&4/3\end{pmatrix}
+$$
+
+行列式を変えない操作だけなので、$\det A=2(3/2)(4/3)=4$。第1行で余因子展開すると$2(4-1)-1(2)=4$で検算できます。
+
+## 3. 余因子と随伴行列
+
+$i$行$j$列を除いた小行列を$A_{ij}$とし、余因子を$C_{ij}=(-1)^{i+j}\det A_{ij}$とします。任意の固定した行$i$について$\det A=\sum_j a_{ij}C_{ij}$。ゼロが多い行・列を選ぶと計算が減ります。
+
+余因子行列を**転置**したものが随伴行列$\operatorname{adj}A=(C_{ji})$です。複素行列で使う共役転置$A^*$とは別の操作です。
+
+$$
+A\operatorname{adj}A=(\det A)I,\qquad
+A^{-1}=\frac{\operatorname{adj}A}{\det A}\quad(\det A\ne0)
+$$
+
+積の対角要素は余因子展開。非対角要素は、ある行を別の行に置き換えた行列の行列式なので0です。これが公式の証明です。上の例では
+
+$$
+\operatorname{adj}A=\begin{pmatrix}3&-2&1\\-2&4&-2\\1&-2&3\end{pmatrix}.
+$$
+
+実際に掛けると$4I$になります。
+
+## 4. クラメルの公式の導出
+
+$A\boldsymbol x=\boldsymbol b$で$A$が正則なら、第$i$列だけを$\boldsymbol b$にした行列$A_i$について
+
+$$
+x_i=\frac{\det A_i}{\det A}.
+$$
+
+$\boldsymbol b=\sum_kx_k\boldsymbol a_k$を$i$列に入れ、多重線形性を使います。$k\ne i$の項は同じ列が2本なので0、$k=i$だけが$x_i\det A$です。公式は証明や小規模計算には便利ですが、多数の未知数を数値計算するなら掃き出し法やLU分解を使います。
+
+## 5. ブロック三角行列
+
+$A,D$が正方行列なら、右上の$B$が何であっても
+
+$$
+\det\begin{pmatrix}A&B\\0&D\end{pmatrix}=\det A\det D.
+$$
+
+これは$A,D$が特異でも成立します。一般の$\begin{pmatrix}A&B\\C&D\end{pmatrix}$で、行列同士の積を勝手に並べ替えて「$AD-BC$」の行列式にすることはできません。
+
+## 6. Schur補行列を消去で導く
+
+$A$が正則で、各ブロックの大きさが適合するとき
+
+$$
+\begin{pmatrix}I&0\\-CA^{-1}&I\end{pmatrix}
+\begin{pmatrix}A&B\\C&D\end{pmatrix}
+=\begin{pmatrix}A&B\\0&D-CA^{-1}B\end{pmatrix}.
+$$
+
+左の消去行列の行列式は1。したがって
+
+$$
+\det M=\det A\det S,\qquad S=D-CA^{-1}B.
+$$
+
+$S$がSchur補行列です。連立式$Ax+By=f,\ Cx+Dy=g$では$x=A^{-1}(f-By)$を代入し、$Sy=g-CA^{-1}f$を解きます。回路の内部変数を消去する際にも、同じ構造が現れます。
+
+$A$と$S$が正則なら
+
+$$
+M^{-1}=\begin{pmatrix}
+A^{-1}+A^{-1}BS^{-1}CA^{-1}&-A^{-1}BS^{-1}\\
+-S^{-1}CA^{-1}&S^{-1}
+\end{pmatrix}.
+$$
+
+順序を保ったまま積を計算して確認してください。$A$が特異ならこの式を使えません。$D$が正則なら、逆に$A-BD^{-1}C$を使って消去できます。
+
+## 7. 自分で確かめる
+
+$M=\begin{pmatrix}2&0&1\\0&3&1\\1&1&2\end{pmatrix}$を、左上の2次ブロックで消去し、行列式を求めてください。
+
+<Answer>
+
+$A=\operatorname{diag}(2,3)$、$B=(1,1)^{\mathsf T}$、$C=B^{\mathsf T}$、$D=2$。$S=2-1/2-1/3=7/6$なので$\det M=6(7/6)=7$です。
+
+</Answer>
+
+## 8. 答案の確認点
+
+行交換の符号、割った量が0でない条件、ブロックの積の順序を書きます。文字を含む場合の消去は、[階数のパラメータ分類](/linear-algebra/parameter-rank/)へ進みます。

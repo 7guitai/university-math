@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{Hermite行列・ユニタリ行列・DFT　演習}{https://university-math-crj.pages.dev/linear-algebra/hermitian-unitary/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[Hermite対角化]
+$H=\begin{pmatrix}3&2j\\-2j&3\end{pmatrix}$ をユニタリ対角化せよ。
+\begin{ans}
+$p_H=(z-3)^2-4$ で固有値5,1。対応する正規化ベクトルは $q_5=(1,-j)/\sqrt2,q_1=(1,j)/\sqrt2$。$U=(q_5,q_1)$ は $U^*U=I$、$U^*HU=\operatorname{diag}(5,1)$。$Hq_i=\lambda_iq_i$ と共役内積0を直接確認でき、正定値でもある。
+\end{ans}
+\point{複素非対角成分があっても固有値は実数。}
+\problem[ユニタリの固有値]
+$U$ がユニタリなら固有値の絶対値は1、$K^*=-K$ なら固有値は純虚数であることを証明せよ。
+\begin{ans}
+$Uv=\lambda v$ なら $\|v\|=\|Uv\|=|\lambda|\|v\|$ より絶対値1。$Kv=\mu v$ なら $v^*Kv=\mu\|v\|^2$ の共役は $v^*K^*v=-v^*Kv$。従って $\bar\mu=-\mu$ で実部0。いずれも $v\ne0$ を使って割る。
+\end{ans}
+\point{ノルム保存と共役対称性を使い分ける。}
+\newpage
+\problem[正規性]
+$A=\begin{pmatrix}1&1\\0&2\end{pmatrix}$ は対角化可能か、ユニタリ対角化可能か判定せよ。
+\begin{ans}
+固有値1,2が異なるので対角化可能。しかし $A^*A=\begin{pmatrix}1&1\\1&5\end{pmatrix}$、$AA^*=\begin{pmatrix}2&2\\2&4\end{pmatrix}$ で正規でないためユニタリ対角化不可。異なる固有値の固有ベクトルが一般に直交するわけではない。
+\end{ans}
+\point{一般の相似対角化とユニタリ対角化を区別する。}
+\problem[DFTの直交性]
+正規化DFT $F_{kn}=N^{-1/2}e^{-2\pi jkn/N}$ がユニタリであることを示せ。
+\begin{ans}
+$(F^*F)_{rs}=N^{-1}\sum_{k=0}^{N-1}e^{2\pi jk(r-s)/N}$。$r=s$ で1。異なる添字なら等比数列の比は1でなく、分子 $1-e^{2\pi j(r-s)}=0$ なので0。従って $F^*F=I$、正方行列なので $FF^*=I$ も成り立つ。
+\end{ans}
+\point{添字を0から $N-1$ に統一する。}
+\newpage
+\problem[4点DFT]
+$N=4,x=(1,0,-1,0)^{\mathsf T}$ の正規化DFTとParsevalの検算を求めよ。
+\begin{ans}
+$F$ の正規化係数は1/2。$\widehat x_k=(1-e^{-\pi jk})/2=(1-(-1)^k)/2$ なので $Fx=(0,1,0,1)$。元のノルム2乗は2、変換後も2。通常の正規化なしDFTなら $(0,2,0,2)$ になり、ノルム保存の式にも倍率が入る。
+\end{ans}
+\point{正規化係数を先に書く。}
+\problem[巡回行列]
+$N=4,(Sx)_n=x_{n-1\bmod4}$。$C=2I+S+S^*$ の固有値と正定値性を求めよ。
+\begin{ans}
+シフトの固有値は $e^{-2\pi jk/4}$、逆シフトはその共役。従って $\lambda_k=2+2\cos(2\pi k/4)$、順に4,2,0,2。$C=C^*$ で全固有値非負だから半正定値だが正定値ではない。交互符号ベクトルが零固有方向。
+\end{ans}
+\point{非負と正を区別する。}
+\end{document}

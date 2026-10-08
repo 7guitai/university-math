@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{一般化固有値問題　演習}{https://university-math-crj.pages.dev/linear-algebra/generalized-eigenvalues/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[対角の一般化問題]
+$K=\operatorname{diag}(12,6),M=\operatorname{diag}(3,2)$。一般化固有値と $M$ 正規化基底を求めよ。
+\workspace{45mm}
+\problem[結合モード]
+$M=\operatorname{diag}(9,1),K=\begin{pmatrix}18&-3\\-3&2\end{pmatrix}$ の一般化固有値と重み付き正規直交基底を求めよ。
+\workspace{45mm}
+\newpage
+\problem[回路の時間応答]
+前問で $M\dot x+Kx=0,x(0)=(1,0)$ の応答を求めよ。
+\workspace{45mm}
+\problem[振動との違い]
+同じ $M,K$ の $M\ddot x+Kx=0$ で角振動数と $x(0)=(1,0),\dot x(0)=0$ の応答を求めよ。
+\workspace{45mm}
+\newpage
+\problem[一般化Rayleigh商]
+前問の $K,M$ について $x^{\mathsf T}Kx/(x^{\mathsf T}Mx)$ の上下限と等号条件を求めよ。
+\workspace{45mm}
+\problem[重み付き直交の証明]
+$K=K^*,M=M^*\succ0$ の一般化問題で異なる固有値のベクトルが $M$ 直交することを証明せよ。
+\workspace{45mm}
+\end{document}

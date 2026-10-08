@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{Hermite行列・ユニタリ行列・DFT　演習}{https://university-math-crj.pages.dev/linear-algebra/hermitian-unitary/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[Hermite対角化]
+$H=\begin{pmatrix}3&2j\\-2j&3\end{pmatrix}$ をユニタリ対角化せよ。
+\workspace{45mm}
+\problem[ユニタリの固有値]
+$U$ がユニタリなら固有値の絶対値は1、$K^*=-K$ なら固有値は純虚数であることを証明せよ。
+\workspace{45mm}
+\newpage
+\problem[正規性]
+$A=\begin{pmatrix}1&1\\0&2\end{pmatrix}$ は対角化可能か、ユニタリ対角化可能か判定せよ。
+\workspace{45mm}
+\problem[DFTの直交性]
+正規化DFT $F_{kn}=N^{-1/2}e^{-2\pi jkn/N}$ がユニタリであることを示せ。
+\workspace{45mm}
+\newpage
+\problem[4点DFT]
+$N=4,x=(1,0,-1,0)^{\mathsf T}$ の正規化DFTとParsevalの検算を求めよ。
+\workspace{45mm}
+\problem[巡回行列]
+$N=4,(Sx)_n=x_{n-1\bmod4}$。$C=2I+S+S^*$ の固有値と正定値性を求めよ。
+\workspace{45mm}
+\end{document}

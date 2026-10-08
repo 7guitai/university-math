@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{ジョルダン標準形　演習}{https://university-math-crj.pages.dev/linear-algebra/jordan-form/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[連鎖を作る]
+$A=\begin{pmatrix}3&2&1\\0&3&1\\0&0&3\end{pmatrix}$ のJordan基底を構成し、$AP=PJ$ を確かめよ。
+\begin{ans}
+$N=A-3I$ とし $v_3=e_3,v_2=Nv_3=(1,1,0),v_1=Nv_2=(2,0,0)$。$\det P=2$ で正則。$Av_1=3v_1,Av_2=v_1+3v_2,Av_3=v_2+3v_3$ より $AP=PJ_3(3)$。また $N^2\ne0,N^3=0$ で1つのサイズ3ブロック。
+\end{ans}
+\point{列の順序を連鎖の先頭から末端にする。}
+\problem[核からサイズを復元]
+代数的重複度6の固有値について $d_1=3,d_2=5,d_3=6$。Jordanブロックのサイズを求めよ。
+\begin{ans}
+$d_0=0,d_4=6$ とすると増分は3,2,1,0。ブロック数3、2以上が2個、3以上が1個。従って3,2,1。和6で代数的重複度と一致し、最大サイズ3が最小多項式の因子の指数になる。
+\end{ans}
+\point{増分はサイズが少なくともその値のブロック数。}
+\newpage
+\problem[階数からサイズを復元]
+5次の冪零行列で階数が $\operatorname{rank}N=3,\operatorname{rank}N^2=1,N^3=0$。サイズと最小多項式を求めよ。
+\begin{ans}
+$d_1=2,d_2=4,d_3=5$、増分2,2,1,0なのでサイズ3と2。最大サイズ3より $m_N=z^3$。階数3は各ブロックの $s-1$ の和 $2+1$、2乗の階数は $1+0$ で検算できる。
+\end{ans}
+\point{各ブロックの階数から戻して確認する。}
+\problem[伸ばせない固有ベクトル]
+$N=\operatorname{diag}(J_2(0),0)$ で $Nv=e_3$ が解けない理由と、長さ2の連鎖を示せ。
+\begin{ans}
+像は $\operatorname{span}e_1$ で $e_3$ は像に入らず、$Nv=e_3$ は不可能。一方 $Ne_2=e_1,Ne_1=0$ なので $(e_1,e_2)$ が長さ2の連鎖、$e_3$ が長さ1の連鎖。固有ベクトルならどれでも伸ばせるわけではない。
+\end{ans}
+\point{延長の可解条件は像への所属。}
+\newpage
+\problem[ブロックの累乗]
+$J_3(2)^k$ を求めよ。$k=0,1$ は別に書いてよい。
+\begin{ans}
+$N=J_3(2)-2I,N^3=0$。$k\ge2$ では $J^k=2^kI+k2^{k-1}N+\binom{k}{2}2^{k-2}N^2$。$k=1$ は $2I+N$、$k=0$ は $I$。右上成分は $\binom{k}{2}2^{k-2}$、すぐ右上は $k2^{k-1}$。$k=2$ で $4I+4N+N^2$ と検算。
+\end{ans}
+\point{冪零次数で二項展開が有限で止まる。}
+\problem[指数関数]
+$J=J_3(-3)$ について $e^{tJ}$ と初期値 $e_3$ の応答を求め、安定性を答えよ。
+\begin{ans}
+$e^{tJ}=e^{-3t}(I+tN+t^2N^2/2)$。応答は $e^{-3t}(t^2/2,t,1)$。初期値は $e_3$、微分で第1成分 $(t-3t^2/2)e^{-3t}$、第2成分 $(1-3t)e^{-3t}$ となり $Jx$ に一致。多項式因子があっても全て減衰し漸近安定。
+\end{ans}
+\point{対角化不能と不安定は同じではない。}
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{二次形式の一般論　演習}{https://university-math-crj.pages.dev/linear-algebra/quadratic-forms-advanced/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[Sylvesterの判定]
+$H(t)=\begin{pmatrix}3&1&0\\1&2&1\\0&1&t\end{pmatrix}$ の正定値条件を求めよ。
+\begin{ans}
+左上主小行列式は $\Delta_1=3,\Delta_2=5,\Delta_3=5t-3$。従って正定値は $t>3/5$。平方完成では $3(x_1+x_2/3)^2+(5/3)(x_2+3x_3/5)^2+(t-3/5)x_3^2$。境界では半正定値、下では正負の方向がある不定。
+\end{ans}
+\point{判定の条件を平方完成でも確かめる。}
+\problem[半正定値の落とし穴]
+$H=\operatorname{diag}(0,-2,1)$ は左上主小行列式が全て非負か。半正定値か。
+\begin{ans}
+左上の行列式は0,0,0で全て非負だが、$e_2^{\mathsf T}He_2=-2$ なので半正定値ではない。添字集合 $\{2\}$ の主小行列式は $-2$。半正定値では全ての主小行列式を調べる必要があり、左上だけの条件では足りない。
+\end{ans}
+\point{正定値の判定を単に不等号変更しない。}
+\newpage
+\problem[慣性]
+$H=\operatorname{diag}(2,-1,0),P=\operatorname{diag}(3,2,1)$。合同変換後の固有値と慣性を求めよ。
+\begin{ans}
+$P^{\mathsf T}HP=\operatorname{diag}(18,-4,0)$。元の固有値2,$-1$,0とは異なるが、正1・負1・零1という慣性は同じ。$P$ は正則なので慣性法則が使える。相似変換なら固有値自体が保存される。
+\end{ans}
+\point{合同と相似の式を並べて区別する。}
+\problem[制約付きRayleigh商]
+$H=\operatorname{diag}(1,2,5)$、$x_1+x_2=0,\|x\|=1$ の下で $x^{\mathsf T}Hx$ の最大最小を求めよ。
+\begin{ans}
+制約空間の正規直交基底を $q_1=(1,-1,0)/\sqrt2,q_2=e_3$ とする。$Q^{\mathsf T}HQ=\operatorname{diag}(3/2,5)$。従って最小 $3/2$ は $x=\pm q_1$、最大5は $x=\pm e_3$。制約なしの最小固有値1はこの空間で達成できない。
+\end{ans}
+\point{先に制約空間へ制限してから固有値を求める。}
+\newpage
+\problem[線形項付きの最小化]
+$H=\begin{pmatrix}3&1\\1&2\end{pmatrix},b=(2,1)$ に対し $x^{\mathsf T}Hx-2b^{\mathsf T}x$ の最小点と最小値を求めよ。
+\begin{ans}
+$H\succ0$ は $3>0,\det H=5>0$ で確認。$H^{-1}=\frac15\begin{pmatrix}2&-1\\-1&3\end{pmatrix}$ だから $x_*=H^{-1}b=(3/5,1/5)$。平方完成から最小値は $-b^{\mathsf T}H^{-1}b=-7/5$。$Hx_*=b$ でも検算できる。
+\end{ans}
+\point{正定値が一意の最小点を保証する。}
+\problem[半正定値と下に非有界]
+$H=\operatorname{diag}(4,0)$ で $b=(2,0)$ と $b=(2,3)$ の最小化を比較せよ。
+\begin{ans}
+前者は $4(x_1-1/2)^2-1$ なので最小値 $-1$、最小点 $(1/2,r)$。後者はさらに $-6x_2$ があり下に非有界。前者の $b$ は $\operatorname{Im}H$ に入り、後者は入らない。核方向に線形項が残ると有限の最小値を持たない。
+\end{ans}
+\point{半正定値だけでは最小値の存在を保証しない。}
+\end{document}

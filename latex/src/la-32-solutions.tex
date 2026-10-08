@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{電気系院試の総合演習　演習}{https://university-math-crj.pages.dev/linear-algebra/entrance-exam-practice/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[総合1：文字入り連立式]
+$A(t)=\begin{pmatrix}1&1&0\\1&t&0\\0&0&t-3\end{pmatrix},b=(3,5,0)$。階数と全解を分類せよ。
+\begin{ans}
+$\det A=(t-1)(t-3)$。通常は階数3、$x=(3-2/(t-1),2/(t-1),0)$。$t=1$ は同じ左辺で右辺が異なり、係数階数2・拡大階数3で解なし。$t=3$ は両階数2、$x=(2,1,r)$。場合分けの後、通常と例外のそれぞれを元の式に代入する。
+\end{ans}
+\point{目安15分。除算前に例外値を拾う。}
+\problem[総合2：Jordanと応答]
+$A=\begin{pmatrix}-1&2&0\\0&-1&1\\0&0&-1\end{pmatrix}$。特性・最小多項式、Jordan基底、初期値 $e_3$ の応答を求めよ。
+\begin{ans}
+$N=A+I,N^2\ne0,N^3=0$ より両多項式は $(z+1)^3$。連鎖 $v_1=2e_1,v_2=e_2,v_3=e_3$ の $P=\operatorname{diag}(2,1,1)$ で $P^{-1}AP=J_3(-1)$。指数関数から $x=e^{-t}(t^2,t,1)$。微分と初期値を確認でき、実部負で漸近安定。
+\end{ans}
+\point{目安20分。変換後でなく元の座標の応答を書く。}
+\newpage
+\problem[総合3：複素近似]
+$a=(1,2j,1),b=(1,0,1)$ に対し複素最小二乗係数と誤差2乗を求めよ。
+\begin{ans}
+$a^*a=6,a^*b=2$ より $c=1/3$。$ac-b=(-2/3,2j/3,-2/3)$、$a^*(ac-b)=-2/3+4/3-2/3=0$。誤差2乗 $4/9+4/9+4/9=4/3$、射影公式 $2-4/6$ と一致。
+\end{ans}
+\point{目安10分。共役内積と残差を検算する。}
+\problem[総合4：証明と累乗]
+実行列 $A$ が $A^2=7A-12I$ を満たす。対角化可能性を証明し、$A^k$ を求めよ。
+\begin{ans}
+最小多項式は $(z-3)(z-4)$ を割り、相異なる実一次因子なので実対角化可能。$E_3=4I-A,E_4=A-3I$ は互いに積0の射影で和 $I$。従って $A^k=3^kE_3+4^kE_4=(4^k-3^k)A+(4\cdot3^k-3\cdot4^k)I$。$k=0,1$ で検算。
+\end{ans}
+\point{目安15分。必要条件だけで終わらせない。}
+\newpage
+\problem[総合5：内部と入出力]
+$A=\operatorname{diag}(-3,2),B=(1,1),C=(1,0)$。階数条件、伝達関数、内部安定性を求めよ。
+\begin{ans}
+$\mathcal K=\begin{pmatrix}1&-3\\1&2\end{pmatrix}$ は行列式5で可制御。$\mathcal O=\begin{pmatrix}1&0\\-3&0\end{pmatrix}$ は階数1で不可観測。$G(s)=1/(s+3)$ だが固有値2が見えない不安定モード。全ての初期状態に対する安定性は成り立たず、内部安定性を伝達関数だけで判断できない。
+\end{ans}
+\point{目安15分。隠れたモードも確認する。}
+\problem[総合6：エネルギーと重み]
+$M=\operatorname{diag}(3,2),K=\operatorname{diag}(6,8)$。一般化固有値、重み付き正規化基底、$M\dot x+Kx=0$ の安定性を示せ。
+\begin{ans}
+一般化固有値は2,4。基底は $(1/\sqrt3,0),(0,1/\sqrt2)$。$V=x^{\mathsf T}Mx/2\succ0$ とすると $\dot V=-x^{\mathsf T}Kx=-6x_1^2-8x_2^2<0$。状態行列は $-M^{-1}K=\operatorname{diag}(-2,-4)$ で固有値も負。両方法が漸近安定で一致。
+\end{ans}
+\point{目安15分。1階系の減衰率を読む。}
+\end{document}

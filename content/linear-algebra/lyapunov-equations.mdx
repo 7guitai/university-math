@@ -1,0 +1,112 @@
+---
+title: リアプノフ方程式 — エネルギーから安定性を証明する
+description: 連続・離散時間の行列方程式、正定値解の存在、固有値和による一意性を導く
+order: 310
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-31-problems.pdf
+  solutions: /pdf/la-31-solutions.pdf
+  count: 6
+---
+
+固有値を求める方法に加えて、時間とともに減る二次形式を作る方法です。電気回路の蓄積エネルギーや、制御系の安定性を行列方程式へ結びつけます。
+
+## 1. 二次形式の時間微分
+
+$\dot x=Ax$、$P=P^{\mathsf T}\succ0$について$V(x)=x^{\mathsf T}Px$とおくと
+
+$$
+\dot V=x^{\mathsf T}(A^{\mathsf T}P+PA)x.
+$$
+
+$A^{\mathsf T}P+PA=-Q$、$Q=Q^{\mathsf T}\succ0$なら$\dot V<0$（$x\ne0$）。固有値による上下界から
+
+$$
+\dot V\le-\frac{\lambda_{\min}(Q)}{\lambda_{\max}(P)}V
+$$
+
+となり、$V$は指数的に減少し$x\to0$。これが連続時間のリアプノフ方程式です。複素数の系では転置を共役転置に替えます。
+
+## 2. 定理と必要性の証明
+
+<Box kind="thm">
+
+$A$の全固有値の実部が負であることと、任意の$Q=Q^{\mathsf T}\succ0$に対して$A^{\mathsf T}P+PA=-Q$が唯一の正定値対称解を持つことは同値です。
+
+</Box>
+
+安定な$A$に対して
+
+$$
+P=\int_0^\infty e^{A^{\mathsf T}t}Qe^{At}dt.
+$$
+
+負の実部による指数減衰がJordan由来の多項式に勝つため収束します。$x^{\mathsf T}Px$は正の被積分関数の積分なので$x\ne0$では正。被積分行列を微分して積分すると$A^{\mathsf T}P+PA=[e^{A^{\mathsf T}t}Qe^{At}]_0^\infty=-Q$です。
+
+差$R$が斉次式$A^{\mathsf T}R+RA=0$を満たすとき$e^{A^{\mathsf T}t}Re^{At}$は定数$R$ですが、安定性から0へ収束するので$R=0$。一意性も分かります。
+
+## 3. 逆向きを固有ベクトルで示す
+
+正定値$P,Q$が存在し$Av=\lambda v$（複素固有ベクトルも可）なら
+
+$$
+2\operatorname{Re}\lambda\,v^*Pv=-v^*Qv<0.
+$$
+
+$v^*Pv>0$なので$\operatorname{Re}\lambda<0$。固有値の重複や対角化の可否に依存しない証明です。$Q$が半正定値だけでは、全ての固有値の実部が負と結論できません。
+
+## 4. 例：成分比較で解く
+
+$$
+A=\begin{pmatrix}-1&1\\0&-2\end{pmatrix},\quad Q=I,\quad P=\begin{pmatrix}a&b\\b&c\end{pmatrix}.
+$$
+
+$$
+A^{\mathsf T}P+PA=\begin{pmatrix}-2a&a-3b\\a-3b&2b-4c\end{pmatrix}=-I.
+$$
+
+従って$a=1/2,b=1/6,c=1/3$。左上要素$1/2>0$、行列式$5/36>0$なので正定値です。$\dot V=-x_1^2-x_2^2$。$A$が対称でなくても安定性を示せます。
+
+![例の二次形式Vの等高線と4本の状態軌道。矢印の向きに進むと小さいVの等高線へ入り原点へ近づく。](/figures/linear-algebra/lyapunov-energy.svg)
+
+成分の大きさだけではなく、二次形式Vが減ることを見ています。等高線の内側へ進む性質が、行列方程式の負定値条件に対応します。
+
+## 5. 固有値和と行列方程式の一意性
+
+一般のSylvester方程式$AX+XB=C$は、$A$と$-B$の固有値が重ならない、つまり全ての$\lambda_i(A)+\lambda_r(B)\ne0$のとき唯一解を持ちます。ベクトル化すると
+
+$$
+[I\otimes A+B^{\mathsf T}\otimes I]\operatorname{vec}X=\operatorname{vec}C.
+$$
+
+複素Schur分解で両係数を三角化すれば、この作用素も対角要素が固有値の和となる三角形にできます。和が0でなければ正則、0があれば特異です。連続時間のリアプノフ式では和が負の実部を持つので一意です。ただし和が非零でも$A$が不安定なら、解の正定値性は保証されません。
+
+## 6. 離散時間の方程式
+
+$x_{k+1}=Ax_k$では
+
+$$
+V(x_{k+1})-V(x_k)=x_k^{\mathsf T}(A^{\mathsf T}PA-P)x_k.
+$$
+
+全固有値の絶対値が1未満なら
+
+$$
+A^{\mathsf T}PA-P=-Q,\qquad P=\sum_{k=0}^{\infty}(A^{\mathsf T})^kQA^k
+$$
+
+が唯一の正定値解です。級数を1つずらせば方程式が確認でき、逆向きは$(|\lambda|^2-1)v^*Pv=-v^*Qv$で示せます。連続時間の式の$A^{\mathsf T}P+PA$と取り違えないようにします。
+
+## 7. 回路のエネルギーとの接続
+
+$M\dot x+Kx=0$で$M\succ0,K\succ0$が対称なら$V=x^{\mathsf T}Mx/2$について$\dot V=-x^{\mathsf T}Kx<0$。容量を重みにしたエネルギーが減ることから安定性を証明できます。$K\succeq0$だけの場合、減衰しない零モードの有無を追加で調べます。
+
+## 8. 自分で確かめる
+
+$A=\operatorname{diag}(-1,-3),Q=I$の連続時間解と、$B=\operatorname{diag}(1/2,1/3)$の離散時間解を求めてください。
+
+<Answer>
+
+連続時間は$P=\operatorname{diag}(1/2,1/6)$。離散時間は$P=\operatorname{diag}(4/3,9/8)$。前者は$-2a_i p_i=-1$、後者は$(b_i^2-1)p_i=-1$から得られます。
+
+</Answer>

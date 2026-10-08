@@ -1,0 +1,98 @@
+---
+title: 特性多項式と固有値の重複 — 3次以上の行列を読む
+description: 相似不変量・代数的重複度・幾何的重複度を区別して対角化を判定する
+order: 200
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-20-problems.pdf
+  solutions: /pdf/la-20-solutions.pdf
+  count: 6
+---
+
+固有値が重なる行列では、行列式を因数分解しただけでは対角化を判断できません。「根として何回現れるか」と「固有方向が何本あるか」を分けて調べます。
+
+## 1. 特性多項式の符号を統一する
+
+この章では$p_A(z)=\det(zI-A)$を使います。最高次係数は1です。$\det(A-zI)$とは$(-1)^n$倍違いますが、根は同じです。
+
+$$
+p_A(z)=z^n-(\operatorname{tr}A)z^{n-1}+\cdots+(-1)^n\det A.
+$$
+
+実行列の非実根は共役対で現れます。複素数上で重複込みに並べた固有値を$\lambda_1,\ldots,\lambda_n$とすると、根と係数の関係から
+
+$$
+\operatorname{tr}A=\sum_i\lambda_i,\qquad\det A=\prod_i\lambda_i.
+$$
+
+対角化できない場合にも成立します。三角行列では対角要素を並べるだけで固有値が分かりますが、非対角要素は固有空間を変えます。
+
+## 2. 相似で保存されるもの
+
+$B=P^{-1}AP$なら$zI-B=P^{-1}(zI-A)P$なので$p_B=p_A$。また$B-\lambda I=P^{-1}(A-\lambda I)P$なので各固有空間の次元や、各累乗の核の次元も同じです。
+
+特性多項式が等しいという条件だけで相似とはいえません。$\operatorname{diag}(2,2)$と$\begin{pmatrix}2&1\\0&2\end{pmatrix}$は特性多項式が同じでも、固有空間の次元が違います。
+
+### 跡の積の順序を入れ替えられる理由
+
+$A$が$m\times n$、$B$が$n\times m$なら
+
+$$
+\operatorname{tr}(AB)=\sum_{i=1}^m\sum_{k=1}^n a_{ik}b_{ki}=\operatorname{tr}(BA).
+$$
+
+これにより$\operatorname{tr}(P^{-1}AP)=\operatorname{tr}A$も直接証明できます。3つ以上の積では巡回して$\operatorname{tr}(ABC)=\operatorname{tr}(BCA)=\operatorname{tr}(CAB)$ですが、任意の入れ替えを許すわけではありません。例えば$A=E_{12},B=E_{21},C=E_{11}$では$\operatorname{tr}(ABC)=1$、$\operatorname{tr}(ACB)=0$です。$E_{ik}$はその位置だけ1の2次行列です。
+
+## 3. 2種類の重複度
+
+固有値$\lambda$の特性多項式での重複度を代数的重複度$a_\lambda$、$E_\lambda=\ker(A-\lambda I)$の次元を幾何的重複度$g_\lambda$と呼びます。
+
+$$
+1\le g_\lambda\le a_\lambda.
+$$
+
+後半の不等式は$E_\lambda$の基底を全空間へ延長すると、行列が$\begin{pmatrix}\lambda I_g&C\\0&D\end{pmatrix}$となり、特性多項式に$(z-\lambda)^g$が因子として現れることから分かります。
+
+## 4. 例：重複度2でも固有方向が1本
+
+$$
+A=\begin{pmatrix}2&1&0\\0&2&0\\0&0&3\end{pmatrix},\qquad p_A(z)=(z-2)^2(z-3).
+$$
+
+$\lambda=2$では$x_2=0,x_3=0$なので$E_2=\operatorname{span}(1,0,0)$、$g_2=1$。$\lambda=3$では$x_1=x_2=0$で$E_3=\operatorname{span}(0,0,1)$。全固有空間の次元は2で、3次行列を対角化するには不足します。
+
+$\widetilde A=\operatorname{diag}(2,2,3)$なら$E_2$は2次元で対角化できます。重根だけを理由に対角化不可能と結論しないでください。
+
+## 5. 異なる固有値の固有空間は独立
+
+異なる$\lambda_1,\ldots,\lambda_k$に対し$\sum_i v_i=0$、$v_i\in E_{\lambda_i}$とします。固定した$i$について$\prod_{r\ne i}(A-\lambda_rI)$を掛けると、他の項は0になり、$\prod_{r\ne i}(\lambda_i-\lambda_r)v_i=0$。係数は非零なので$v_i=0$です。
+
+ゆえに$\bigoplus_\lambda E_\lambda$は直和で、対角化可能性はその次元が$n$かで決まります。特性多項式が扱う体で完全に分解する場合、全ての$g_\lambda=a_\lambda$が必要十分条件です。
+
+## 6. 実数と複素数で結論が変わる
+
+$R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$は固有値$\pm j$で、複素数上では対角化できます。実数上では実固有ベクトルがなく、実対角行列にはできません。実座標では2次の回転ブロックとして扱います。「どの体上で対角化するか」を答案に書きます。
+
+## 7. 特性多項式の係数を利用する
+
+3次なら
+
+$$
+p_A(z)=z^3-s_1z^2+s_2z-s_3,\qquad s_2=\frac{(\operatorname{tr}A)^2-\operatorname{tr}(A^2)}2.
+$$
+
+$s_1=\operatorname{tr}A$、$s_3=\det A$です。$s_2$は主2次小行列式の和でも求められます。固有値の2つずつの積の和と一致し、固有値の候補の検算に使えます。上の例は$s_1=7,s_2=16,s_3=12$。
+
+## 8. 自分で確かめる
+
+$B(t)=\begin{pmatrix}1&t&0\\0&1&0\\0&0&-1\end{pmatrix}$の対角化可能性を、実数上で分類してください。
+
+<Answer>
+
+特性多項式は$(z-1)^2(z+1)$で$t$によらず同じです。$t=0$では既に対角。$t\ne0$では$E_1=\operatorname{span}(1,0,0)$で幾何的重複度1なので対角化できません。
+
+</Answer>
+
+## 9. 次に必要になる道具
+
+固有値だけで行列の累乗を表すには[ケーリー・ハミルトンの定理](/linear-algebra/cayley-hamilton/)を使います。対角化できない理由を多項式で捉える方法は[最小多項式](/linear-algebra/minimal-polynomial/)です。

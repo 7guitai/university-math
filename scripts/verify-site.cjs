@@ -8,10 +8,18 @@ const subjects = ['linear-algebra', 'calculus', 'complex'];
 const articles = subjects.flatMap(subject => fs.readdirSync('content/' + subject)
   .filter(file => file.endsWith('.mdx'))
   .map(file => ({ subject, slug: file.slice(0, -4), ...matter(fs.readFileSync('content/' + subject + '/' + file, 'utf8')).data })));
-assert.equal(articles.filter(a => a.subject === 'linear-algebra').length, 16);
+const curriculumSource = fs.readFileSync('lib/linear-algebra.ts', 'utf8');
+const curriculum = JSON.parse(curriculumSource.split('export const LINEAR_ALGEBRA_LESSONS = ')[1].trim().replace(/;$/, ''));
+assert.equal(curriculum.length, 32, 'Expected complete core and entrance-exam curriculum');
 const routes = ['/', '/linear-algebra/', '/calculus/', '/complex/', '/pdf/', ...articles.map(a => '/' + a.subject + '/' + a.slug + '/')];
 const site = 'https://university-math-crj.pages.dev';
 const linearAlgebra = articles.filter(a => a.subject === 'linear-algebra').sort((a, b) => a.order - b.order);
+assert.deepEqual(linearAlgebra.map(a => a.slug), curriculum.map(a => a.slug), 'Curriculum and article order differ');
+assert.equal(new Set(curriculum.map(a => a.slug)).size, curriculum.length, 'Duplicate chapter slug');
+for (const [i, lesson] of curriculum.entries()) {
+  assert.equal(lesson.title, linearAlgebra[i].title, 'Curriculum title differs');
+  for (const prerequisite of lesson.prerequisites) assert.ok(curriculum.slice(0, i).some(a => a.slug === prerequisite), lesson.slug + ': prerequisite must precede chapter');
+}
 let links = 0, images = 0, pdfs = 0;
 for (const route of routes) {
   const html = fs.readFileSync(path.join(root, route, 'index.html'), 'utf8');
@@ -38,6 +46,8 @@ for (const route of routes) {
 }
 for (const article of articles) {
   for (const target of [article.pdf.problems, article.pdf.solutions]) {
+    const latex = fs.readFileSync(path.join('latex/src', path.basename(target).replace(/\.pdf$/, '.tex')), 'utf8');
+    assert.equal([...latex.matchAll(/\\problem\b/g)].length, article.pdf.count, target + ': frontmatter problem count differs from source');
     const bytes = fs.readFileSync(path.join(root, target));
     assert.equal(bytes.subarray(0, 5).toString(), '%PDF-', target + ': invalid PDF');
     assert.deepEqual(bytes, fs.readFileSync(path.join(process.cwd(), 'public', target)), target + ': export differs from generated PDF');
@@ -51,7 +61,7 @@ for (const article of linearAlgebra) {
   for (const target of [article.pdf.problems, article.pdf.solutions]) assert.ok(landing.includes('href="' + target + '"'), 'Missing landing PDF ' + target);
 }
 const landingPdfs = [...landing.matchAll(/<a\b[^>]*\bhref="(\/pdf\/la-[^"]+\.pdf)"/g)].map(m => m[1]);
-assert.equal(landingPdfs.length, 32, 'Expected 32 linear algebra PDF links on landing');
+assert.equal(landingPdfs.length, linearAlgebra.length * 2, 'Incorrect PDF link count on landing');
 const vectors = fs.readFileSync(path.join(root, 'linear-algebra/vectors/index.html'), 'utf8');
 assert.doesNotMatch(vectors, /扱う予定/);
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');

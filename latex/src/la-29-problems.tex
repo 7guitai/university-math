@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{可制御性・可観測性　演習}{https://university-math-crj.pages.dev/linear-algebra/control-linear-algebra/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[可制御と可観測]
+$A=\begin{pmatrix}0&1\\-6&-5\end{pmatrix},B=(0,1)^{\mathsf T},C=(1,0)$ の階数条件と伝達関数を求めよ。
+\workspace{45mm}
+\problem[文字入り入力]
+前問の $A$ で $B=(1,b)^{\mathsf T}$。可制御性を $b$ で分類せよ。
+\workspace{45mm}
+\newpage
+\problem[文字入り出力]
+同じ $A$ で $C=(1,c)$。可観測性を $c$ で分類せよ。
+\workspace{45mm}
+\problem[隠れた不安定性]
+$A=\operatorname{diag}(-2,1),B=(1,1)^{\mathsf T},C=(1,0)$ の内部安定性と伝達関数を比較せよ。
+\workspace{45mm}
+\newpage
+\problem[PBHの必要性]
+$w^*A=\lambda w^*,w^*B=0,w\ne0$ があると可制御でないことを証明せよ。
+\workspace{45mm}
+\problem[基底変換]
+$x=Pz$ による状態変換で可制御・可観測の階数が保存されることを示せ。
+\workspace{45mm}
+\end{document}

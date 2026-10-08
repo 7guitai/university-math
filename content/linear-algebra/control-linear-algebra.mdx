@@ -1,0 +1,98 @@
+---
+title: 可制御性・可観測性 — 入力で動く状態と出力で見える状態
+description: Kalman階数条件・PBH判定・状態変換・隠れたモードを、2次の具体例で導く
+order: 290
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-29-problems.pdf
+  solutions: /pdf/la-29-solutions.pdf
+  count: 6
+---
+
+電気系の制御分野では、固有値に加えて入力と出力の方向を見ます。同じ状態行列でも、どこへ入力するか、何を測るかによって、動かせる状態や観測できるモードが変わります。
+
+## 1. 状態・入力・出力の形
+
+$$
+\dot x=Ax+Bu,\qquad y=Cx+Du.
+$$
+
+$x\in\mathbb R^n,u\in\mathbb R^m,y\in\mathbb R^p$。$A$は$n\times n$、$B$は$n\times m$、$C$は$p\times n$、$D$は$p\times m$です。係数は定数で、入力を任意に選べる有限次元線形系を考えます。
+
+## 2. 可到達空間と階数条件
+
+零初期状態から入力で到達できる空間は
+
+$$
+\mathcal R=\operatorname{Im}\mathcal K,\qquad \mathcal K=[B\ AB\ A^2B\ \cdots\ A^{n-1}B].
+$$
+
+$\operatorname{rank}\mathcal K=n$を可制御性の条件と呼びます。連続時間のこの設定では、零からの到達可能性と任意の状態間の可制御性は同値です。離散時間で「任意の初期値を零へ動かせる」という別の定義を使う場合、特異な$A$で区別が必要なので、ここでは任意の状態へ到達する階数条件を採用します。
+
+ケーリー・ハミルトンの定理により$A^nB$以降はそれ以前の列の線形結合です。$\mathcal R$は$A$不変で、$e^{At}B$の列もこの空間に入ります。
+
+## 3. なぜ階数条件で十分か
+
+時間$T>0$の可制御Gram行列を
+
+$$
+W_c(T)=\int_0^T e^{A\tau}BB^{\mathsf T}e^{A^{\mathsf T}\tau}d\tau
+$$
+
+とすると、$z^{\mathsf T}W_cz=\int_0^T\|B^{\mathsf T}e^{A^{\mathsf T}\tau}z\|^2d\tau$。これが0なら積分内の連続な関数が恒等的に0で、$\tau=0$で全ての導関数も0、つまり$z^{\mathsf T}A^kB=0$です。逆向きは行列指数関数の級数とケーリー・ハミルトンから従います。よって$\ker W_c=\ker\mathcal K^{\mathsf T}$。
+
+階数が$n$なら$W_c$は正定値。目標$x_f$に対して$u(t)=B^{\mathsf T}e^{A^{\mathsf T}(T-t)}W_c^{-1}x_f$を選ぶと、畳み込み式で$x(T)=x_f$となり十分性が示せます。
+
+## 4. 可観測性は時間を通して調べる
+
+既知の入力の寄与を差し引いて、初期状態を出力から区別できる条件は
+
+$$
+\operatorname{rank}\mathcal O=n,\quad\mathcal O=\begin{pmatrix}C\\CA\\\vdots\\CA^{n-1}\end{pmatrix}.
+$$
+
+初期値差$v$が見えないとは$Ce^{At}v=0$が全時間で成立すること。微分すると$CA^kv=0$で、逆も級数から成立します。従って見えない空間は$\ker\mathcal O$です。ある一瞬の$Cv=0$だけでは、見えない状態とは限りません。
+
+## 5. 例：位置だけ測っても速度が分かる
+
+$$
+A=\begin{pmatrix}0&1\\-2&-3\end{pmatrix},\quad B=\begin{pmatrix}0\\1\end{pmatrix},\quad C=\begin{pmatrix}1&0\end{pmatrix}.
+$$
+
+$\mathcal K=\begin{pmatrix}0&1\\1&-3\end{pmatrix}$の行列式は$-1$、$\mathcal O=I$。どちらも階数2です。出力は第1状態だけですが、その時間微分が第2状態なので両方を見分けられます。固有値は$-1,-2$、伝達関数は$1/((s+1)(s+2))$です。
+
+## 6. PBH判定と固有ベクトル
+
+可制御性は、全ての複素数$\lambda$に対し
+
+$$
+\operatorname{rank}[\lambda I-A\ \ B]=n
+$$
+
+と同値です。階数が落ちるのは、非零の左固有ベクトル$w^*$が$w^*A=\lambda w^*,w^*B=0$を満たすとき。このとき$w^*A^kB=0$で可制御性が失われます。
+
+逆に$\mathcal R$が真部分空間なら、その消去空間$\mathcal R^\perp$は$A^*$で不変。複素数上でこの制限には固有ベクトルがあるので、その$w^*$が条件を満たします。可観測性は双対に$\operatorname{rank}\begin{pmatrix}\lambda I-A\\C\end{pmatrix}=n$。右固有ベクトル$v$で$Cv=0$となるものがない条件です。固有値でない$\lambda$では自動的にフルランクなので、実際は固有値だけ調べます。
+
+## 7. 文字入り入力と隠れたモード
+
+上の$A$で$B=(1,b)^{\mathsf T}$なら$\det\mathcal K=-(b+1)(b+2)$。$b=-1,-2$で可制御性を失います。入力が一方の固有方向だけに沿うためです。
+
+$B=(0,1)^{\mathsf T}$、$C=(1,1)$なら$\mathcal O$は階数1。$G(s)=(s+1)/((s+1)(s+2))=1/(s+2)$で$-1$のモードが出力から消えます。この系では隠れたモードも安定ですが、一般には不安定な内部モードが伝達関数から消えることもあり、入出力安定性だけで内部安定性を保証できません。
+
+## 8. 基底変換に依存しない性質
+
+$x=Pz$なら$A'=P^{-1}AP,B'=P^{-1}B,C'=CP$。$\mathcal K'=P^{-1}\mathcal K$、$\mathcal O'=\mathcal OP$なので階数は不変。可到達空間の基底を先に置くと、到達できる部分とできない部分がブロックに分かれます。
+
+## 9. 自分で確かめる
+
+$A=\operatorname{diag}(-1,-2),B=(1,1)^{\mathsf T},C=(1,0)$の可制御性・可観測性はどうなりますか。
+
+<Answer>
+
+$\mathcal K=\begin{pmatrix}1&-1\\1&-2\end{pmatrix}$は階数2で可制御。$\mathcal O=\begin{pmatrix}1&0\\-1&0\end{pmatrix}$は階数1で不可観測。第2状態は時間が経っても出力に出ません。
+
+</Answer>
+
+## 10. 試験範囲との対応
+
+ここは線形代数を制御科目へ接続する章です。状態フィードバック設計、オブザーバ、最適制御までが全ての院試の線形代数範囲に入るとは限りません。受験先で制御が出題される場合、その科目の学習も並行します。

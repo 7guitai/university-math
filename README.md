@@ -84,12 +84,16 @@ PDFはGitHubに含め、Cloudflare側では生成しません。`node_modules/`�
 
 ## 線形代数の学習コース
 
-`/linear-algebra/` に全16章を学習順で掲載しています。各記事の前提・前後の章は `lib/linear-algebra.ts` と `components/LinearAlgebraNavigation.tsx` で管理します。新しい章を追加した場合は、本文・PDFだけでなく学習順も更新してください。
+`/linear-algebra/` に基礎16章＋電気系の院試補充16章、全32章を掲載しています。線形代数のPDF演習は160題で、各章に問題・解答の2ファイルがあります。補充章では文字パラメータ、証明、最小多項式、Jordan、複素内積、DFT、行列分解、可制御性・可観測性、一般化固有値、リアプノフ方程式を扱います。第32章には本文の総合演習6題もあります。特定大学の過去問との照合はまだ行っていません。
+
+各記事の前提・前後の章は `lib/linear-algebra.ts` と `components/LinearAlgebraNavigation.tsx` で管理します。新しい章を追加した場合は、本文・PDFだけでなく学習順も更新してください。補充範囲の対応と定理の条件は [docs/electrical-entrance-coverage.md](docs/electrical-entrance-coverage.md) に記載しています。
 
 例題・演習の検算は、開発環境に Python 3 と SymPy を用意して実行できます（サイトのビルド依存には含めません）。
 
 ```bash
 python scripts/verify-linear-algebra.py
+python scripts/verify-entrance-linear-algebra.py
+python scripts/verify-pdfs.py  # PyMuPDF が必要
 npm run build
 npm run verify:site  # 出力されたページ・内部リンク・画像・PDFを確認
 ```
@@ -97,3 +101,5 @@ npm run verify:site  # 出力されたページ・内部リンク・画像・PDF
 公開サイトの全記事・PDFのレビュー用リンクは [docs/linear-algebra-review.md](docs/linear-algebra-review.md) にまとめています。
 
 新しい8点の図は `scripts/generate-linear-algebra-figures.py` から再生成できます。開発時だけ NumPy・Matplotlib と日本語フォントが必要です。Linuxの既定は Noto Sans CJK、別の環境では `MATH_JAPANESE_FONT` にフォントファイルを指定してください。
+
+院試補充の4点は `scripts/generate-entrance-figures.py` で再生成できます。環境のホームが読み取り専用なら `MPLCONFIGDIR` と `XDG_CACHE_HOME` に書き込み可能な一時ディレクトリを指定してください。補充PDFは1ページ2題の3ページ構成で、証明・途中式を残しています。CloudflareではPythonとTeXを実行せず、検証済みSVG・PDFを配信します。

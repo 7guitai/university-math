@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{ケーリー・ハミルトンの定理　演習}{https://university-math-crj.pages.dev/linear-algebra/cayley-hamilton/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[累乗の還元]
+$A=\begin{pmatrix}3&1\\0&2\end{pmatrix}$。$A^2,A^3,A^{-1}$ を $A,I$ で表せ。
+\begin{ans}
+$p_A=z^2-5z+6$。定理から $A^2=5A-6I$、さらに $A^3=5(5A-6I)-6A=19A-30I$。$\det A=6\ne0$ なので $A^{-1}=(5I-A)/6$。実際の $A^3$ は $\begin{pmatrix}27&19\\0&8\end{pmatrix}$ で一致する。
+\end{ans}
+\point{定数項はスカラーではなく単位行列を掛ける。}
+\problem[一般の累乗]
+前問の行列で $A^k$ を $A,I$ の一次式で求めよ。
+\begin{ans}
+$A^k=a_kA+b_kI$ とし、固有値3,2で $3^k=3a_k+b_k,2^k=2a_k+b_k$。従って $a_k=3^k-2^k,b_k=3\cdot2^k-2\cdot3^k$。$k=0$ で $I$、$k=1$ で $A$、前問の $k=3$ も一致。異なる2根への補間で余りが決まる。
+\end{ans}
+\point{累乗の式は $k=0,1$ で確認する。}
+\newpage
+\problem[重根の累乗]
+$J=\begin{pmatrix}3&2\\0&3\end{pmatrix}$ の $J^k$ を求めよ。
+\begin{ans}
+$N=J-3I$ は $N^2=0$。$k\ge1$ では二項展開で $J^k=3^kI+k3^{k-1}N=\begin{pmatrix}3^k&2k3^{k-1}\\0&3^k\end{pmatrix}$。$k=0$ は $I$。例えば $k=2$ は右上12。固有値3での値だけでは一次式の係数が2つ決まらず、重根に微分条件が必要。
+\end{ans}
+\point{Jordanの非対角部分が $k$ の因子を作る。}
+\problem[3次の逆行列]
+$p_A(z)=z^3-6z^2+11z-6$ のとき $A^{-1}$ を多項式で示し、検算せよ。
+\begin{ans}
+定数項 $-6$ は非零なので $A$ は正則。$A^3-6A^2+11A-6I=0$ を $A^{-1}$ 倍すると $A^{-1}=(A^2-6A+11I)/6$。元の $A$ を掛ければ分子は $6I$ で検算できる。対角化の仮定は不要。
+\end{ans}
+\point{逆行列の存在を定数項から先に確認する。}
+\newpage
+\problem[数列]
+$u_{k+2}=5u_{k+1}-6u_k,\ u_0=1,u_1=2$ を状態行列で解け。
+\begin{ans}
+$T=\begin{pmatrix}5&-6\\1&0\end{pmatrix}$、状態 $(u_{k+1},u_k)$。特性根2,3から $u_k=\alpha2^k+\beta3^k$ とおく。初期条件 $\alpha+\beta=1,2\alpha+3\beta=2$ により $\alpha=1,\beta=0$。従って $u_k=2^k$。$2^{k+2}=5\cdot2^{k+1}-6\cdot2^k$ で確認。
+\end{ans}
+\point{遷移行列の状態の順序を固定する。}
+\problem[一般の場合の証明]
+随伴行列の係数比較によりケーリー・ハミルトンの定理の証明の骨格を述べよ。
+\begin{ans}
+$\operatorname{adj}(zI-A)=\sum_{k=0}^{n-1}B_kz^k$ を $(zI-A)\operatorname{adj}(zI-A)=p_A(z)I$ に入れる。係数比較で $B_{n-1}=I,B_{k-1}=AB_k+c_kI,-AB_0=c_0I$。上から代入して $B_0=A^{n-1}+c_{n-1}A^{n-2}+\cdots+c_1I$、最後の式で $p_A(A)=0$。
+\end{ans}
+\point{対角化不能の場合にも成立する証明を使う。}
+\end{document}

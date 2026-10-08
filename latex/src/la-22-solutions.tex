@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{最小多項式　演習}{https://university-math-crj.pages.dev/linear-algebra/minimal-polynomial/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[最小と特性の違い]
+$A=\operatorname{diag}(4,4,4,-2)$ の特性多項式と最小多項式を求めよ。
+\begin{ans}
+$p_A=(z-4)^3(z+2)$。対角行列なので各異なる対角値で0になる $(z-4)(z+2)$ が零化する。固有値4と $-2$ は最小多項式の根でなければならないので $m_A=(z-4)(z+2)$。代数的重複度3をそのまま最小多項式へ入れない。
+\end{ans}
+\point{最小多項式は最短の零化関係。}
+\problem[非自明なブロック]
+$A=\operatorname{diag}(J_2(4),-2)$ の最小多項式を求め、対角化を判定せよ。
+\begin{ans}
+$J_2(4)-4I$ は非零だが2乗0。従って $(z-4)$ の指数は2でなければならず、固有値 $-2$ の因子も必要。$m_A=(z-4)^2(z+2)$。重複一次因子があるので対角化不可。候補を各ブロックへ代入すれば零化を確認できる。
+\end{ans}
+\point{指数は最大Jordanブロックサイズに一致する。}
+\newpage
+\problem[整除性の証明]
+$q(A)=0$ なら $m_A\mid q$ を証明せよ。
+\begin{ans}
+多項式の割り算で $q=s m_A+r,\deg r<\deg m_A$。$A$ へ代入すると $0=q(A)=r(A)$。$r\ne0$ なら最高次係数で割って、より低次数のモニック零化多項式ができ最小性に矛盾。よって $r=0$。
+\end{ans}
+\point{多項式の割り算の余りに最小性を使う。}
+\problem[体の条件]
+$A=\begin{pmatrix}0&-3\\3&0\end{pmatrix}$ の最小多項式を求め、実数上と複素数上で対角化を判定せよ。
+\begin{ans}
+$A^2=-9I$ でスカラー行列ではないので $m_A=z^2+9$。実数では一次因子に分解せず、実対角化不可。複素数では $(z-3j)(z+3j)$ と異なる一次因子に分解するので対角化可能。実数上で重複因子がないという条件だけでは不十分。
+\end{ans}
+\point{因子が一次式へ分解する条件も必要。}
+\newpage
+\problem[スペクトル射影]
+$A^2=5A-6I$。固有値2,3への射影を $A$ で表し、$A^k$ を導け。
+\begin{ans}
+$E_2=3I-A,E_3=A-2I$。零化関係を用いて $E_2^2=E_2,E_3^2=E_3,E_2E_3=0,E_2+E_3=I$。$A=2E_2+3E_3$ なので $A^k=2^kE_2+3^kE_3$。片方の固有空間が0の場合でも、その射影が0となって式は成立。
+\end{ans}
+\point{射影は一般に直交射影とは限らない。}
+\problem[十分性の証明]
+最小多項式が相異なる一次因子の積なら対角化可能であることを補間多項式で証明せよ。
+\begin{ans}
+$\ell_i(z)=\prod_{r\ne i}(z-\lambda_r)/(\lambda_i-\lambda_r)$、$E_i=\ell_i(A)$。$\sum E_i=I$、$(A-\lambda_iI)E_i=0$ なので全ベクトルは固有空間の和に入る。異なる固有空間は直和だから、各固有空間の基底を合わせれば全空間の基底となる。
+\end{ans}
+\point{射影で全空間を固有空間へ分解する。}
+\end{document}

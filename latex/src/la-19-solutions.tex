@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{部分空間の和・共通部分・直和　演習}{https://university-math-crj.pages.dev/linear-algebra/subspace-sums/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[平面の交わり]
+$U=\{x\mid x_1+x_2=0\},W=\{x\mid x_2+x_3=0\}\subset\mathbb R^3$。交わりと和の基底を求めよ。
+\begin{ans}
+交わりは $x_1=-x_2,x_3=-x_2$ なので $(1,-1,1)$ が基底。両平面は2次元だから和は $2+2-1=3$ 次元で $\mathbb R^3$。例えば $U$ の $(1,-1,0),(0,0,1)$ と $W$ の $(1,0,0)$ を並べれば行列式 $-1$ で独立。
+\end{ans}
+\point{共通部分を先に求めて次元公式を使う。}
+\problem[次元公式の証明]
+$\dim(U+W)=\dim U+\dim W-\dim(U\cap W)$ を基底の延長で証明せよ。
+\begin{ans}
+共通部分の基底 $c$ を $U$ の基底 $(c,u)$ と $W$ の基底 $(c,w)$ へ延長する。$(c,u,w)$ は和を生成。線形関係で $w$ の組合せを他方へ移せば $U\cap W$ に入るので、$(c,w)$ の独立性から $w$ の係数0。残りは $(c,u)$ の独立性で0。従ってこの集合は基底で、個数を数えると公式。
+\end{ans}
+\point{生成と独立の両方を示して初めて基底といえる。}
+\newpage
+\problem[直和の一意性]
+$U\cap W=\{0\}$ と、$U+W$ の各ベクトルの分解 $u+w$ が一意であることの同値を証明せよ。
+\begin{ans}
+$u+w=u\prime+w\prime$ なら $u-u\prime=w\prime-w\in U\cap W$。交わり0なら両差0で一意。逆に $v\in U\cap W$ なら $v=v+0=0+v$ と2つの分解があり、一意性から $v=0$。存在は和の定義で保証されている。
+\end{ans}
+\point{分解の存在と一意性を分ける。}
+\problem[斜めの射影]
+$P=\begin{pmatrix}1&3\\0&0\end{pmatrix}$ について像・核・固有値・階数を求め、直交射影か判定せよ。
+\begin{ans}
+$P^2=P$。像は $\operatorname{span}(1,0)$、核は $\operatorname{span}(-3,1)$。それぞれ固有値1と0の固有空間で階数1、跡1。内積は $-3$ で直交せず、$P^{\mathsf T}\ne P$。冪等だから射影ではあるが直交射影ではない。
+\end{ans}
+\point{冪等性だけでは直交性を保証しない。}
+\newpage
+\problem[冪等行列の分解]
+$P^2=P$ なら $V=\operatorname{Im}P\oplus\ker P$ と $\operatorname{rank}P=\operatorname{tr}P$ を証明せよ。
+\begin{ans}
+任意の $x$ は $Px+(I-P)x$ で像と核に分かれる。交わりの $v=Pu,Pv=0$ には $v=P^2u=Pv=0$。この直和の基底では $P=\operatorname{diag}(I_r,0)$。階数も跡も $r$ で、相似不変性から元の座標でも等しい。
+\end{ans}
+\point{直和に合わせた基底を作ると証明が短くなる。}
+\problem[不変部分空間]
+$U$ が $A$ 不変なら、$U$ の基底を先に並べた基底で $A$ がブロック上三角になる理由を説明せよ。
+\begin{ans}
+$U$ 内の基底ベクトルの像は再び $U$ 内なので、その像の補空間方向の座標は0。従って左下ブロックが0となり $\begin{pmatrix}B&C\\0&D\end{pmatrix}$。補空間も不変ならその基底の像が補空間に入り、右上の $C$ も0。補空間が存在することだけでは、その不変性は保証されない。
+\end{ans}
+\point{補空間と不変な補空間は別の条件。}
+\end{document}

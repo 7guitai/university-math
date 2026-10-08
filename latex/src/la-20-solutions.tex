@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{特性多項式と固有値の重複　演習}{https://university-math-crj.pages.dev/linear-algebra/characteristic-polynomial/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[重根と固有空間]
+$A=\begin{pmatrix}4&2&0\\0&4&0\\0&0&-1\end{pmatrix}$ の特性多項式、各重複度、対角化可能性を求めよ。
+\begin{ans}
+$p_A=(z-4)^2(z+1)$。$\lambda=4$ では $x_2=x_3=0$ で幾何的重複度1、代数的重複度2。$\lambda=-1$ は $e_3$ の方向で両重複度1。固有ベクトルは合計2本しか独立に取れず、3次の基底にならないので対角化不可。
+\end{ans}
+\point{代数的重複度と幾何的重複度を別々に記す。}
+\problem[パラメータと対角化]
+$A(t)=\begin{pmatrix}3&t&0\\0&3&0\\0&0&1\end{pmatrix}$ が実対角化できる $t$ を求めよ。
+\begin{ans}
+$p_A=(z-3)^2(z-1)$ は一定。$t=0$ では対角行列。$t\ne0$ では $\ker(A-3I)$ は $e_1$ の1次元で、代数的重複度2に不足する。従って $t=0$ のみ。行列式や跡が一定でも対角化可能性は変化する。
+\end{ans}
+\point{特性多項式だけでは構造を決められない。}
+\newpage
+\problem[3次の係数]
+固有値が $1,2,4$ の3次行列について特性多項式、跡、行列式、$\operatorname{tr}(A^2)$ を求めよ。
+\begin{ans}
+$p_A=(z-1)(z-2)(z-4)=z^3-7z^2+14z-8$。跡7、行列式8、$\operatorname{tr}(A^2)=1+4+16=21$。$s_2=((7)^2-21)/2=14$ で係数と一致する。固有値が異なるので複素数上でも実数上でも固有基底を取れる。
+\end{ans}
+\point{和・積・2乗和で計算を検算する。}
+\problem[同じ多項式でも相似でない]
+$D=\operatorname{diag}(5,5)$ と $J=\begin{pmatrix}5&1\\0&5\end{pmatrix}$ が相似でないことを証明せよ。
+\begin{ans}
+特性多項式は両方 $(z-5)^2$。しかし $\dim\ker(D-5I)=2$、$\dim\ker(J-5I)=1$。相似なら $J-5I=P^{-1}(D-5I)P$ で核の次元が等しいはずなので矛盾。あるいはスカラー行列の相似変換は自身のままで、$J$ と等しくならない。
+\end{ans}
+\point{相似不変量の違いを1つ示せばよい。}
+\newpage
+\problem[体による違い]
+$R=\begin{pmatrix}0&-2\\2&0\end{pmatrix}$ の固有値を求め、実数と複素数で対角化可能性を答えよ。
+\begin{ans}
+$p_R=z^2+4$ で固有値は $\pm2j$。実固有値がないので実対角化できない。複素数上では異なる2固有値を持ち、固有ベクトル $(1,-j),(1,j)$ を並べれば対角化できる。実数上では回転の2次ブロックとして扱う。
+\end{ans}
+\point{対角化を論じる体を明示する。}
+\problem[固有空間の独立性]
+相異なる固有値の固有空間の和が直和であることを証明せよ。
+\begin{ans}
+$\sum_i v_i=0,v_i\in E_{\lambda_i}$ に、固定した $i$ 以外の $\prod_{r\ne i}(A-\lambda_rI)$ を掛ける。他の項は0になり、$\prod_{r\ne i}(\lambda_i-\lambda_r)v_i=0$。固有値は相異なるので係数非零、従って $v_i=0$。全ての $i$ に適用すれば直和。
+\end{ans}
+\point{固有値の違いを非零の係数に使う。}
+\end{document}

@@ -1,0 +1,126 @@
+---
+title: 文字パラメータと階数 — 解が変わる境界を漏れなく調べる
+description: 零になるピボットを場合分けし、拡大係数行列・階数不等式で解の条件を証明する
+order: 180
+updated: "2026-10-08"
+pdf:
+  problems: /pdf/la-18-problems.pdf
+  solutions: /pdf/la-18-solutions.pdf
+  count: 6
+---
+
+院試の文字入り行列では、通常の掃き出し法に「割ってよいか」の確認が加わります。行列式が0になる値を出して終わると、解なしと無数の解を区別できません。
+
+<Box kind="goal">
+
+- パラメータによって階数と解の形が変わる値を拾う
+- 特異な値を元の行列に戻して調べる
+- 階数・核・像の関係から不等式を証明する
+
+</Box>
+
+## 1. 解の存在と自由度
+
+$A\in\mathbb F^{m\times n}$、$\mathbb F=\mathbb R$または$\mathbb C$とします。
+
+$$
+A\boldsymbol x=\boldsymbol b\text{ が可解}
+\iff\boldsymbol b\in\operatorname{Im}A
+\iff\operatorname{rank}A=\operatorname{rank}[A\mid\boldsymbol b].
+$$
+
+特解$\boldsymbol x_p$があれば、全ての解は$\boldsymbol x_p+\ker A$。斉次解空間の次元は$n-\operatorname{rank}A$です。これは解集合自体が部分空間であるという意味ではありません。$\boldsymbol b\ne0$なら一般に平行移動した集合です。
+
+## 2. 例：3次の連立式を分類する
+
+$$
+A(t)=\begin{pmatrix}1&1&1\\1&t&1\\1&1&t\end{pmatrix},\quad
+\boldsymbol b=(b_1,b_2,b_3)^{\mathsf T}.
+$$
+
+第2・第3行から第1行を引くと
+
+$$
+[A(t)\mid b]\sim
+\begin{pmatrix}1&1&1&b_1\\0&t-1&0&b_2-b_1\\0&0&t-1&b_3-b_1\end{pmatrix}.
+$$
+
+境界は$t=1$です。境界の「候補の数」を先に決めず、ピボットを見て判断します。
+
+- $t\ne1$：階数3、唯一解。$x_2=(b_2-b_1)/(t-1)$、$x_3=(b_3-b_1)/(t-1)$、$x_1=b_1-x_2-x_3$
+- $t=1$かつ$b_1=b_2=b_3$：階数1、自由度2。$x=(b_1-s-r,s,r)^{\mathsf T}$
+- $t=1$で右辺が上の条件を満たさない：拡大行列の階数2、解なし
+
+例外となる値が2つある場合も調べます。
+
+$$
+B(t)=\begin{pmatrix}1&1&0\\1&t&0\\0&0&t+1\end{pmatrix},\quad\det B=(t-1)(t+1).
+$$
+
+$t=1,-1$の両方で階数2。$t=1$では$b_1=b_2$、$t=-1$では$b_3=0$が可解条件です。行列式だけでは、この異なる右辺条件が見えません。
+
+## 3. 階数を小行列式で決める
+
+階数は「0でない小行列式の最大次数」です。$\det A=0$なら階数は$n$未満ですが、$n-1$か、それ以下かは別途調べます。上の$A(1)$は全ての2次小行列式が0で、1次の要素1は非零なので階数1です。
+
+文字を割らない行操作で候補を列挙し、候補の値を代入して掃き出す手順が安全です。一般の場合の簡約形に、分母を0にする値を代入してはいけません。
+
+## 4. 左零空間による可解条件
+
+実数なら$\boldsymbol y^{\mathsf T}A=0$を満たす全ての$\boldsymbol y$について$\boldsymbol y^{\mathsf T}\boldsymbol b=0$が必要です。複素数なら転置を共役転置に替えます。
+
+$$
+\operatorname{Im}A=(\ker A^*)^\perp.
+$$
+
+なぜなら$y^*Ax=0$が全ての$x$に対して成立することと$A^*y=0$は同値で、有限次元では直交補を2回取ると元の空間に戻るからです。$A(1)$なら左零空間の基底を$(1,-1,0),(1,0,-1)$と取れ、$b_1=b_2=b_3$がすぐ得られます。
+
+## 5. 積の階数の上下限
+
+$A$が$m\times n$、$B$が$n\times p$なら
+
+$$
+\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B),\qquad
+\operatorname{rank}(AB)\ge\operatorname{rank}A+\operatorname{rank}B-n.
+$$
+
+上限は$\operatorname{Im}(AB)\subseteq\operatorname{Im}A$と、$B$の像への$A$の制限から得られます。下限は階数・退化次数の定理をその制限に適用して
+
+$$
+\operatorname{rank}(AB)=\dim\operatorname{Im}B-\dim(\operatorname{Im}B\cap\ker A)
+\ge\operatorname{rank}B-\dim\ker A
+$$
+
+と証明します。減る自由度は、途中の空間のうち$A$で0になる部分だけです。
+
+### 階数・退化次数の定理の証明
+
+核の基底$v_1,\ldots,v_k$を入力空間全体の基底$v_1,\ldots,v_n$へ延長します。像は$Av_{k+1},\ldots,Av_n$で生成されます。この像の線形関係が0なら、その元のベクトルは核に入り、全体の基底の独立性から係数は全て0。従って像の次元は$n-k$です。
+
+また$\ker(A^*A)=\ker A$です。一方の包含は明らかで、逆は$A^*Ax=0$から$0=x^*A^*Ax=\|Ax\|^2$を使います。従って$\operatorname{rank}(A^*A)=\operatorname{rank}A$。複素数でも共役転置を使えば成立します。
+
+四つの基本部分空間は$\operatorname{Im}A$、$\ker A^*$、$\operatorname{Im}A^*$、$\ker A$です。出力側と入力側でそれぞれ直交補の対になり、$\operatorname{rank}A=\operatorname{rank}A^*$、つまり行階数と列階数の一致も得られます。
+
+## 6. 和の階数と正則な変換
+
+$A,B$が同じ形なら$\operatorname{Im}(A+B)\subseteq\operatorname{Im}A+\operatorname{Im}B$なので
+
+$$
+\operatorname{rank}(A+B)\le\operatorname{rank}A+\operatorname{rank}B.
+$$
+
+正則な$P,Q$に対して$\operatorname{rank}(PAQ)=\operatorname{rank}A$。右からの正則な基底変換は入力全体を保ち、左からは像の次元を保つためです。なお$\operatorname{rank}(A+B)$が各行列の階数以上とは限りません。$B=-A$が反例です。
+
+## 7. 自分で確かめる
+
+$C(s)=\operatorname{diag}(1,s,s-2)$と$b=(1,2,0)^{\mathsf T}$について、解の数を分類してください。
+
+<Answer>
+
+$s\ne0,2$では唯一解$(1,2/s,0)$。$s=0$では第2式が$0=2$なので解なし。$s=2$では$(1,1,r)$、$r\in\mathbb R$で無数の解です。特異な2点とも階数2ですが、右辺によって結果が変わります。
+
+</Answer>
+
+## 8. 入試での書き方
+
+まず候補となる値を書き、その値で階数、可解条件、特解、核の基底を順に示します。「行列式0だから解なし」という推論を避け、最後に元の連立式へ代入して確認します。

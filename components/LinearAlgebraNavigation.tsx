@@ -30,6 +30,6 @@ export function LinearAlgebraNavigation({ slug }: { slug: string }) {
         <span className="mt-2 block font-bold">{next.title}</span>
       </Link>}
     </nav>
-    <Link href="/linear-algebra/" className="mt-4 inline-block text-sm font-bold text-[var(--c-la)] underline">全16章の学習順に戻る</Link>
+    <Link href="/linear-algebra/" className="mt-4 inline-block text-sm font-bold text-[var(--c-la)] underline">全{lessons.length}章の学習順に戻る</Link>
   </>;
 }

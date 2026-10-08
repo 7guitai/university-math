@@ -14,6 +14,30 @@ export const LINEAR_ALGEBRA_GROUPS = [
   {
     "id": "applications",
     "title": "4. 近似・エネルギー・動的システム"
+  },
+  {
+    "id": "exam-algebra",
+    "title": "5. 院試補充：行列計算と部分空間"
+  },
+  {
+    "id": "exam-spectral",
+    "title": "6. 院試補充：固有値・多項式・Jordan"
+  },
+  {
+    "id": "exam-complex",
+    "title": "7. 電気系の複素線形代数と信号"
+  },
+  {
+    "id": "exam-optimization",
+    "title": "8. 院試補充：二次形式と行列分解"
+  },
+  {
+    "id": "exam-applications",
+    "title": "9. 状態方程式・制御・回路の発展"
+  },
+  {
+    "id": "exam-practice",
+    "title": "10. 院試の総合演習"
   }
 ] as const;
 
@@ -169,6 +193,180 @@ export const LINEAR_ALGEBRA_LESSONS = [
     "prerequisites": [
       "diagonalization",
       "symmetric-matrices"
+    ]
+  },
+  {
+    "slug": "determinant-methods",
+    "title": "行列式の計算法とブロック行列 — 余因子から回路の消去へ",
+    "group": "exam-algebra",
+    "goal": "余因子・随伴行列・クラメルの公式・Schur補行列を、成立条件と3次の計算で理解する",
+    "prerequisites": [
+      "determinants",
+      "inverse-matrices"
+    ]
+  },
+  {
+    "slug": "parameter-rank",
+    "title": "文字パラメータと階数 — 解が変わる境界を漏れなく調べる",
+    "group": "exam-algebra",
+    "goal": "零になるピボットを場合分けし、拡大係数行列・階数不等式で解の条件を証明する",
+    "prerequisites": [
+      "linear-systems",
+      "basis-dimension",
+      "determinant-methods"
+    ]
+  },
+  {
+    "slug": "subspace-sums",
+    "title": "部分空間の和・共通部分・直和 — 次元公式を証明して使う",
+    "group": "exam-algebra",
+    "goal": "共通部分の基底を連立式で求め、次元公式・直和・不変部分空間を整理する",
+    "prerequisites": [
+      "vector-spaces",
+      "basis-dimension",
+      "linear-maps"
+    ]
+  },
+  {
+    "slug": "characteristic-polynomial",
+    "title": "特性多項式と固有値の重複 — 3次以上の行列を読む",
+    "group": "exam-spectral",
+    "goal": "相似不変量・代数的重複度・幾何的重複度を区別して対角化を判定する",
+    "prerequisites": [
+      "eigenvalues",
+      "diagonalization",
+      "subspace-sums"
+    ]
+  },
+  {
+    "slug": "cayley-hamilton",
+    "title": "ケーリー・ハミルトンの定理 — 累乗・逆行列・漸化式を短くする",
+    "group": "exam-spectral",
+    "goal": "随伴行列から定理を証明し、高次の累乗・逆行列・数列を低次の式へ還元する",
+    "prerequisites": [
+      "characteristic-polynomial",
+      "determinant-methods"
+    ]
+  },
+  {
+    "slug": "minimal-polynomial",
+    "title": "最小多項式 — 対角化とジョルダンブロックを一つの式で捉える",
+    "group": "exam-spectral",
+    "goal": "零化多項式の最小次数、整除性、体による対角化条件とスペクトル射影を証明する",
+    "prerequisites": [
+      "cayley-hamilton",
+      "characteristic-polynomial"
+    ]
+  },
+  {
+    "slug": "jordan-form",
+    "title": "ジョルダン標準形 — 固有ベクトルが足りない行列の基底を作る",
+    "group": "exam-spectral",
+    "goal": "一般化固有ベクトルの連鎖と核の次元から、ブロックサイズと変換行列を求める",
+    "prerequisites": [
+      "minimal-polynomial",
+      "parameter-rank"
+    ]
+  },
+  {
+    "slug": "matrix-functions",
+    "title": "行列指数関数とレゾルベント — 入力のある状態方程式を解く",
+    "group": "exam-spectral",
+    "goal": "Jordanブロック・畳み込み・複素共役モード・安定境界を、微分と代入で確かめる",
+    "prerequisites": [
+      "jordan-form",
+      "dynamical-systems",
+      "cayley-hamilton"
+    ]
+  },
+  {
+    "slug": "complex-inner-products",
+    "title": "複素ベクトルの内積 — フェーザと複素最小二乗を正しく扱う",
+    "group": "exam-complex",
+    "goal": "共役転置・Cauchy–Schwarz・複素正規直交化・射影・正規方程式を導く",
+    "prerequisites": [
+      "orthogonal-projection",
+      "least-squares"
+    ]
+  },
+  {
+    "slug": "hermitian-unitary",
+    "title": "Hermite行列・ユニタリ行列・DFT — 複素モードを直交分解する",
+    "group": "exam-complex",
+    "goal": "スペクトル定理・正規行列・離散Fourier基底・巡回行列の固有値を結びつける",
+    "prerequisites": [
+      "complex-inner-products",
+      "symmetric-matrices",
+      "minimal-polynomial"
+    ]
+  },
+  {
+    "slug": "quadratic-forms-advanced",
+    "title": "二次形式の一般論 — 主小行列式・慣性・Rayleigh商",
+    "group": "exam-optimization",
+    "goal": "3次以上の正定値判定、半正定値の条件、合同変換、制約付き最大最小を証明して使う",
+    "prerequisites": [
+      "quadratic-forms",
+      "hermitian-unitary",
+      "determinant-methods"
+    ]
+  },
+  {
+    "slug": "rank-factorizations",
+    "title": "LU・QR・擬似逆行列 — 正確な解法と誤差の増幅を分ける",
+    "group": "exam-optimization",
+    "goal": "ピボット付きLU・QR最小二乗・SVD擬似逆・条件数・Kronecker積の役割を整理する",
+    "prerequisites": [
+      "singular-value-decomposition",
+      "complex-inner-products",
+      "parameter-rank"
+    ]
+  },
+  {
+    "slug": "control-linear-algebra",
+    "title": "可制御性・可観測性 — 入力で動く状態と出力で見える状態",
+    "group": "exam-applications",
+    "goal": "Kalman階数条件・PBH判定・状態変換・隠れたモードを、2次の具体例で導く",
+    "prerequisites": [
+      "matrix-functions",
+      "parameter-rank",
+      "subspace-sums"
+    ]
+  },
+  {
+    "slug": "generalized-eigenvalues",
+    "title": "一般化固有値問題 — 容量・質量を残したままモードを求める",
+    "group": "exam-applications",
+    "goal": "正定値の重み付き内積、Hermite問題への変換、回路の減衰モードを求める",
+    "prerequisites": [
+      "hermitian-unitary",
+      "quadratic-forms-advanced",
+      "dynamical-systems"
+    ]
+  },
+  {
+    "slug": "lyapunov-equations",
+    "title": "リアプノフ方程式 — エネルギーから安定性を証明する",
+    "group": "exam-applications",
+    "goal": "連続・離散時間の行列方程式、正定値解の存在、固有値和による一意性を導く",
+    "prerequisites": [
+      "matrix-functions",
+      "quadratic-forms-advanced",
+      "rank-factorizations"
+    ]
+  },
+  {
+    "slug": "entrance-exam-practice",
+    "title": "電気系院試の総合演習 — 計算・証明・回路と制御をつなぐ",
+    "group": "exam-practice",
+    "goal": "自作の総合問題を時間を決めて解き、条件・途中式・検算を含む答案へ仕上げる",
+    "prerequisites": [
+      "parameter-rank",
+      "jordan-form",
+      "hermitian-unitary",
+      "control-linear-algebra",
+      "generalized-eigenvalues",
+      "lyapunov-equations"
     ]
   }
 ];

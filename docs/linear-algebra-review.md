@@ -1,60 +1,59 @@
-# 線形代数・全16章のレビュー依頼
+# 線形代数32章のレビュー案内
 
-対象版：2026-10-08（2026-10-07のClaudeレビューを反映）。工学部向けの入門から応用までの16章を作成しました。
+更新日：2026-10-08。公開入口：https://university-math-crj.pages.dev/linear-algebra/
 
-公開サイトの入口：https://university-math-crj.pages.dev/linear-algebra/
+基礎16章と電気系院試補充16章を合わせた教材。範囲と定理の条件は [electrical-entrance-coverage.md](electrical-entrance-coverage.md) を参照。特定大学のシラバス・過去問には未照合。掲載問題は自作。
 
-## Claudeへの依頼文
+## 各章と演習PDF
 
-以下のサイトを実際に開き、全16章の本文・図・確認問題・演習問題PDF・解答PDFをレビューしてください。リンクを開けなかった場合は、そのURLと未確認の範囲を記載し、確認したと推測しないでください。
+|章|記事|問題|解答|PDF題数|
+|---|---|---|---|---|
+|1|[ベクトルと内積](https://university-math-crj.pages.dev/linear-algebra/vectors/)|[問題](https://university-math-crj.pages.dev/pdf/la-02-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-02-solutions.pdf)|4|
+|2|[行列と線形変換](https://university-math-crj.pages.dev/linear-algebra/matrices/)|[問題](https://university-math-crj.pages.dev/pdf/la-03-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-03-solutions.pdf)|4|
+|3|[連立方程式と掃き出し法](https://university-math-crj.pages.dev/linear-algebra/linear-systems/)|[問題](https://university-math-crj.pages.dev/pdf/la-04-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-04-solutions.pdf)|4|
+|4|[逆行列と正則性](https://university-math-crj.pages.dev/linear-algebra/inverse-matrices/)|[問題](https://university-math-crj.pages.dev/pdf/la-05-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-05-solutions.pdf)|4|
+|5|[行列式](https://university-math-crj.pages.dev/linear-algebra/determinants/)|[問題](https://university-math-crj.pages.dev/pdf/la-06-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-06-solutions.pdf)|4|
+|6|[ベクトル空間と部分空間](https://university-math-crj.pages.dev/linear-algebra/vector-spaces/)|[問題](https://university-math-crj.pages.dev/pdf/la-07-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-07-solutions.pdf)|4|
+|7|[基底と次元](https://university-math-crj.pages.dev/linear-algebra/basis-dimension/)|[問題](https://university-math-crj.pages.dev/pdf/la-08-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-08-solutions.pdf)|4|
+|8|[線形写像と基底変換](https://university-math-crj.pages.dev/linear-algebra/linear-maps/)|[問題](https://university-math-crj.pages.dev/pdf/la-09-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-09-solutions.pdf)|4|
+|9|[固有値・固有ベクトル](https://university-math-crj.pages.dev/linear-algebra/eigenvalues/)|[問題](https://university-math-crj.pages.dev/pdf/la-01-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-01-solutions.pdf)|4|
+|10|[対角化](https://university-math-crj.pages.dev/linear-algebra/diagonalization/)|[問題](https://university-math-crj.pages.dev/pdf/la-10-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-10-solutions.pdf)|4|
+|11|[対称行列と直交対角化](https://university-math-crj.pages.dev/linear-algebra/symmetric-matrices/)|[問題](https://university-math-crj.pages.dev/pdf/la-11-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-11-solutions.pdf)|4|
+|12|[直交射影と正規直交化](https://university-math-crj.pages.dev/linear-algebra/orthogonal-projection/)|[問題](https://university-math-crj.pages.dev/pdf/la-12-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-12-solutions.pdf)|4|
+|13|[最小二乗法](https://university-math-crj.pages.dev/linear-algebra/least-squares/)|[問題](https://university-math-crj.pages.dev/pdf/la-13-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-13-solutions.pdf)|4|
+|14|[二次形式と正定値](https://university-math-crj.pages.dev/linear-algebra/quadratic-forms/)|[問題](https://university-math-crj.pages.dev/pdf/la-14-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-14-solutions.pdf)|4|
+|15|[特異値分解](https://university-math-crj.pages.dev/linear-algebra/singular-value-decomposition/)|[問題](https://university-math-crj.pages.dev/pdf/la-15-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-15-solutions.pdf)|4|
+|16|[線形システムとモード](https://university-math-crj.pages.dev/linear-algebra/dynamical-systems/)|[問題](https://university-math-crj.pages.dev/pdf/la-16-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-16-solutions.pdf)|4|
+|17|[行列式の計算法とブロック行列](https://university-math-crj.pages.dev/linear-algebra/determinant-methods/)|[問題](https://university-math-crj.pages.dev/pdf/la-17-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-17-solutions.pdf)|6|
+|18|[文字パラメータと階数](https://university-math-crj.pages.dev/linear-algebra/parameter-rank/)|[問題](https://university-math-crj.pages.dev/pdf/la-18-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-18-solutions.pdf)|6|
+|19|[部分空間の和・共通部分・直和](https://university-math-crj.pages.dev/linear-algebra/subspace-sums/)|[問題](https://university-math-crj.pages.dev/pdf/la-19-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-19-solutions.pdf)|6|
+|20|[特性多項式と固有値の重複](https://university-math-crj.pages.dev/linear-algebra/characteristic-polynomial/)|[問題](https://university-math-crj.pages.dev/pdf/la-20-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-20-solutions.pdf)|6|
+|21|[ケーリー・ハミルトンの定理](https://university-math-crj.pages.dev/linear-algebra/cayley-hamilton/)|[問題](https://university-math-crj.pages.dev/pdf/la-21-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-21-solutions.pdf)|6|
+|22|[最小多項式](https://university-math-crj.pages.dev/linear-algebra/minimal-polynomial/)|[問題](https://university-math-crj.pages.dev/pdf/la-22-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-22-solutions.pdf)|6|
+|23|[ジョルダン標準形](https://university-math-crj.pages.dev/linear-algebra/jordan-form/)|[問題](https://university-math-crj.pages.dev/pdf/la-23-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-23-solutions.pdf)|6|
+|24|[行列指数関数とレゾルベント](https://university-math-crj.pages.dev/linear-algebra/matrix-functions/)|[問題](https://university-math-crj.pages.dev/pdf/la-24-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-24-solutions.pdf)|6|
+|25|[複素ベクトルの内積](https://university-math-crj.pages.dev/linear-algebra/complex-inner-products/)|[問題](https://university-math-crj.pages.dev/pdf/la-25-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-25-solutions.pdf)|6|
+|26|[Hermite行列・ユニタリ行列・DFT](https://university-math-crj.pages.dev/linear-algebra/hermitian-unitary/)|[問題](https://university-math-crj.pages.dev/pdf/la-26-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-26-solutions.pdf)|6|
+|27|[二次形式の一般論](https://university-math-crj.pages.dev/linear-algebra/quadratic-forms-advanced/)|[問題](https://university-math-crj.pages.dev/pdf/la-27-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-27-solutions.pdf)|6|
+|28|[LU・QR・擬似逆行列](https://university-math-crj.pages.dev/linear-algebra/rank-factorizations/)|[問題](https://university-math-crj.pages.dev/pdf/la-28-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-28-solutions.pdf)|6|
+|29|[可制御性・可観測性](https://university-math-crj.pages.dev/linear-algebra/control-linear-algebra/)|[問題](https://university-math-crj.pages.dev/pdf/la-29-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-29-solutions.pdf)|6|
+|30|[一般化固有値問題](https://university-math-crj.pages.dev/linear-algebra/generalized-eigenvalues/)|[問題](https://university-math-crj.pages.dev/pdf/la-30-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-30-solutions.pdf)|6|
+|31|[リアプノフ方程式](https://university-math-crj.pages.dev/linear-algebra/lyapunov-equations/)|[問題](https://university-math-crj.pages.dev/pdf/la-31-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-31-solutions.pdf)|6|
+|32|[電気系院試の総合演習](https://university-math-crj.pages.dev/linear-algebra/entrance-exam-practice/)|[問題](https://university-math-crj.pages.dev/pdf/la-32-problems.pdf)|[解答](https://university-math-crj.pages.dev/pdf/la-32-solutions.pdf)|6|
 
-対象は「ベクトル・行列の計算、連立方程式、空間と写像、固有値と分解、射影と近似、二次形式、SVD、線形の動的システム」の学習コースです。線形代数全般の専門書を網羅することは目的にしていません。
+## Claudeへのレビュー依頼文
 
-各指摘を「重大な誤り／条件不足・誤解の恐れ／説明改善／表示・導線」に分け、URL・節・該当箇所・理由・具体的な修正案を示してください。PDFはファイル名・問題番号も記載してください。問題がない章についても、確認できた範囲を明記してください。
+以下はそのまま渡せるレビュー指示です。
 
-確認してほしい点：
+> 電気系大学院入試向けの線形代数教材をレビューしてください。サイトの第17〜32章を重点的に読み、必要なら第1〜16章の前提も確認してください。式の正誤だけでなく、定理の仮定、必要十分の両方向、体の違い、例外値、共役の位置、安定性の境界、例題と演習PDFの対応、途中式で初学者が追えるかを確認してください。一般化固有空間とJordanの構成証明、SVDの存在、半正定値の全主小行列式、PBH、Lyapunovの正定値性は特に確認してください。大学固有の過去問適合は主張していません。問題は自作です。指摘は「記事URLまたはPDF名・問題番号」「重要度」「元の式や文」「理由」「修正案」の形にしてください。PDFとスマートフォンの表示も確認してください。
 
-- 数式・数値・途中式・図が一致しているか。解答を問題の式に代入して確認できるか。
-- 零ベクトル、非零条件、実数／複素数、行列のサイズ、正則性、一次独立などの前提が不足していないか。
-- 重複固有値と固有空間の次元、対角化可能性を区別しているか。
-- 射影と残差、最小二乗の出力と係数の一意性、薄いQRの行列サイズが正確か。
-- 二次形式の対称部分、正定値と半正定値、エネルギーの係数と単位が正確か。
-- SVDの長方形行列、零特異値、低ランク近似、擬似逆、最小ノルム解の説明が正確か。
-- 連続時間の実部と離散時間の絶対値、漸近安定と境界の違い、初期条件が正確か。
-- 初学者が前提の章から順に進めるか。スマートフォンで本文・図・数式・PDFリンクを読めるか。
+## 確認済みの項目
 
-## 全記事とPDF
+- 数学：基礎210件＋補充292件の厳密な恒等式・解の代入・階数・微分・複素内積など。数値検算と一般証明のレビューは別。
+- PDF：全68ファイル・168ページを生成し、問題番号、ページ外の文字、リンクを検査。追加PDFは各3ページで6題。
+- サイト：ビルド後の全39ページ、内部リンク、章の前後移動、PDF、画像、canonical・OG・sitemapを検査。
+- ブラウザ：開発サーバーで全39ページを1280px・390px・360pxで表示し、数式・横はみ出し・画像・開閉式解答・PDF配信を確認。
+- 外部Google Fontsは検証環境の通信制限で読み込まず、代替フォントで確認。
+- 公開の成否はGitHubとCloudflare Pagesの対象コミットのチェック結果で確認。ネットワーク制限により、この環境からの公開URLの直接閲覧には制限がある。
 
-章番号とPDFの管理番号は異なります。各章から対応する問題・解答を開けます。
-
-| 章 | 記事 | 問題PDF | 解答PDF |
-| --- | --- | --- | --- |
-| 1 | [ベクトルと内積 — 力の合成から、向きの違いを測る計算へ](https://university-math-crj.pages.dev/linear-algebra/vectors/) | [問題](https://university-math-crj.pages.dev/pdf/la-02-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-02-solutions.pdf) |
-| 2 | [行列と線形変換 — 複数の入力をまとめて変換する](https://university-math-crj.pages.dev/linear-algebra/matrices/) | [問題](https://university-math-crj.pages.dev/pdf/la-03-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-03-solutions.pdf) |
-| 3 | [連立方程式と掃き出し法 — 解の数まで見分ける](https://university-math-crj.pages.dev/linear-algebra/linear-systems/) | [問題](https://university-math-crj.pages.dev/pdf/la-04-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-04-solutions.pdf) |
-| 4 | [逆行列と正則性 — 元に戻せる変換の条件](https://university-math-crj.pages.dev/linear-algebra/inverse-matrices/) | [問題](https://university-math-crj.pages.dev/pdf/la-05-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-05-solutions.pdf) |
-| 5 | [行列式 — 面積の倍率と、つぶれる変換を見分ける](https://university-math-crj.pages.dev/linear-algebra/determinants/) | [問題](https://university-math-crj.pages.dev/pdf/la-06-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-06-solutions.pdf) |
-| 6 | [ベクトル空間と部分空間 — 作れるベクトルの範囲を知る](https://university-math-crj.pages.dev/linear-algebra/vector-spaces/) | [問題](https://university-math-crj.pages.dev/pdf/la-07-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-07-solutions.pdf) |
-| 7 | [基底と次元 — 座標と自由度を数える](https://university-math-crj.pages.dev/linear-algebra/basis-dimension/) | [問題](https://university-math-crj.pages.dev/pdf/la-08-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-08-solutions.pdf) |
-| 8 | [線形写像と基底変換 — 同じ変換を違う座標で表す](https://university-math-crj.pages.dev/linear-algebra/linear-maps/) | [問題](https://university-math-crj.pages.dev/pdf/la-09-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-09-solutions.pdf) |
-| 9 | [固有値・固有ベクトル — 連立微分方程式を「ばらばらに」解く道具](https://university-math-crj.pages.dev/linear-algebra/eigenvalues/) | [問題](https://university-math-crj.pages.dev/pdf/la-01-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-01-solutions.pdf) |
-| 10 | [対角化 — 混ざった計算を独立な成分に分ける](https://university-math-crj.pages.dev/linear-algebra/diagonalization/) | [問題](https://university-math-crj.pages.dev/pdf/la-10-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-10-solutions.pdf) |
-| 11 | [対称行列と直交対角化 — 長さを保つ座標で分解する](https://university-math-crj.pages.dev/linear-algebra/symmetric-matrices/) | [問題](https://university-math-crj.pages.dev/pdf/la-11-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-11-solutions.pdf) |
-| 12 | [直交射影と正規直交化 — 成分を取り出し、残りを測る](https://university-math-crj.pages.dev/linear-algebra/orthogonal-projection/) | [問題](https://university-math-crj.pages.dev/pdf/la-12-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-12-solutions.pdf) |
-| 13 | [最小二乗法 — ぴったり解けない方程式に最良の近似を求める](https://university-math-crj.pages.dev/linear-algebra/least-squares/) | [問題](https://university-math-crj.pages.dev/pdf/la-13-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-13-solutions.pdf) |
-| 14 | [二次形式と正定値 — エネルギーの形を固有値で読む](https://university-math-crj.pages.dev/linear-algebra/quadratic-forms/) | [問題](https://university-math-crj.pages.dev/pdf/la-14-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-14-solutions.pdf) |
-| 15 | [特異値分解 — 長方形行列の伸縮と情報の欠落を読む](https://university-math-crj.pages.dev/linear-algebra/singular-value-decomposition/) | [問題](https://university-math-crj.pages.dev/pdf/la-15-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-15-solutions.pdf) |
-| 16 | [線形システムとモード — 時間変化と安定性を読み解く](https://university-math-crj.pages.dev/linear-algebra/dynamical-systems/) | [問題](https://university-math-crj.pages.dev/pdf/la-16-problems.pdf) | [解答](https://university-math-crj.pages.dev/pdf/la-16-solutions.pdf) |
-
-## 作成時の検証
-
-- 全16章、各4問、計64問。問題・解答PDFは計32本、各2ページ。
-- 例題・演習は `scripts/verify-linear-algebra.py` で有理数と記号計算を使い、210項目を検算。
-- `npm run pdf` でXeLaTeXから生成。`npm run build` で静的エクスポート。
-- `npm run verify:site` で、書き出された全23ページ・396本の内部リンク・全36本のPDF・sitemapを確認。GitHub Actionsにもこの検査を追加。
-- 既存の微分積分・複素関数も含め、開発サーバーの全23ページを幅1280・390・360pxで確認（計69表示）。数式エラー・横はみ出し・画像の未読込なし。
-- 全36本のサイト内PDFを取得し、HTTP 200とPDF形式を確認。線形代数の全64ページを画像化し、既存の固有値演習の改ページを修正。
-
-これらの検証は、文章の教育的な質やすべての解釈を保証するものではありません。独立したレビューの指摘をもとに修正します。
-
-2026-10-07のレビューに対する対応は [review-fixes-2026-10-08.md](review-fixes-2026-10-08.md) を参照してください。
+ZIPにはソース、生成PDF、静的出力、対応表、検算とブラウザの結果を含めます。公開結果とコミットはZIP直下の公開記録を参照してください。

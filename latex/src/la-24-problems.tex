@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{行列指数関数とレゾルベント　演習}{https://university-math-crj.pages.dev/linear-algebra/matrix-functions/}
+\namelinetrue
+\begin{document}
+\makesheethead{問題}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[入力応答]
+$A=\operatorname{diag}(-2,-4),B=(2,1)^{\mathsf T},u=1,x(0)=0$ の応答と定常値を求めよ。
+\workspace{45mm}
+\problem[特異な状態行列]
+$A=\begin{pmatrix}0&2\\0&0\end{pmatrix},B=e_2,u=1,x(0)=0$ を解け。
+\workspace{45mm}
+\newpage
+\problem[減衰する回転]
+$A=\begin{pmatrix}-2&-3\\3&-2\end{pmatrix},x(0)=(1,0)^{\mathsf T}$ の実応答を求めよ。
+\workspace{45mm}
+\problem[レゾルベント]
+$J=\begin{pmatrix}-1&2\\0&-1\end{pmatrix}$ の $(sI-J)^{-1}$ を求めよ。
+\workspace{45mm}
+\newpage
+\problem[境界の安定性]
+連続時間の $A_1=0_{2\times2},A_2=J_2(0)$ と離散時間の $B_1=I_2,B_2=J_2(1)$ の安定性を分類せよ。
+\workspace{45mm}
+\problem[可換性の反例]
+$A=\begin{pmatrix}0&1\\0&0\end{pmatrix},B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$ で $e^{A+B}\ne e^Ae^B$ を示せ。
+\workspace{45mm}
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{文字パラメータと階数　演習}{https://university-math-crj.pages.dev/linear-algebra/parameter-rank/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[2つの例外値]
+$A(t)=\begin{pmatrix}1&1&0\\1&t&0\\0&0&t+2\end{pmatrix}$、$b=(2,4,0)^{\mathsf T}$。階数と全解を $t\in\mathbb R$ で分類せよ。
+\begin{ans}
+$\det A=(t-1)(t+2)$。$t\ne1,-2$ では階数3、$x_2=2/(t-1),x_1=2-2/(t-1),x_3=0$。$t=1$ は同じ左辺に右辺2と4が出るので解なし、係数階数2・拡大階数3。$t=-2$ は両階数2、$x=(8/3,-2/3,r)$、$r$ は任意。
+\end{ans}
+\point{特異な値は元の行列に代入して調べる。}
+\problem[階数1への落下]
+$A(t)=\begin{pmatrix}2&1&1\\2&t&1\\2&1&t\end{pmatrix}$ と任意の $b$ について $t=1$ の可解条件と全解を求めよ。
+\begin{ans}
+$t=1$ では全行が $(2,1,1)$ で階数1。可解条件は $b_1=b_2=b_3=\beta$。全解は $((\beta-s-r)/2,s,r)$ で自由度2。条件を満たさなければ右辺の列が列空間に入らず、拡大階数2で解なし。左零空間の $(1,-1,0),(1,0,-1)$ を右辺と内積しても同じ条件。
+\end{ans}
+\point{特異な行列が常に階数 $n-1$ になるわけではない。}
+\newpage
+\problem[左零空間]
+$A=\begin{pmatrix}1&0\\0&1\\1&2\end{pmatrix}$ について $Ax=b$ の可解条件を左零空間から求めよ。
+\begin{ans}
+$A^{\mathsf T}y=0$ は $y_1+y_3=0,y_2+2y_3=0$。基底は $(-1,-2,1)$。従って $-b_1-2b_2+b_3=0$ が必要十分。条件下では $x=(b_1,b_2)$ で唯一解。第3式へ代入すると $b_1+2b_2=b_3$ で検算できる。
+\end{ans}
+\point{列空間の直交補は共役転置の核。}
+\problem[積の階数下限]
+$A\in\mathbb F^{m\times n},B\in\mathbb F^{n\times p}$ に対し $\operatorname{rank}(AB)\ge\operatorname{rank}A+\operatorname{rank}B-n$ を証明せよ。
+\begin{ans}
+$A$ を $\operatorname{Im}B$ に制限する。核は $\operatorname{Im}B\cap\ker A$ なので、階数・退化次数の定理で $\operatorname{rank}(AB)=\operatorname{rank}B-\dim(\operatorname{Im}B\cap\ker A)$。交わりの次元は $\dim\ker A=n-\operatorname{rank}A$ 以下。これを代入すると結論。
+\end{ans}
+\point{積で失われるのは途中の像と次の核の交わり。}
+\newpage
+\problem[上限と下限の達成]
+$A=\operatorname{diag}(1,1,0)$。$B_1=\operatorname{diag}(1,1,0)$、$B_2=\operatorname{diag}(0,1,1)$ の積の階数を求めよ。
+\begin{ans}
+$A,B_1,B_2$ はいずれも階数2。$AB_1=\operatorname{diag}(1,1,0)$ は階数2で上限を達成。$AB_2=\operatorname{diag}(0,1,0)$ は階数1で下限 $2+2-3=1$ を達成する。個々の階数が同じでも積の階数は変わり、像と核の位置関係が必要。
+\end{ans}
+\point{個々の階数だけで積の階数を決めない。}
+\problem[正則変換]
+正則な $P,Q$ に対して $\operatorname{rank}(PAQ)=\operatorname{rank}A$ を証明し、$\ker(PAQ)$ を $\ker A$ で表せ。
+\begin{ans}
+$Q$ は入力空間を全単射で写し、$P$ は像を全単射で写すため像の次元は変わらない。また $PAQx=0\iff AQx=0\iff Qx\in\ker A$ なので $\ker(PAQ)=Q^{-1}(\ker A)$。核の集合は座標で変わるが次元は同じ。
+\end{ans}
+\point{左の変換と右の変換の役割を分ける。}
+\end{document}

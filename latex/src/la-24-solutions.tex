@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{行列指数関数とレゾルベント　演習}{https://university-math-crj.pages.dev/linear-algebra/matrix-functions/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[入力応答]
+$A=\operatorname{diag}(-2,-4),B=(2,1)^{\mathsf T},u=1,x(0)=0$ の応答と定常値を求めよ。
+\begin{ans}
+畳み込みを成分ごとに積分して $x_1=1-e^{-2t},x_2=(1-e^{-4t})/4$。定常値は $(1,1/4)=-A^{-1}B$。微分は $(2e^{-2t},e^{-4t})$、$Ax+B$ と一致し初期値0も確認できる。
+\end{ans}
+\point{初期値応答と入力応答を分ける。}
+\problem[特異な状態行列]
+$A=\begin{pmatrix}0&2\\0&0\end{pmatrix},B=e_2,u=1,x(0)=0$ を解け。
+\begin{ans}
+$A^2=0$ なので $e^{At}=I+tA$。$e^{A(t-\tau)}B=(2(t-\tau),1)$ を積分して $x=(t^2,t)$。$\dot x=(2t,1)=Ax+B$。$A$ は特異なので $A^{-1}(e^{At}-I)$ という式は使えない。
+\end{ans}
+\point{行列指数関数は特異行列にも定義される。}
+\newpage
+\problem[減衰する回転]
+$A=\begin{pmatrix}-2&-3\\3&-2\end{pmatrix},x(0)=(1,0)^{\mathsf T}$ の実応答を求めよ。
+\begin{ans}
+$A=-2I+3R,R^2=-I$、両部分は可換。級数の偶奇項から $e^{3Rt}=I\cos3t+R\sin3t$。従って $x=e^{-2t}(\cos3t,\sin3t)$。固有値 $-2\pm3j$、長さ $e^{-2t}$、漸近安定。実応答に虚数の成分を残さない。
+\end{ans}
+\point{実部は減衰率、虚部は角振動数。}
+\problem[レゾルベント]
+$J=\begin{pmatrix}-1&2\\0&-1\end{pmatrix}$ の $(sI-J)^{-1}$ を求めよ。
+\begin{ans}
+$N=J+I,N^2=0$ なので $(sI-J)^{-1}=I/(s+1)+N/(s+1)^2$、すなわち $\begin{pmatrix}1/(s+1)&2/(s+1)^2\\0&1/(s+1)\end{pmatrix}$。$s\ne-1$。元の $sI-J$ を掛けると非対角項が打ち消され $I$。
+\end{ans}
+\point{Jordanのサイズが極の次数に現れる。}
+\newpage
+\problem[境界の安定性]
+連続時間の $A_1=0_{2\times2},A_2=J_2(0)$ と離散時間の $B_1=I_2,B_2=J_2(1)$ の安定性を分類せよ。
+\begin{ans}
+$A_1$ は状態一定で安定だが漸近安定でない。$A_2$ は $e^{A_2t}=I+tA_2$ で初期値 $e_2$ が $(t,1)$ となり不安定。$B_1$ も状態一定で安定、$B_2^k=\begin{pmatrix}1&k\\0&1\end{pmatrix}$ は不安定。境界固有値の非自明なJordanブロックが原因。
+\end{ans}
+\point{固有値の境界ではブロックサイズも調べる。}
+\problem[可換性の反例]
+$A=\begin{pmatrix}0&1\\0&0\end{pmatrix},B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$ で $e^{A+B}\ne e^Ae^B$ を示せ。
+\begin{ans}
+$A^2=B^2=0$ なので $e^Ae^B=(I+A)(I+B)=\begin{pmatrix}2&1\\1&1\end{pmatrix}$。一方 $(A+B)^2=I$ なので $e^{A+B}=I\cosh1+(A+B)\sinh1$。こちらの対角成分は両方 $\cosh1$ で、先の2と1に同時には等しくならない。
+\end{ans}
+\point{指数関数の積の法則には可換性が必要。}
+\end{document}

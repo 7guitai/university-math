@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{ochamath}
+\subjectcolor{2F5DA8}
+\setsheet{線形代数・電気系院試補充}{行列式の計算法とブロック行列　演習}{https://university-math-crj.pages.dev/linear-algebra/determinant-methods/}
+\begin{document}
+\makesheethead{解答}
+自作問題。本文の例題とは数値や設定が異なります。条件・途中式・検算を示してください。
+\problem[消去と行列式]
+$A=\begin{pmatrix}3&1&0\\1&2&1\\0&1&2\end{pmatrix}$ の行列式を、行列式を変えない行操作で求め、余因子展開で検算せよ。
+\begin{ans}
+第2行から第1行の $1/3$ 倍を引くと第2ピボットは $5/3$。第3行から新しい第2行の $3/5$ 倍を引くと最後は $7/5$。従って $\det A=3(5/3)(7/5)=7$。第1行で展開しても $3(4-1)-1\cdot2=7$。行を定数倍していないので、追加の倍率補正は不要。
+\end{ans}
+\point{操作の種類を記録し、行交換なら符号も追う。}
+\problem[随伴行列]
+$A=\begin{pmatrix}3&1\\2&1\end{pmatrix}$ の随伴行列と逆行列を求め、左右の積を確かめよ。
+\begin{ans}
+$\det A=3-2=1$。余因子行列は $\begin{pmatrix}1&-2\\-1&3\end{pmatrix}$ で、転置して $\operatorname{adj}A=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}$。行列式が非零なのでこれが $A^{-1}$。$A\operatorname{adj}A=\operatorname{adj}A A=I$ と直接掛けて確認する。
+\end{ans}
+\point{余因子行列を転置するのを忘れない。}
+\newpage
+\problem[クラメルの公式]
+$3x+y=5,\ 2x+y=4$ をクラメルの公式で解き、代入して検算せよ。
+\begin{ans}
+係数行列の行列式は1。第1列を右辺で置換した行列式は $5-4=1$、第2列を置換した行列式は $12-10=2$。従って $(x,y)=(1,2)$。元の式は $3+2=5,2+2=4$。公式の分母は正則性を確認してから使う。
+\end{ans}
+\point{列を置換し、右辺を行へ入れない。}
+\problem[Schur補行列]
+$M=\begin{pmatrix}3&0&1\\0&2&2\\1&2&4\end{pmatrix}$ の行列式を左上の2次ブロックで求めよ。
+\begin{ans}
+$A=\operatorname{diag}(3,2),B=(1,2)^{\mathsf T},C=B^{\mathsf T},D=4$。$CA^{-1}B=1/3+2=7/3$ なので $S=5/3$。従って $\det M=\det A\det S=6(5/3)=10$。第1行の余因子展開でも $3(8-4)-2=10$。
+\end{ans}
+\point{ブロックをスカラーのように並べ替えない。}
+\newpage
+\problem[内部変数の消去]
+$3x_1+y=4,\ 2x_2+2y=6,\ x_1+2x_2+4y=9$ をSchur補行列で解け。
+\begin{ans}
+前問のブロックで $f=(4,6)^{\mathsf T},g=9$。$CA^{-1}f=4/3+6=22/3$。$Sy=9-22/3=5/3$ なので $y=1$。$x_1=(4-1)/3=1,x_2=(6-2)/2=2$。第3式は $1+4+4=9$ で確認できる。
+\end{ans}
+\point{消去後の右辺にも同じ操作を行う。}
+\problem[行列式と相似]
+正則な $P$ と $n$ 次行列 $A$ について $\det(P^{-1}AP)=\det A$ と $\det(cA)=c^n\det A$ を証明せよ。
+\begin{ans}
+積の行列式の法則と $\det P^{-1}=1/\det P$ から第1式が得られる。第2式は各行から $c$ を1つずつ外へ出せば $n$ 個の因子となる。$c=0$ も両辺0で成立。特にスカラー倍は $n=1$ 以外では一般に $c\det A$ ではない。
+\end{ans}
+\point{相似とスカラー倍で保存される量を区別する。}
+\end{document}
